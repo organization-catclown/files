@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
-  <title>教務用画面</title>
-</head>
-<body>
-  <h1>教務用メニュー</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>教務用画面</title>
+  </head>
+  <body>
+    <h1>教務用メニュー</h1>
 
-  <input type="button" onclick="history.back()" id="back" class="hidden">
+    <table>
+      <tr>
+        <th>名前</th>
+        <th>学科名</th>
+        <th>使用教室</th>
+        <th>退出予定時間</th>
+      </tr>
+    </table>
 
-  <label for="back" class="btn back">戻る</label>
-</body>
+    <input type="button" onclick="history.back()" id="back" class="hidden" />
+
+    <label for="back" class="btn back">戻る</label>
+  </body>
 </html>
