@@ -1,0 +1,21 @@
+﻿入力時刻		DATETIME
+日付			DATE
+使用教室		VARCHAR2
+学科名			VARCHAR2
+姓			VARCHAR2
+名			VARCHAR2	
+入室時間		TIME
+入室確認印教師名	VARCHAR2	教師のみ
+退室時間		TIME
+実退出時間		TIME
+最終確認印教師名	VARCHAR2	教師のみ
+理由			VARCHAR2
+
+
+学科名
+学籍番号
+学科名
+姓
+名
+姓（カナ）
+名（カナ）
