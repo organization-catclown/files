@@ -15,7 +15,7 @@ h1 {
   text-align: center;
   line-height: 5em;
   background: #333;
-  margin: 0 0 0.5em;
+  margin: 0 0 1em;
   color: white;
 }
 
@@ -24,6 +24,7 @@ h1 {
   width: 10em;
   height: 5em;
   line-height: 5em;
+  font-size: 1em;
   text-align: center;
   background: #333;
   color: white;
@@ -31,6 +32,7 @@ h1 {
 
 .flex {
   display: flex;
+  margin-bottom: 1.5em;
 }
 
 .flex .btn {
@@ -54,20 +56,115 @@ h1 {
   left: 0;
 }
 
-.time input[type=number] {
-  width: 2em;
-  font-size: 1em;
-}
-
-.date {
+.btn.next {
   position: absolute;
-  right: 1em;
+  bottom: 0;
+  right: 0;
 }
 
+/* enter.html */
 .contant {
-  margin-left: 1em;
+  margin: 0 3em;
+  font-size: 2em;
+  line-height: 2em;
 }
 
-.contant div {
-  font-size: 2em;
+.display {
+  display: block;
+  width: 10em;
+  height: 2em;
+  /* background: red; */
+  margin-right: 2em;
+  border: 1px #333 solid;
 }
+
+.display.time {
+  width: 4em;
+  margin: 0 5px;
+}
+
+.label {
+  position: absolute;
+  color: #999;
+  padding-left: 0.3em; 
+}
+
+#date {
+  position: absolute;
+  right: 3em;
+}
+
+/*  */
+
+#keybord.is-show {
+  /* display: block; */
+  position: absolute;
+  top: 27em;
+  left: 190px;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+#keybord {
+  margin: 2em 2em 0 0;
+  /* display: none; */
+  opacity: 0;
+  width: 600px;
+  height: 360px;
+  background: green;
+  transition: opacity 1s;
+}
+
+#close {
+  position: absolute;
+  display: block;
+  font-size: 2em;
+  /* color: white; */
+  left: 610px;
+  cursor: pointer;
+}
+
+.input_katakana {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  height: 300px;
+  /* background: red; */
+}
+
+.keybtn {
+  width: 54px;
+  height: 54px;
+  background: #333;
+  color: white;
+  line-height: 54px;
+  text-align: center;
+  margin: auto;
+  border-radius: 10px;
+  border-right:4px solid #000; 
+  border-bottom:4px solid #000;
+  cursor: pointer; 
+}
+
+.keybtn:active {
+  border-right:transparent;
+  border-bottom:transparent; 
+  border-left:4px solid #000; 
+  border-top:4px solid #000; 
+}
+
+.keybtn.clear {
+  background: transparent;
+  border: transparent;
+  cursor: default;
+}
+
+.other {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.other .keybtn {
+  width: 112px;
+}
+/*  */

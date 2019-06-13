@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/script.js" defer="defer"></script>
     <link rel="stylesheet" href="./css/style.css" />
     <title>入室画面</title>
   </head>
@@ -10,35 +11,109 @@
     <h1>入室メニュー</h1>
 
     <input type="button" onclick="history.back()" id="back" class="hidden" />
+    <input type="button" onclick="history.back()" id="next" class="hidden" />
+
     <div class="contant">
-      <div class="date">日付 : 06/05</div>
-      <div>
-        名前　　：
-        <input type="text" class="name sei" placeholder="セイ" style="font-size: 1em;" />
-        <input type="text" class="name mei" placeholder="メイ" style="font-size: 1em;" />
+      <div class="flex">
+        <div>名前：</div>
+        <div class="flex">
+          <div id="sei" class="display"></div>
+          <div id="seilabel" class="label">セイ</div>
+        </div>
+        <div class="flex">
+          <div id="mei" class="display"></div>
+          <div id="meilabel" class="label">メイ</div>
+        </div>
+        <div id="date">日付：06/06</div>
       </div>
-
-      <div>
-        学科名　：
-        <select name="" id="" style="font-size: 1em;">
-          <option value="">学科を選択</option>
+      <div class="flex">
+        <div>学科：
+        </div>
+        <select name="" id="" style="font-size: 1em;" >
+          <option value="a" >学科を選択</option>
         </select>
+        <div style="margin-left:1.3em;">使用教室：</div>
+        <button style="width:10em;font-size:1em;">選択</button>
       </div>
+      <div class="flex">
+        <div>使用開始時間：</div>
+        <div id="start-time-sec" class="display time"></div>：
+        <div id="start-time-min" class="display time"></div>～
+      </div>
+      <div class="flex">
+        <div>終了予定時間：</div>
+        <div id="pre-end-time-sec" class="display time"></div>：
+        <div id="pre-end-time-min" class="display time"></div>
 
-      <div>使用教室：
-        <input type="button" value="選択" style="font-size: 1em;" />
-      </div>
-      <div>使用開始時間</div>
-      <div>08:30</div>
-      <div>退室予定時間</div>
-      <div class="time">
-        <input type="number" name="" id="" />
-        <input type="number" name="" id="" />:
-        <input type="number" name="" id="" />
-        <input type="number" name="" id="" />
       </div>
     </div>
 
+    <!-- カタカナキーボード -->
+    <div id="keybord">
+        <div id="close">X</div>
+        <div class="input_katakana">
+          <div class="keybtn" onclick="addChar('ワ')">ワ</div>
+          <div class="keybtn" onclick="addChar('ヤ')">ヤ</div>
+          <div class="keybtn" onclick="addChar('ラ')">ラ</div>
+          <div class="keybtn" onclick="addChar('マ')">マ</div>
+          <div class="keybtn" onclick="addChar('ハ')">ハ</div>
+          <div class="keybtn" onclick="addChar('ナ')">ナ</div>
+          <div class="keybtn" onclick="addChar('タ')">タ</div>
+          <div class="keybtn" onclick="addChar('サ')">サ</div>
+          <div class="keybtn" onclick="addChar('カ')">カ</div>
+          <div class="keybtn" onclick="addChar('ア')">ア</div>
+          <div class="keybtn clear"></div>
+          <div class="keybtn clear"></div>
+          <div class="keybtn" onclick="addChar('リ')">リ</div>
+          <div class="keybtn" onclick="addChar('ミ')">ミ</div>
+          <div class="keybtn" onclick="addChar('ヒ')">ヒ</div>
+          <div class="keybtn" onclick="addChar('ニ')">ニ</div>
+          <div class="keybtn" onclick="addChar('チ')">チ</div>
+          <div class="keybtn" onclick="addChar('シ')">シ</div>
+          <div class="keybtn" onclick="addChar('キ')">キ</div>
+          <div class="keybtn" onclick="addChar('イ')">イ</div>
+          <div class="keybtn" onclick="addChar('ヲ')">ヲ</div>
+          <div class="keybtn" onclick="addChar('ユ')">ユ</div>
+          <div class="keybtn" onclick="addChar('ル')">ル</div>
+          <div class="keybtn" onclick="addChar('ム')">ム</div>
+          <div class="keybtn" onclick="addChar('フ')">フ</div>
+          <div class="keybtn" onclick="addChar('ヌ')">ヌ</div>
+          <div class="keybtn" onclick="addChar('ツ')">ツ</div>
+          <div class="keybtn" onclick="addChar('ス')">ス</div>
+          <div class="keybtn" onclick="addChar('ク')">ク</div>
+          <div class="keybtn" onclick="addChar('ウ')">ウ</div>
+          <div class="keybtn clear"></div>
+          <div class="keybtn clear"></div>
+          <div class="keybtn" onclick="addChar('レ')">レ</div>
+          <div class="keybtn" onclick="addChar('メ')">メ</div>
+          <div class="keybtn" onclick="addChar('ヘ')">ヘ</div>
+          <div class="keybtn" onclick="addChar('ネ')">ネ</div>
+          <div class="keybtn" onclick="addChar('テ')">テ</div>
+          <div class="keybtn" onclick="addChar('セ')">セ</div>
+          <div class="keybtn" onclick="addChar('ケ')">ケ</div>
+          <div class="keybtn" onclick="addChar('エ')">エ</div>
+          <div class="keybtn" onclick="addChar('ン')">ン</div>
+          <div class="keybtn" onclick="addChar('ヨ')">ヨ</div>
+          <div class="keybtn" onclick="addChar('ロ')">ロ</div>
+          <div class="keybtn" onclick="addChar('モ')">モ</div>
+          <div class="keybtn" onclick="addChar('ホ')">ホ</div>
+          <div class="keybtn" onclick="addChar('ノ')">ノ</div>
+          <div class="keybtn" onclick="addChar('ト')">ト</div>
+          <div class="keybtn" onclick="addChar('ソ')">ソ</div>
+          <div class="keybtn" onclick="addChar('コ')">コ</div>
+          <div class="keybtn" onclick="addChar('オ')">オ</div>
+        </div>
+        <div class="other">
+          <div class="keybtn clear"></div>
+          <div class="keybtn clear"></div>
+          <div class="keybtn" id="change">大小</div>
+          <div class="keybtn" id="dakuten">ﾞ / ﾟ</div>
+          <div class="keybtn" id="del">削除</div>
+        </div>
+      </div>
+
+    <!-- ボタン -->
     <label for="back" class="btn back">戻る</label>
+    <label for="next" class="btn next">次へ</label>
   </body>
 </html>
