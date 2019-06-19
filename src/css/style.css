@@ -97,22 +97,18 @@ h1 {
 /*  */
 
 #keybord.is-show {
-  /* display: block; */
+  display: block;
   position: absolute;
-  top: 27em;
+  top: 29em;
   left: 190px;
-  opacity: 1;
-  transition: opacity 1s;
 }
 
 #keybord {
-  margin: 2em 2em 0 0;
-  /* display: none; */
-  opacity: 0;
+  margin: 2em 2esm 0 0;
+  display: none;
   width: 600px;
   height: 360px;
   background: green;
-  transition: opacity 1s;
 }
 
 #close {
@@ -124,7 +120,7 @@ h1 {
   cursor: pointer;
 }
 
-.input_katakana {
+.keybordmain {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   width: 100%;
@@ -167,4 +163,22 @@ h1 {
 .other .keybtn {
   width: 112px;
 }
-/*  */
+
+#tenkey {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  width: 180px;
+  height: 240px;
+  background: green;
+  position: absolute;
+  top: 400px;
+  left: 325px;
+}
+
+#tenkey.is-show {
+  display: grid;
+}
+
+.time {
+  text-align: center; 
+}

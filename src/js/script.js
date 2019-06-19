@@ -1,4 +1,14 @@
+let target
+
 document.getElementById("sei").onclick = () => {
+  ShowKeybordOfSei()
+}
+
+document.getElementById("seilabel").onclick = () => {
+  ShowKeybordOfSei()  
+}
+
+const ShowKeybordOfSei = () => {
   // キーボード表示
   let kb = document.getElementById("keybord")
   kb.classList.add("is-show")
@@ -32,6 +42,14 @@ document.getElementById("sei").onclick = () => {
 
 
 document.getElementById("mei").onclick = () => {
+  ShowKeybordOfMei()
+}
+
+document.getElementById("meilabel").onclick = () => {
+  ShowKeybordOfMei()
+}
+
+const ShowKeybordOfMei = () => {
   // キーボード表示
   let kb = document.getElementById("keybord")
   kb.classList.add("is-show")
@@ -97,7 +115,8 @@ document.getElementById("close").onclick = () => {
 }
 
 
-function addChar(char) {
+function Disp(char) {
+  target.style.boxShadow = "0 0 10px 5px rgba(97, 205, 255, 0.3)"
   let disp = target
   disp.innerText += char
 }
@@ -107,6 +126,7 @@ document.getElementById("change").onclick = () =>{
   disp.innerText = disp.innerText.substr(0, disp.innerText.length - 1) + changeChar(disp.innerText.substr(disp.innerText.length - 1))
 }
 
+// ===============大文字小文字処理============================
 function changeChar(char) {
   switch(char) {
     case "ツ":
@@ -135,6 +155,7 @@ document.getElementById("dakuten").onclick = () => {
   disp.innerText = disp.innerText.substr(0, disp.innerText.length - 1) + dakuten(disp.innerText.substr(disp.innerText.length - 1))
 }
 
+// ========================濁点半濁点処理=========================================
 function dakuten(char) {
   switch(char) {
     // カ行
@@ -238,7 +259,36 @@ function dakuten(char) {
   }
 }
 
-document.getElementById("del").onclick = () => {
+function del() {
   let disp = target
   disp.innerText = disp.innerText.length > 1 ? disp.innerText.substr(0, disp.innerText.length - 1) : ""
+}
+
+function close() {
+  document.getElementById('keybord').classList.remove('is-show')
+  document.getElementById('tenkey').classList.remove('is-show')
+}
+
+const shadow = () => {
+  target.style.boxShadow = "0 0 10px 5px rgba(97, 205, 255, 0.3)"
+}
+
+// ======================日付表示===============================
+const date = new Date()
+const today = `日付：${(date.getMonth()+1)}/${date.getDate()}`
+document.getElementById("date").innerText = today
+
+
+document.getElementById('start-time-hor').innerText = `${date.getHours()}`
+
+document.getElementById('start-time-min').innerText = `${date.getMinutes()}`
+
+document.getElementById('pre-end-time-sec').onclick = () => {
+  target = document.getElementById('pre-end-time-sec')
+  document.getElementById('tenkey').classList.add('is-show')
+}
+
+document.getElementById('pre-end-time-min').onclick = () => {
+  target = document.getElementById('pre-end-time-min')
+  document.getElementById('tenkey').classList.add('is-show')
 }
