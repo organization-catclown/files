@@ -32,7 +32,8 @@
           <option value="a">学科を選択</option>
         </select>
         <div style="margin-left:1.3em;">使用教室：</div>
-        <button style="width:10em;font-size:1em;" id="floor_map_view" onclick="floorMapShow()">選択</button>
+        <div id="select_room" class="display"></div>
+        <button style="font-size:1em;" id="floor_map_view" onclick="floorMapShow()">ﾌﾛｱﾏｯﾌﾟから選択</button>
       </div>
       <div class="flex">
         <div>使用開始時間：</div>
@@ -151,9 +152,15 @@
         </div>
         <div id="f2">
           <img src="./images/f2.jpg" alt="" />
+          <div id="career_center" class="room" onclick="selectRoom('キャリアセンター')">キャリアセンター</div> 
         </div>
         <div id="f3">
           <img src="./images/f3.jpg" alt="" />
+          <!-- <div　id="software_2" class="room">ソフⅡ</div>
+          <div id="linux" class="room">Linux</div>
+          <div id="cisco" class="room">Cisco</div> -->
+          <div id="db" class="room" onclick="selectRoom('データベースルーム ')">DBルーム</div>
+          <div id="software_1" class="room" onclick="selectRoom('ソフトウェアⅠ')">ソフⅠ</div>
         </div>
         <div id="f4">
           <img src="./images/f4.jpg" alt="" />

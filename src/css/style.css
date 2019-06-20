@@ -3,7 +3,7 @@ body {
   padding: 0;
 }
 
-input[type=button].hidden {
+input[type="button"].hidden {
   display: none;
 }
 
@@ -86,7 +86,7 @@ h1 {
 .label {
   position: absolute;
   color: #999;
-  padding-left: 0.3em; 
+  padding-left: 0.3em;
 }
 
 #date {
@@ -137,16 +137,16 @@ h1 {
   text-align: center;
   margin: auto;
   border-radius: 10px;
-  border-right:4px solid #000; 
-  border-bottom:4px solid #000;
-  cursor: pointer; 
+  border-right: 4px solid #000;
+  border-bottom: 4px solid #000;
+  cursor: pointer;
 }
 
 .keybtn:active {
-  border-right:transparent;
-  border-bottom:transparent; 
-  border-left:4px solid #000; 
-  border-top:4px solid #000; 
+  border-right: transparent;
+  border-bottom: transparent;
+  border-left: 4px solid #000;
+  border-top: 4px solid #000;
 }
 
 .keybtn.clear {
@@ -180,7 +180,7 @@ h1 {
 }
 
 .time {
-  text-align: center; 
+  text-align: center;
 }
 
 /* ==================フロアマップ========================= */
@@ -204,7 +204,6 @@ h1 {
   left: 20px;
   cursor: pointer;
   color: white;
-  z-index: 200;
   font-size: 3em;
 }
 
@@ -238,7 +237,7 @@ h1 {
   right: 0;
   top: 0;
   bottom: 0;
-  margin:auto;
+  margin: auto;
   opacity: 1;
 }
 
@@ -247,3 +246,31 @@ h1 {
   opacity: 1;
 }
 
+div#career_center {
+  top: 250px;
+  left: 690px;
+}
+
+div#software_1 {
+  top: 250px;
+  left: 725px;
+}
+
+div#db {
+  top: 550px;
+  left: 460px;
+}
+
+div#cisco {
+
+}
+
+.room {
+  position: absolute;
+  color: white;
+  width: 4em;
+  background: red;
+  height: 3em;
+  opacity: 1;
+  cursor: pointer;
+}
