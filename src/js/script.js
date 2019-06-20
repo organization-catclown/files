@@ -283,12 +283,50 @@ document.getElementById('start-time-hor').innerText = `${date.getHours()}`
 
 document.getElementById('start-time-min').innerText = `${date.getMinutes()}`
 
-document.getElementById('pre-end-time-sec').onclick = () => {
-  target = document.getElementById('pre-end-time-sec')
-  document.getElementById('tenkey').classList.add('is-show')
+
+// =========================フロアマップ=========================
+const floorMapShow = () => {
+  const floorMap = document.getElementById("floor_map")
+  floorMap.classList.add("is-show")
 }
 
-document.getElementById('pre-end-time-min').onclick = () => {
-  target = document.getElementById('pre-end-time-min')
-  document.getElementById('tenkey').classList.add('is-show')
+const floorMapClose = () => {
+  const floorMap = document.getElementById("floor_map")
+  floorMap.classList.remove("is-show")
 }
+
+let current_floor = 1
+
+const upToFloor = () => {
+  const current_floor_str = 'f' + current_floor
+  const cf = document.getElementById(current_floor_str).style
+
+  cf.height = 0
+  cf.opacity = 0
+  
+  current_floor += current_floor<5 ? 1 : 0
+  const next_floor_str = "f" + current_floor
+  const nf = document.getElementById(next_floor_str).style
+
+  nf.height = '100%'
+  nf.opacity = '1'
+}
+
+const downToFloor = () => {
+  const current_floor_str = 'f' + current_floor
+  const cf = document.getElementById(current_floor_str).style
+
+  cf.height = 0
+  cf.opacity = 0
+  
+  
+  current_floor -= current_floor>1 ? 1 : 0  
+  const next_floor_str = "f" + current_floor
+  const nf = document.getElementById(next_floor_str).style
+
+  nf.height = '100%'
+  nf.opacity = '1'
+}
+
+
+
