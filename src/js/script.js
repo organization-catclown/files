@@ -328,5 +328,10 @@ const downToFloor = () => {
   nf.opacity = '1'
 }
 
+const selectRoom = (inRoom) => {
+  document.getElementById('select_room').innerText = inRoom
+  document.getElementById('floor_map').classList.remove('is-show')
+}
+
 
 
