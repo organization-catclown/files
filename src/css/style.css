@@ -3,7 +3,7 @@ body {
   padding: 0;
 }
 
-input[type=button].hidden {
+input[type="button"].hidden {
   display: none;
 }
 
@@ -86,7 +86,7 @@ h1 {
 .label {
   position: absolute;
   color: #999;
-  padding-left: 0.3em; 
+  padding-left: 0.3em;
 }
 
 #date {
@@ -97,22 +97,18 @@ h1 {
 /*  */
 
 #keybord.is-show {
-  /* display: block; */
+  display: block;
   position: absolute;
-  top: 27em;
+  top: 29em;
   left: 190px;
-  opacity: 1;
-  transition: opacity 1s;
 }
 
 #keybord {
-  margin: 2em 2em 0 0;
-  /* display: none; */
-  opacity: 0;
+  margin: 2em 2esm 0 0;
+  display: none;
   width: 600px;
   height: 360px;
   background: green;
-  transition: opacity 1s;
 }
 
 #close {
@@ -124,7 +120,7 @@ h1 {
   cursor: pointer;
 }
 
-.input_katakana {
+.keybordmain {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   width: 100%;
@@ -141,16 +137,16 @@ h1 {
   text-align: center;
   margin: auto;
   border-radius: 10px;
-  border-right:4px solid #000; 
-  border-bottom:4px solid #000;
-  cursor: pointer; 
+  border-right: 4px solid #000;
+  border-bottom: 4px solid #000;
+  cursor: pointer;
 }
 
 .keybtn:active {
-  border-right:transparent;
-  border-bottom:transparent; 
-  border-left:4px solid #000; 
-  border-top:4px solid #000; 
+  border-right: transparent;
+  border-bottom: transparent;
+  border-left: 4px solid #000;
+  border-top: 4px solid #000;
 }
 
 .keybtn.clear {
@@ -167,4 +163,114 @@ h1 {
 .other .keybtn {
   width: 112px;
 }
-/*  */
+
+#tenkey {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  width: 180px;
+  height: 240px;
+  background: green;
+  position: absolute;
+  top: 400px;
+  left: 325px;
+}
+
+#tenkey.is-show {
+  display: grid;
+}
+
+.time {
+  text-align: center;
+}
+
+/* ==================フロアマップ========================= */
+
+#floor_map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: none;
+  background: rgba(50, 50, 50, 0.5);
+}
+
+#floor_map.is-show {
+  display: block;
+}
+
+#floor_map_close {
+  display: inline-block;
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+  color: white;
+  font-size: 3em;
+}
+
+#floor_map_btn {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#floor_map_btn button {
+  width: 10em;
+  height: 10em;
+}
+
+#floor_map_img div {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+}
+
+#floor_map_img div img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 1;
+}
+
+#floor_map.is-show #floor_map_img div#f1 {
+  height: 100%;
+  opacity: 1;
+}
+
+div#career_center {
+  top: 250px;
+  left: 690px;
+}
+
+div#software_1 {
+  top: 250px;
+  left: 725px;
+}
+
+div#db {
+  top: 550px;
+  left: 460px;
+}
+
+div#cisco {
+
+}
+
+.room {
+  position: absolute;
+  color: white;
+  width: 4em;
+  background: red;
+  height: 3em;
+  opacity: 1;
+  cursor: pointer;
+}

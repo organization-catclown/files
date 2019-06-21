@@ -27,93 +27,153 @@
         <div id="date">日付：06/06</div>
       </div>
       <div class="flex">
-        <div>学科：
-        </div>
-        <select name="" id="" style="font-size: 1em;" >
-          <option value="a" >学科を選択</option>
+        <div>学科：</div>
+        <select name="" id="" style="font-size: 1em;">
+          <option value="a">学科を選択</option>
         </select>
         <div style="margin-left:1.3em;">使用教室：</div>
-        <button style="width:10em;font-size:1em;">選択</button>
+        <div id="select_room" class="display"></div>
+        <button style="font-size:1em;" id="floor_map_view" onclick="floorMapShow()">ﾌﾛｱﾏｯﾌﾟから選択</button>
       </div>
       <div class="flex">
         <div>使用開始時間：</div>
-        <div id="start-time-sec" class="display time"></div>：
-        <div id="start-time-min" class="display time"></div>～
+        <div id="start-time-hor" class="display time"></div>
+        ：
+        <div id="start-time-min" class="display time"></div>
+        ～
       </div>
       <div class="flex">
-        <div>終了予定時間：</div>
-        <div id="pre-end-time-sec" class="display time"></div>：
-        <div id="pre-end-time-min" class="display time"></div>
-
+        <div>終了予定時間：～</div>
+        <select name="" id="" style="font-size: 1em;">
+          <option value="">09:20</option>
+          <option value="">11:00</option>
+          <option value="">12:30</option>
+          <option value="">13:20</option>
+          <option value="">15:00</option>
+          <option value="">16:30</option>
+          <option value="">17:00</option>
+          <option value="">18:00</option>
+        </select>
       </div>
     </div>
-
-    <!-- カタカナキーボード -->
-    <div id="keybord">
-        <div id="close">X</div>
-        <div class="input_katakana">
-          <div class="keybtn" onclick="addChar('ワ')">ワ</div>
-          <div class="keybtn" onclick="addChar('ヤ')">ヤ</div>
-          <div class="keybtn" onclick="addChar('ラ')">ラ</div>
-          <div class="keybtn" onclick="addChar('マ')">マ</div>
-          <div class="keybtn" onclick="addChar('ハ')">ハ</div>
-          <div class="keybtn" onclick="addChar('ナ')">ナ</div>
-          <div class="keybtn" onclick="addChar('タ')">タ</div>
-          <div class="keybtn" onclick="addChar('サ')">サ</div>
-          <div class="keybtn" onclick="addChar('カ')">カ</div>
-          <div class="keybtn" onclick="addChar('ア')">ア</div>
-          <div class="keybtn clear"></div>
-          <div class="keybtn clear"></div>
-          <div class="keybtn" onclick="addChar('リ')">リ</div>
-          <div class="keybtn" onclick="addChar('ミ')">ミ</div>
-          <div class="keybtn" onclick="addChar('ヒ')">ヒ</div>
-          <div class="keybtn" onclick="addChar('ニ')">ニ</div>
-          <div class="keybtn" onclick="addChar('チ')">チ</div>
-          <div class="keybtn" onclick="addChar('シ')">シ</div>
-          <div class="keybtn" onclick="addChar('キ')">キ</div>
-          <div class="keybtn" onclick="addChar('イ')">イ</div>
-          <div class="keybtn" onclick="addChar('ヲ')">ヲ</div>
-          <div class="keybtn" onclick="addChar('ユ')">ユ</div>
-          <div class="keybtn" onclick="addChar('ル')">ル</div>
-          <div class="keybtn" onclick="addChar('ム')">ム</div>
-          <div class="keybtn" onclick="addChar('フ')">フ</div>
-          <div class="keybtn" onclick="addChar('ヌ')">ヌ</div>
-          <div class="keybtn" onclick="addChar('ツ')">ツ</div>
-          <div class="keybtn" onclick="addChar('ス')">ス</div>
-          <div class="keybtn" onclick="addChar('ク')">ク</div>
-          <div class="keybtn" onclick="addChar('ウ')">ウ</div>
-          <div class="keybtn clear"></div>
-          <div class="keybtn clear"></div>
-          <div class="keybtn" onclick="addChar('レ')">レ</div>
-          <div class="keybtn" onclick="addChar('メ')">メ</div>
-          <div class="keybtn" onclick="addChar('ヘ')">ヘ</div>
-          <div class="keybtn" onclick="addChar('ネ')">ネ</div>
-          <div class="keybtn" onclick="addChar('テ')">テ</div>
-          <div class="keybtn" onclick="addChar('セ')">セ</div>
-          <div class="keybtn" onclick="addChar('ケ')">ケ</div>
-          <div class="keybtn" onclick="addChar('エ')">エ</div>
-          <div class="keybtn" onclick="addChar('ン')">ン</div>
-          <div class="keybtn" onclick="addChar('ヨ')">ヨ</div>
-          <div class="keybtn" onclick="addChar('ロ')">ロ</div>
-          <div class="keybtn" onclick="addChar('モ')">モ</div>
-          <div class="keybtn" onclick="addChar('ホ')">ホ</div>
-          <div class="keybtn" onclick="addChar('ノ')">ノ</div>
-          <div class="keybtn" onclick="addChar('ト')">ト</div>
-          <div class="keybtn" onclick="addChar('ソ')">ソ</div>
-          <div class="keybtn" onclick="addChar('コ')">コ</div>
-          <div class="keybtn" onclick="addChar('オ')">オ</div>
-        </div>
-        <div class="other">
-          <div class="keybtn clear"></div>
-          <div class="keybtn clear"></div>
-          <div class="keybtn" id="change">大小</div>
-          <div class="keybtn" id="dakuten">ﾞ / ﾟ</div>
-          <div class="keybtn" id="del">削除</div>
-        </div>
-      </div>
 
     <!-- ボタン -->
     <label for="back" class="btn back">戻る</label>
     <label for="next" class="btn next">次へ</label>
+
+    <!-- カタカナキーボード -->
+    <div id="keybord">
+      <div id="close">X</div>
+      <div class="keybordmain">
+        <div class="keybtn" onclick="Disp('ワ')">ワ</div>
+        <div class="keybtn" onclick="Disp('ヤ')">ヤ</div>
+        <div class="keybtn" onclick="Disp('ラ')">ラ</div>
+        <div class="keybtn" onclick="Disp('マ')">マ</div>
+        <div class="keybtn" onclick="Disp('ハ')">ハ</div>
+        <div class="keybtn" onclick="Disp('ナ')">ナ</div>
+        <div class="keybtn" onclick="Disp('タ')">タ</div>
+        <div class="keybtn" onclick="Disp('サ')">サ</div>
+        <div class="keybtn" onclick="Disp('カ')">カ</div>
+        <div class="keybtn" onclick="Disp('ア')">ア</div>
+        <div class="keybtn clear"></div>
+        <div class="keybtn clear"></div>
+        <div class="keybtn" onclick="Disp('リ')">リ</div>
+        <div class="keybtn" onclick="Disp('ミ')">ミ</div>
+        <div class="keybtn" onclick="Disp('ヒ')">ヒ</div>
+        <div class="keybtn" onclick="Disp('ニ')">ニ</div>
+        <div class="keybtn" onclick="Disp('チ')">チ</div>
+        <div class="keybtn" onclick="Disp('シ')">シ</div>
+        <div class="keybtn" onclick="Disp('キ')">キ</div>
+        <div class="keybtn" onclick="Disp('イ')">イ</div>
+        <div class="keybtn" onclick="Disp('ヲ')">ヲ</div>
+        <div class="keybtn" onclick="Disp('ユ')">ユ</div>
+        <div class="keybtn" onclick="Disp('ル')">ル</div>
+        <div class="keybtn" onclick="Disp('ム')">ム</div>
+        <div class="keybtn" onclick="Disp('フ')">フ</div>
+        <div class="keybtn" onclick="Disp('ヌ')">ヌ</div>
+        <div class="keybtn" onclick="Disp('ツ')">ツ</div>
+        <div class="keybtn" onclick="Disp('ス')">ス</div>
+        <div class="keybtn" onclick="Disp('ク')">ク</div>
+        <div class="keybtn" onclick="Disp('ウ')">ウ</div>
+        <div class="keybtn clear"></div>
+        <div class="keybtn clear"></div>
+        <div class="keybtn" onclick="Disp('レ')">レ</div>
+        <div class="keybtn" onclick="Disp('メ')">メ</div>
+        <div class="keybtn" onclick="Disp('ヘ')">ヘ</div>
+        <div class="keybtn" onclick="Disp('ネ')">ネ</div>
+        <div class="keybtn" onclick="Disp('テ')">テ</div>
+        <div class="keybtn" onclick="Disp('セ')">セ</div>
+        <div class="keybtn" onclick="Disp('ケ')">ケ</div>
+        <div class="keybtn" onclick="Disp('エ')">エ</div>
+        <div class="keybtn" onclick="Disp('ン')">ン</div>
+        <div class="keybtn" onclick="Disp('ヨ')">ヨ</div>
+        <div class="keybtn" onclick="Disp('ロ')">ロ</div>
+        <div class="keybtn" onclick="Disp('モ')">モ</div>
+        <div class="keybtn" onclick="Disp('ホ')">ホ</div>
+        <div class="keybtn" onclick="Disp('ノ')">ノ</div>
+        <div class="keybtn" onclick="Disp('ト')">ト</div>
+        <div class="keybtn" onclick="Disp('ソ')">ソ</div>
+        <div class="keybtn" onclick="Disp('コ')">コ</div>
+        <div class="keybtn" onclick="Disp('オ')">オ</div>
+      </div>
+      <div class="other">
+        <div class="keybtn clear"></div>
+        <div class="keybtn clear"></div>
+        <div class="keybtn" id="change">大小</div>
+        <div class="keybtn" id="dakuten">ﾞ / ﾟ</div>
+        <div class="keybtn" onclick="del()">削除</div>
+      </div>
+    </div>
+
+    <!-- テンキー -->
+    <div id="tenkey">
+      <div>X</div>
+      <div class="tenkeymain">
+        <div class="keybtn" onclick="Disp('7')">7</div>
+        <div class="keybtn" onclick="Disp('8')">8</div>
+        <div class="keybtn" onclick="Disp('9')">9</div>
+        <div class="keybtn" onclick="Disp('4')">4</div>
+        <div class="keybtn" onclick="Disp('5')">5</div>
+        <div class="keybtn" onclick="Disp('6')">6</div>
+        <div class="keybtn" onclick="Disp('1')">1</div>
+        <div class="keybtn" onclick="Disp('2')">2</div>
+        <div class="keybtn" onclick="Disp('3')">3</div>
+        <div class="keybtn clear"></div>
+        <div class="keybtn" onclick="Disp('0')">0</div>
+        <div class="keybtn" onclick="del()">X</div>
+      </div>
+    </div>
+
+    <!-- フロアマップ -->
+    <div id="floor_map">
+      <div id="floor_map_img">
+        <div id="f1">
+          <img src="./images/f1.jpg" alt="" />
+        </div>
+        <div id="f2">
+          <img src="./images/f2.jpg" alt="" />
+          <div id="career_center" class="room" onclick="selectRoom('キャリアセンター')">キャリアセンター</div> 
+        </div>
+        <div id="f3">
+          <img src="./images/f3.jpg" alt="" />
+          <!-- <div　id="software_2" class="room">ソフⅡ</div>
+          <div id="linux" class="room">Linux</div>
+          <div id="cisco" class="room">Cisco</div> -->
+          <div id="db" class="room" onclick="selectRoom('データベースルーム ')">DBルーム</div>
+          <div id="software_1" class="room" onclick="selectRoom('ソフトウェアⅠ')">ソフⅠ</div>
+        </div>
+        <div id="f4">
+          <img src="./images/f4.jpg" alt="" />
+        </div>
+        <div id="f5">
+          <img src="./images/f5.jpg" alt="" />
+        </div>
+      </div>
+      <div id="floor_map_close" onclick="floorMapClose()">X</div>
+      <div id="floor_map_btn">
+        <button onclick="upToFloor()">↑</button>
+        <button onclick="downToFloor()">↓</button>
+      </div>
+    </div>
   </body>
 </html>

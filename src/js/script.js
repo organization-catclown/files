@@ -1,4 +1,14 @@
+let target
+
 document.getElementById("sei").onclick = () => {
+  ShowKeybordOfSei()
+}
+
+document.getElementById("seilabel").onclick = () => {
+  ShowKeybordOfSei()  
+}
+
+const ShowKeybordOfSei = () => {
   // キーボード表示
   let kb = document.getElementById("keybord")
   kb.classList.add("is-show")
@@ -32,6 +42,14 @@ document.getElementById("sei").onclick = () => {
 
 
 document.getElementById("mei").onclick = () => {
+  ShowKeybordOfMei()
+}
+
+document.getElementById("meilabel").onclick = () => {
+  ShowKeybordOfMei()
+}
+
+const ShowKeybordOfMei = () => {
   // キーボード表示
   let kb = document.getElementById("keybord")
   kb.classList.add("is-show")
@@ -97,7 +115,8 @@ document.getElementById("close").onclick = () => {
 }
 
 
-function addChar(char) {
+function Disp(char) {
+  target.style.boxShadow = "0 0 10px 5px rgba(97, 205, 255, 0.3)"
   let disp = target
   disp.innerText += char
 }
@@ -107,6 +126,7 @@ document.getElementById("change").onclick = () =>{
   disp.innerText = disp.innerText.substr(0, disp.innerText.length - 1) + changeChar(disp.innerText.substr(disp.innerText.length - 1))
 }
 
+// ===============大文字小文字処理============================
 function changeChar(char) {
   switch(char) {
     case "ツ":
@@ -135,6 +155,7 @@ document.getElementById("dakuten").onclick = () => {
   disp.innerText = disp.innerText.substr(0, disp.innerText.length - 1) + dakuten(disp.innerText.substr(disp.innerText.length - 1))
 }
 
+// ========================濁点半濁点処理=========================================
 function dakuten(char) {
   switch(char) {
     // カ行
@@ -238,7 +259,79 @@ function dakuten(char) {
   }
 }
 
-document.getElementById("del").onclick = () => {
+function del() {
   let disp = target
   disp.innerText = disp.innerText.length > 1 ? disp.innerText.substr(0, disp.innerText.length - 1) : ""
 }
+
+function close() {
+  document.getElementById('keybord').classList.remove('is-show')
+  document.getElementById('tenkey').classList.remove('is-show')
+}
+
+const shadow = () => {
+  target.style.boxShadow = "0 0 10px 5px rgba(97, 205, 255, 0.3)"
+}
+
+// ======================日付表示===============================
+const date = new Date()
+const today = `日付：${(date.getMonth()+1)}/${date.getDate()}`
+document.getElementById("date").innerText = today
+
+
+document.getElementById('start-time-hor').innerText = `${date.getHours()}`
+
+document.getElementById('start-time-min').innerText = `${date.getMinutes()}`
+
+
+// =========================フロアマップ=========================
+const floorMapShow = () => {
+  const floorMap = document.getElementById("floor_map")
+  floorMap.classList.add("is-show")
+}
+
+const floorMapClose = () => {
+  const floorMap = document.getElementById("floor_map")
+  floorMap.classList.remove("is-show")
+}
+
+let current_floor = 1
+
+const upToFloor = () => {
+  const current_floor_str = 'f' + current_floor
+  const cf = document.getElementById(current_floor_str).style
+
+  cf.height = 0
+  cf.opacity = 0
+  
+  current_floor += current_floor<5 ? 1 : 0
+  const next_floor_str = "f" + current_floor
+  const nf = document.getElementById(next_floor_str).style
+
+  nf.height = '100%'
+  nf.opacity = '1'
+}
+
+const downToFloor = () => {
+  const current_floor_str = 'f' + current_floor
+  const cf = document.getElementById(current_floor_str).style
+
+  cf.height = 0
+  cf.opacity = 0
+  
+  
+  current_floor -= current_floor>1 ? 1 : 0  
+  const next_floor_str = "f" + current_floor
+  const nf = document.getElementById(next_floor_str).style
+
+  nf.height = '100%'
+  nf.opacity = '1'
+}
+
+const selectRoom = (inRoom) => {
+  document.getElementById('select_room').innerText = inRoom
+  document.getElementById('floor_map').classList.remove('is-show')
+}
+
+
+
