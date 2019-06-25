@@ -5,15 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <title>退室画面</title>
+  <style>
+    th{
+      font-size: 24px;
+    }
+    td{
+      text-align: center;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
   <h1>退室メニュー</h1>
   <input type="button" onclick="history.back()" id="back" class="hidden">
 
-  <table style="margin: 0 auto;">
+  <table border="1" style="margin: 0 auto;">
     <tr>
       <th>名前</th>
+      <th>学科名</th>
       <th>使用教室</th>
+      <th>退室予定時間</th>
+      <th>退室ボタン</th>
+    </tr>
+    <tr>
+      <td>近コン　太郎</td>
+      <td>情報クリエイタ工学科</td>
+      <td>411教室</td>
+      <td>17:00</td>
+      <td><input type="button" id="btn1" value="退室"></td>
     </tr>
   </table>
 
