@@ -9,14 +9,13 @@
   <body>
     <h1>教務用メニュー</h1>
 
-    <table style="margin: 0 auto;">
-      <tr>
-        <th>名前</th>
-        <th>学科名</th>
-        <th>使用教室</th>
-        <th>退出予定時間</th>
-      </tr>
-    </table>
+    <input type="button" id="list" class="hidden" onclick="location.href='./list.html'">
+  <input type="button" id="etc" class="hidden" onclick="location.href='./del.html'">
+
+    <div class="flex">
+      <label for="list" class="btn">一覧</label>
+      <label for="etc" class="btn">削除等</label>
+    </div>
 
     <input type="button" onclick="history.back()" id="back" class="hidden" />
 
