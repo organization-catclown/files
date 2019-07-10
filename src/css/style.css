@@ -94,6 +94,18 @@ h1 {
   right: 3em;
 }
 
+table{
+  border-collapse: collapse;
+}
+th{
+  font-size: 24px;
+}
+td{
+  border: solid 1px #000;
+  text-align: center;
+  font-size: 18px;
+}
+
 /*  */
 
 #keybord.is-show {
@@ -247,22 +259,39 @@ h1 {
 }
 
 div#career_center {
+  position: absolute;
+  color: white;
+  width: 4em;
+  background: red;
+  height: 3em;
+  opacity: 1;
+  cursor: pointer;
   top: 250px;
   left: 690px;
 }
 
 div#software_1 {
+  position: absolute;
+  color: white;
+  width: 4em;
+  background: red;
+  height: 3em;
+  opacity: 1;
+  cursor: pointer;
   top: 250px;
   left: 725px;
 }
 
 div#db {
+  position: absolute;
+  color: white;
+  width: 4em;
+  background: red;
+  height: 3em;
+  opacity: 1;
+  cursor: pointer;
   top: 550px;
   left: 460px;
-}
-
-div#cisco {
-
 }
 
 .room {
