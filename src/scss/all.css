@@ -95,7 +95,7 @@ body {
   width: 100vw;
   height: 100vh;
   color: #040404;
-  background-image: url("../../assets/classroom.jpg");
+  background-image: url(../assets/classroom.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
