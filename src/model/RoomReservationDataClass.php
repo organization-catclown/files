@@ -8,7 +8,7 @@ class RoomReservationDataClass
     private $name;              //生徒の名前（カナ文字フルネーム）
     private $schoolYear;        //学年
     private $classCode;         //学科コード
-    private $useRoom;           //利用教室コード
+    private $roomCode;          //利用教室コード
     private $leavingTime;       //退室時間
     private $reasonCode;        //理由コード
     private $entryTeacherCode;  //入室教師印
@@ -18,7 +18,7 @@ class RoomReservationDataClass
         $this->name = null;
         $this->schoolYear = null;
         $this->classCode = null;
-        $this->useRoom = null;
+        $this->roomCode = null;
         $this->leavingTime = null;
         $this->reasonCode = null;
         $this->entryTeacherCode = null;
@@ -43,9 +43,9 @@ class RoomReservationDataClass
         $this->schoolYear = $schoolYear;
     }
 
-    public function setUseRoom($useRoom)
+    public function setRoomCode($roomCode)
     {
-        $this->useRoom = $useRoom;
+        $this->roomCode = $roomCode;
     }
 
     public function setLeavingTime($leavingHour, $leavingMinute)
@@ -79,9 +79,9 @@ class RoomReservationDataClass
         return $this->schoolYear;
     }
 
-    public function getUseRoom()
+    public function getRoomCode()
     {
-        return $this->useRoom;
+        return $this->roomCode;
     }
 
     public function getLeavingTime()

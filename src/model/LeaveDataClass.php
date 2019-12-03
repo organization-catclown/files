@@ -11,14 +11,14 @@ class LeaveDataClass
     private $name;          //学生の名前
     private $schoolYear;    //学年
     private $classCode;     //学科コード
-    private $teacherCode;   //教員コード
+    private $leavingTeacherCode;   //教員コード
 
     public function __construct()
     {
         $this->name = null;
         $this->schoolYear = null;
         $this->classCode = null;
-        $this->teacherCode = null;
+        $this->leavingTeacherCode = null;
     }
 
     //==================================
@@ -40,9 +40,9 @@ class LeaveDataClass
         $this->classCode = $classCode;
     }
 
-    public function setLeavingTeacherCode($teacherCode)
+    public function setLeavingTeacherCode($leavingTeacherCode)
     {
-        $this->teacherCode = $teacherCode;
+        $this->leabingTeacherCode = $leavingTeacherCode;
     }
 
     public function getName()
@@ -62,6 +62,6 @@ class LeaveDataClass
 
     public function getLeavingTeacherCode()
     {
-        return $this->teacherCode;
+        return $this->leavingTeacherCode;
     }
 }

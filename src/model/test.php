@@ -3,7 +3,7 @@
 
 <head>
   <?php
-  require "./model/DataController.php"
+  require "./DataController.php"
   ?>
   <meta charset="utf-8">
   <title></title>
@@ -35,7 +35,7 @@
   $dc->roomReservationDataClass->setName("ナカヤマ", "ヤマト");
   $dc->roomReservationDataClass->setClassCode($dc->classNameArray['IT学科']);
   $dc->roomReservationDataClass->setSchoolYear(3);
-  $dc->roomReservationDataClass->setUseRoom($dc->roomNameArray['412']);
+  $dc->roomReservationDataClass->setRoomCode($dc->roomNameArray['412']);
   $dc->roomReservationDataClass->setLeavingTime(15, 15);
   $dc->roomReservationDataClass->setReasonCode($dc->reasonNameArray['就活']);
   $dc->roomReservationDataClass->setEntryTeacherCode(10001);
@@ -44,7 +44,7 @@
   echo 'Name:' . $dc->roomReservationDataClass->getName() . '<br>';
   echo 'ClassCode:' . $dc->roomReservationDataClass->getClassCode() . '<br>';
   echo 'ShoolYear:' . $dc->roomReservationDataClass->getSchoolYear() . '<br>';
-  echo 'UseRoom:' . $dc->roomReservationDataClass->getUseRoom() . '<br>';
+  echo 'UseRoom:' . $dc->roomReservationDataClass->getRoomCode() . '<br>';
   echo 'LeavingTime' . date_format($dc->roomReservationDataClass->getLeavingTime(), ('H:i:s')) . '<br>';
   echo 'Reason:' . $dc->roomReservationDataClass->getReasonCode() . '<br>';
   echo 'EntryTeacherCode:' . $dc->roomReservationDataClass->getEntryTeacherCode() . '<br>';

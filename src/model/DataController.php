@@ -66,7 +66,7 @@ class DataController
         if (empty($this->roomReservationDataClass->getName())) return false;
         if (empty($this->roomReservationDataClass->getClassCode())) return false;
         if (empty($this->roomReservationDataClass->getSchoolYear())) return false;
-        if (empty($this->roomReservationDataClass->getUseRoom())) return false;
+        if (empty($this->roomReservationDataClass->getRoomCode())) return false;
         if (empty($this->roomReservationDataClass->getLeavingTime())) return false;
         if (empty($this->roomReservationDataClass->getReasonCode())) return false;
         return true;

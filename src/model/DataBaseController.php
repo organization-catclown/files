@@ -140,7 +140,7 @@ class DataBaseController
         $pdo = null;
         $stmt = null;
         $studentNumber = self::getStudentNumber($roomReservationDataClass->getName(), $roomReservationDataClass->getClassCode(), $roomReservationDataClass->getSchoolYear());
-        $roomCode = $roomReservationDataClass->getUseRoom();
+        $roomCode = $roomReservationDataClass->getRoomCode();
         $entryTeacherCode = $roomReservationDataClass->getEntryTeacherCode();
         $leavingTime = date_format($roomReservationDataClass->getLeavingTime(), ('H:i:s'));
         $reasonCode = $roomReservationDataClass->getReasonCode();
@@ -182,7 +182,7 @@ class DataBaseController
         $pdo = null;
         $stmt = null;
         $studentNumber = self::getStudentNumber($leaveDataClass->getName(), $leaveDataClass->getClassCode(), $leaveDataClass->getSchoolYear());
-        $teacherCode = $leaveDataClass->getTeacherCode();
+        $teacherCode = $leaveDataClass->getLeavingTeacherCode();
         try {
             $pdo = new PDO(DSN, USER, PASS);
             $sql = "UPDATE RoomManagements 
