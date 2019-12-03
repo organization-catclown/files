@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+.l-keybord {
+  position: absolute;
+  width: $keybord-width;
+  height: $keybord-height;
+  z-index: 10;
+  background: #000;
+}
+
+.l-keybord__btn {
+  padding: 0;
+  margin: 0;
+  width: $keybordBtn-width ;
+  height: $keybordBtn-height;
+  background: #ff0;
+  border: 1px solid #000;
+}
+
+.l-keybord__btn--twice {
+  width: $keybordBtn-width;
+  height: $keybordBtn-height*2;
+  background: #ff0;
+  border: 1px solid #000;
+}
+
+.l-keybord__btn--hidden {
+  background: transparent;
+}

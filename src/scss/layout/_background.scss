@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+.l-background {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.l-background--top {
+    @extend .l-background;
+}
+
+.l-background--floorMap {
+  @extend .l-background;
+}

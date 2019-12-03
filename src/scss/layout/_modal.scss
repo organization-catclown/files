@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+/*
+ * layout/_modal.scss
+ */
+
+.l-modal {
+  width        : $modal-width;
+  height       : $modal-height;
+  background: #fff;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px 5px rgba($color: #000000, $alpha: .3);
+}
+
+.l-modal__closeBtn {
+  position: absolute;
+  right: 5px;
+  font-size: 2rem;
+  z-index: 10;
+}
+
+.l-modal__top {
+  height          : $modal__top-height;
+  border-bottom   : 3px solid #333;
+}
+
+.l-modal__body {
+  width : $modal__body-width;
+  height: $modal__body-height;
+  background: #fff;
+}
+
+#js-modalBody {
+  transition: transform .3s;
+}
+
+.l-modal__page {
+  width : $modal-width;
+  height: $modal__body-height;
+  padding-left: 5rem;
+  padding-top: 3rem;
+}

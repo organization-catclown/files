@@ -1,23 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./css/style.css">
-  <title>RoomManager</title>
+  <link rel="stylesheet" href="./scss/all.css">
+  <title>教室予約</title>
 </head>
+
 <body>
-  <h1>部屋管理システム</h1>
+  <header id="header">
+    <h1 class="c-lbel u-fr">Room Management System</h1>
+    <p>学校法人 〇〇〇学園</p>
+  </header>
+  <main>
+    <!-- トップ画面 -->
+    <nav>
+      <button onclick="showEnter()">enter</button>
+      <button onclick="showExit()">exit</button>
+      <button onclick="showTeacher()">teacher</button>
+    </nav>
+    <div class="l-background--top u-hidden" id="js-enterBack"></div>
+    <!-- 入室画面 -->
+    <form class="l-modal u-absolute__center u-hidden" id="js-enter">
+      <div class="l-directionColumn u-hFill ">
+        <div class="l-modal__closeBtn" id="js-enterClose">×</div>
+        <div class="l-modal__top u-hFill u-textCenter u-relative">
+          <ol class="l-justifyCenter l-aiCenter u-vFill">
+            <li class="p-progress p-progress--current">氏名入力</li>
+            <li class="p-progress u-twoLines">学年・学科<br>選択</li>
+            <li class="p-progress">教室選択</li>
+            <li class="p-progress u-twoLines">退室予定時間<br>選択</li>
+          </ol>
+        </div>
+        <div class="l-modal__top  u-hFill u-textCenter u-relative u-none">
+          <div class="c-label">先生を呼んできてください</div>
+        </div>
+        <div class="l-modal__body l-flex u-fill" id="js-modalBody">
+          <!-- 氏名入力（半角カナ） -->
+          <section class="l-modal__page">
+            <div class="c-label">氏名を入力してください</div>
 
-  <input type="button" id="enter" class="hidden" onclick="location.href='./enter.html'">
-  <input type="button" id="exit" class="hidden" onclick="location.href='./exit.html'">
-  <input type="button" id="only-teacher" class="hidden" onclick="location.href='./teacher.html'" >
+            <div class="c-textBox c-textBox--firstName u-mt50" id="js-firstName" onfocus="setTargetC('first_name')">
+              <input tabindex="-1" type="text" class="c-textBox" id="first_name" readonly="readonly">
+              <label class="first-name">ｾｲ</label>
+              <div class="border-v">
+                <div class="border-h"></div>
+              </div>
+            </div>
+            <div class="c-textBox c-textBox--lastName u-mt50" id="js-lastName" onfocus="setTargetC('last_name')">
+              <input tabindex="-1" type="text" class="c-textBox" id="last_name" readonly="readonly">
+              <label class="first-name">ﾒｲ</label>
+              <div class="border-v">
+                <div class="border-h"></div>
+              </div>
+            </div>
+          </section>
+          <!-- 学年・学科選択 -->
+          <section class="l-modal__page">
+            <div class="c-label">学年と学科を選択してください</div>
+            <div class="l-flex u-mt50">
+              <div class="c-label u-lh5">学年：</div>
+              <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox--year u-fz3 u-lh5">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+              </select>
+            </div>
+            <div class="l-flex u-mt50">
+              <div class="c-label u-lh5">学科：</div>
+              <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+              </select>
+            </div>
+          </section>
+          <!-- 使用教室選択 -->
+          <section class="l-modal__page">
+            <div class="c-label">使用する教室を選択してください</div>
+            <div class="l-flex u-mt50">
+              <div class="c-label u-lh5">教室：</div>
+              <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox--floorMap u-fz3 u-lh5">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+              </select>
+            </div>
+            <div class="c-button c-button--floorMap u-mt50 u-fz3 u-lh5" id="js-floorMapOpen">フロアマップ</div>
+          </section>
+          <!-- 退室予定時間選択 -->
+          <section class="l-modal__page">
+            <div class="c-label">退室予定時間を選択してください</div>
+            <div class="l-flex  u-mt50">
+              <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+              </select>
+              <div class="c-label u-lh5">：</div>
+              <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+              </select>
+            </div>
+          </section>
+          <div class="l-modal__page">
+            <div class="c-label">教員番号を入力してください</div>
+            <div class="c-textBox c-textBox--firstName u-mt50" onfocus="setTargetN('teacher_code')">
+              <input tabindex="-1" type="text" class="c-textBox" readonly="readonly">
+              <div class="border-v">
+                <div class="border-h"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-backBtn">戻る</span>
+      <span class="p-modal__btn p-modal__btn--next" id="js-nextBtn">次へ</span>
+      <div class="p-modal__btn p-modal__btn--decision u-hidden" id="js-decisionBtn">決定</div>
+    </form>
+    <!-- フロアマップ -->
+    <div class="l-background--floorMap u-hidden" id="js-floorMapBack"></div>
+    <div class="l-floorMap u-hidden" id="js-floorMap">
+      <div class="l-floorMap__closeBtn" id="js-floorMapClose">×</div>
+      <div class="l-floorMap__main u-absolute__center">
+        <img src="./assets/f1.jpg" alt="" class="p-floorMapImg">
+        <img src="./assets/f2.jpg" alt="" class="p-floorMapImg u-none">
+        <img src="./assets/f3.jpg" alt="" class="p-floorMapImg u-none">
+        <img src="./assets/f4.jpg" alt="" class="p-floorMapImg u-none">
+        <img src="./assets/f5.jpg" alt="" class="p-floorMapImg u-none">
+      </div>
+      <div class="l-floorMap__side u-absolute u-absolute__centerRight">
+        <div class="p-floorMapBtn">1F</div>
+        <div class="p-floorMapBtn p-floorMapBtn--current">2F</div>
+        <div class="p-floorMapBtn">3F</div>
+        <div class="p-floorMapBtn">4F</div>
+        <div class="p-floorMapBtn">5F</div>
+      </div>
+    </div>
+    <!-- 入室確認モーダル -->
+    <div class="l-background--top u-hidden" id="js-enterMiniBack"></div>
+    <div class="l-miniModal  u-absolute__center u-hidden" id="js-enterMini">
+      <div class="l-directionClumn u-vFill">
+        <div class="l-modal__closeBtn" id="js-enterMiniClose">×</div>
+        <div class="l-miniModal__top"></div>
+        <div class="l-miniModal__body"></div>
+      </div>
+    </div>
 
-  <div class="flex">
-    <label for="enter" class="btn">入室する</label>
-    <label for="exit" class="btn">退室する</label>
+    <div class="l-background--top u-hidden" id="js-exitBack"></div>
+    <!-- 退出画面 -->
+    <form class="l-modal u-absolute__center u-hidden" id="js-exit">
+      <div class="l-directionColumn u-hFill ">
+        <div class="l-modal__closeBtn" id="js-exitClose">×</div>
+        <div class="l-modal__top u-hFill u-textCenter u-relative "></div>
+        <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-exitBackBtn">戻る</span>
+        <span class="p-modal__btn p-modal__btn--next" id="js-exitNextBtn">次へ</span>
+        <div class="p-modal__btn p-modal__btn--submit u-hidden">決定</div>
+      </div>
+    </form>
+
+    <div class="l-background--top u-hidden" id="js-teacherBack"></div>
+    <!-- 教員用画面 -->
+    <form class="l-modal u-absolute__center u-hidden" id="js-teacher">
+      <div class="l-directionColumn u-hFill ">
+        <div class="l-modal__closeBtn" id="js-teacherClose">×</div>
+        <div class="l-modal__top u-hFill u-textCenter u-relative "></div>
+        <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-teacherBackBtn">戻る</span>
+        <span class="p-modal__btn p-modal__btn--next" id="js-teacherNextBtn">次へ</span>
+        <div class="p-modal__btn p-modal__btn--submit u-hidden">決定</div>
+      </div>
+    </form>
+  </main>
+  <!-- キーボード -->
+  <div class="l-keybord u-absolute__bottomCenter">
+    <div class="l-directionRowR">
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn">削除</button>
+        <button class="l-keybord__btn">大/小</button>
+        <button class="l-keybord__btn">゛/ ゜</button>
+        <button class="l-keybord__btn--twice">確定</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ｱ')">ア</button>
+        <button class="l-keybord__btn" onclick="setChar('ｲ')">イ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｳ')">ウ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｴ')">エ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｵ')">オ</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ｶ')">カ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｷ')">キ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｸ')">ク</button>
+        <button class="l-keybord__btn" onclick="setChar('ｹ')">ケ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｺ')">コ</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ｻ')">サ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｼ')">シ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｽ')">ス</button>
+        <button class="l-keybord__btn" onclick="setChar('ｾ')">セ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｿ')">ソ</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ﾀ')">タ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾁ')">チ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾂ')">ツ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾃ')">テ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾄ')">ト</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ﾅ')">ナ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾆ')">ニ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾇ')">ヌ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾈ')">ネ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾉ')">ノ</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ﾊ')">ハ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾋ')">ヒ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾌ')">フ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾍ')">ヘ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾎ')">ホ</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ﾏ')">マ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾐ')">ミ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾑ')">ム</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾒ')">メ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾓ')">モ</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ﾔ')">ヤ</button>
+        <button class="l-keybord__btn l-keybord__btn--hidden">&nbsp;</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾕ')">ユ</button>
+        <button class="l-keybord__btn l-keybord__btn--hidden">&nbsp;</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾖ')">ヨ</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ﾗ')">ラ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾘ')">リ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾙ')">ル</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾚ')">レ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾛ')">ロ</button>
+      </div>
+      <div class="l-direcrionColumn">
+        <button class="l-keybord__btn" onclick="setChar('ﾜ')">ワ</button>
+        <button class="l-keybord__btn" onclick="setChar('ｦ')">ヲ</button>
+        <button class="l-keybord__btn" onclick="setChar('ﾝ')">ン</button>
+        <button class="l-keybord__btn" onclick="setChar('ｰ')">ー</button>
+        <button class="l-keybord__btn l-keybord__btn--hidden"></button>
+      </div>
+    </div>
   </div>
-  <label for="only-teacher" class="btn teacher">教務専用メニュー</label>
+
+  <!-- テンキー -->
+
+  <script src="./script/script.js"></script>
 </body>
+
 </html>

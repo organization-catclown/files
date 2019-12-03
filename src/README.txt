@@ -1,0 +1,3 @@
+CSSの設計はFLOCSSを採用しています。
+CSSの命名規則はMindBEMdingとキャメルケースの混合です。
+JSの命名規則はグーグルのJavaScriptスタイルガイドを採用しています。

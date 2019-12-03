@@ -1,0 +1,24 @@
+//------modal関連------
+//
+$button-width : 200px;
+$button-height: 2rem;
+
+$blue: #0081ff;
+$gray: #707070;
+
+$modal-width: 1100px;
+$modal-height: 700px;
+$modal-radius: 1rem;
+$modal__top-height: $modal-height * (25/100);
+$modal__body-width: $modal-width * 5;
+$modal__body-height: $modal-height * (75/100);
+
+$miniModal-width: 600px;
+$miniModal-height: 800px;
+$miniModal__top-height: $miniModal-height * (25/100);
+$miniModal__body-height: $miniModal-height * (75/100);
+
+$keybord-width: 90vw;
+$keybord-height: 20rem;
+$keybordBtn-width: $keybord-width / 11;
+$keybordBtn-height: $keybord-height / 5;
