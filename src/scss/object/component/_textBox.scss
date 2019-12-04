@@ -65,24 +65,24 @@
       transition-delay: .4s;
     }
   
-    &:focus ~ .border-v:before,
-    &:focus ~ .border-v:after {
+    &.is-active ~ .border-v:before,
+    &.is-active ~ .border-v:after {
         width: 100%;
         transition: .2s;
         transition-delay: .6s;
     }
   
-    &:focus ~ .border-v:after {
+    &.is-active ~ .border-v:after {
         transition-delay: .2s;
     }
   
-    &:focus ~ .border-v .border-h:before,
-    &:focus ~ .border-v .border-h:after {
+    &.is-active ~ .border-v .border-h:before,
+    &.is-active ~ .border-v .border-h:after {
         height: 100%;
         transition: .2s;
     }
   
-    &:focus ~ .border-v .border-h:after {
+    &.is-active ~ .border-v .border-h:after {
         transition-delay: .4s;
     }
   
@@ -103,7 +103,7 @@
         }
     }
   
-    &:focus ~ label {
+    &.is-active ~ label {
         top: -2em;
         left: 0;
         font-size: 2em;

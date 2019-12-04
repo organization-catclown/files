@@ -1,1 +1,8 @@
+.gitignore
+css/
+scss/all.css.map
+Room_Management_System.code-workspace
+./testCode/*
+.vscode/settings.json
 src/.vscode/settings.json
+testCode/*

@@ -209,6 +209,17 @@ ol {
   background: transparent;
 }
 
+.l-keybordBack {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  z-index: 10;
+}
+
 .l-miniModal {
   width: 600px;
   height: 800px;
@@ -400,8 +411,8 @@ ol {
           transition-delay: .4s;
 }
 
-.c-textBox:focus ~ .border-v:before,
-.c-textBox:focus ~ .border-v:after {
+.c-textBox.is-active ~ .border-v:before,
+.c-textBox.is-active ~ .border-v:after {
   width: 100%;
   -webkit-transition: .2s;
   transition: .2s;
@@ -409,19 +420,19 @@ ol {
           transition-delay: .6s;
 }
 
-.c-textBox:focus ~ .border-v:after {
+.c-textBox.is-active ~ .border-v:after {
   -webkit-transition-delay: .2s;
           transition-delay: .2s;
 }
 
-.c-textBox:focus ~ .border-v .border-h:before,
-.c-textBox:focus ~ .border-v .border-h:after {
+.c-textBox.is-active ~ .border-v .border-h:before,
+.c-textBox.is-active ~ .border-v .border-h:after {
   height: 100%;
   -webkit-transition: .2s;
   transition: .2s;
 }
 
-.c-textBox:focus ~ .border-v .border-h:after {
+.c-textBox.is-active ~ .border-v .border-h:after {
   -webkit-transition-delay: .4s;
           transition-delay: .4s;
 }
@@ -443,7 +454,7 @@ ol {
   opacity: 1;
 }
 
-.c-textBox:focus ~ label {
+.c-textBox.is-active ~ label {
   top: -2em;
   left: 0;
   font-size: 2em;

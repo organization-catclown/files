@@ -9,6 +9,8 @@ const modalBody = document.getElementById("js-modalBody")
 const progress = document.getElementsByClassName("p-progress")
 
 let target
+const keybord = document.getElementById("js-keybord")
+const keybordBack = document.getElementById("js-keybordBack")
 
 
 document.oncontextmenu = function () { return false; }
@@ -117,5 +119,201 @@ teacherClose.addEventListener("click", function () {
 
 function setTargetC(id) {
   target = document.getElementById(id)
-  console.log(id);
+  target.classList.add("is-active")
+  keybord.classList.remove("u-hidden")
+  keybordBack.classList.remove("u-hidden")
+  if(target.classList.contains("c-textBox--lastName")) {
+    document.body.style.top = "-5rem"
+  }
+}
+
+function hideKeybord() {
+  target.classList.remove("is-active")
+  keybord.classList.add("u-hidden")
+  keybordBack.classList.add("u-hidden")
+}
+
+function setChar(char) { 
+  target.value += char
+}
+
+function backSpace() {
+  let len = target.value.length
+  let lastc = target.value.substring(len-1, len)
+  target.value = target.value.substring(0, len-1)
+}
+
+function toggleSize() {
+  let len = target.value.length
+  let lastc = target.value.substring(len-1, len)
+  switch(lastc) {
+    case "ヤ":
+      lastc = "ャ"
+      break
+    case "ャ":
+      lastc = "ヤ"
+      break
+    case "ユ":
+      lastc = "ュ"
+      break
+    case "ュ":
+      lastc = "ユ"
+      break
+    case "ヨ":
+      lastc = "ョ"
+      break
+    case "ョ":
+      lastc = "ヨ"
+      break
+  }
+  backSpace()
+  target.value += lastc
+}
+
+function toggleDakuon() {
+  let len = target.value.length
+  let lastc = target.value.substring(len-1, len)
+  switch(lastc) {
+    case "カ":
+      lastc = "ガ"
+      break
+    case "ガ":
+      lastc = "カ"
+      break
+    case "キ":
+      lastc = "ギ"
+      break
+    case "ギ":
+      lastc = "キ"
+      break
+    case "ク":
+      lastc = "グ"
+      break
+    case "グ":
+      lastc = "ク"
+      break
+    case "ケ":
+      lastc = "ゲ"
+      break
+    case "ゲ":
+      lastc = "ケ"
+      break
+    case "コ":
+      lastc = "ゴ"
+      break
+    case "ゴ":
+      lastc = "コ"
+      break
+    case "サ":
+      lastc = "ザ"
+      break
+    case "ザ":
+      lastc = "サ"
+      break
+    case "シ":
+      lastc = "ジ"
+      break
+    case "ジ":
+      lastc = "シ"
+      break
+    case "ス":
+      lastc = "ズ"
+      break
+    case "ズ":
+      lastc = "ス"
+      break
+    case "セ":
+      lastc = "ゼ"
+      break
+    case "ゼ":
+      lastc = "セ"
+      break
+    case "ソ":
+      lastc = "ゾ"
+      break
+    case "ゾ":
+      lastc = "ソ"
+      break
+    case "タ":
+      lastc = "ダ"
+      break
+    case "ダ":
+      lastc = "タ"
+      break
+    case "チ":
+      lastc = "ヂ"
+      break
+    case "ヂ":
+      lastc = "チ"
+      break
+    case "ツ":
+      lastc = "ヅ"
+      break
+    case "ヅ":
+      lastc = "ツ"
+      break
+    case "テ":
+      lastc = "デ"
+      break
+    case "デ":
+      lastc = "テ"
+      break
+    case "ト":
+      lastc = "ド"
+      break
+    case "ド":
+      lastc = "ト"
+      break
+    case "ハ":
+      lastc = "バ"
+      break
+    case "バ":
+      lastc = "パ"
+      break
+    case "パ":
+      lastc = "ハ"
+      break
+    case "ヒ":
+      lastc = "ビ"
+      break
+    case "ビ":
+      lastc ="ピ"
+      break
+    case "ピ":
+      lastc = "ヒ"
+      break
+    case "フ":
+      lastc = "ブ"
+      break
+    case "ブ":
+      lastc = "プ"
+      break
+    case "プ":
+      lastc = "フ"
+      break
+    case "ヘ":
+      lastc = "ベ"
+      break
+    case "ベ":
+      lastc = "ペ"
+      break
+    case "ペ":
+      lastc = "ヘ"
+      break
+    case "ホ":
+      lastc = "ボ"
+      break
+    case "ボ":
+      lastc = "ポ"
+      break
+    case "ポ":
+      lastc = "ホ"
+      break
+  }
+  backSpace()
+  target.value += lastc
+}
+
+function enter() {
+  hideKeybord()
 }
