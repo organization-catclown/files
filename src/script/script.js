@@ -8,6 +8,8 @@ const decisionBtn = document.getElementById("js-decisionBtn")
 const modalBody = document.getElementById("js-modalBody")
 const progress = document.getElementsByClassName("p-progress")
 
+let target
+
 
 document.oncontextmenu = function () { return false; }
 
@@ -54,7 +56,7 @@ decisionBtn.addEventListener("click", function () {
 
     document.getElementsByClassName("l-modal__top")[0].classList.add("u-none")
     document.getElementsByClassName("l-modal__top")[1].classList.remove("u-none")
-  }else if(currentPage == MAX_PAGE) {
+  } else if (currentPage == MAX_PAGE) {
     document.getElementById("js-enterMiniBack").classList.remove("u-hidden")
     document.getElementById("js-enterMini").classList.remove("u-hidden")
 
@@ -62,10 +64,10 @@ decisionBtn.addEventListener("click", function () {
 }, false)
 
 const closeMini = document.getElementById("js-enterMiniClose")
-closeMini.addEventListener("click", function() {
+closeMini.addEventListener("click", function () {
   document.getElementById("js-enterMiniBack").classList.add("u-hidden")
-    document.getElementById("js-enterMini").classList.add("u-hidden")
-}, false) 
+  document.getElementById("js-enterMini").classList.add("u-hidden")
+}, false)
 
 
 const enterClose = document.getElementById("js-enterClose")
@@ -96,21 +98,24 @@ floorMapOpen.addEventListener("click", function () {
 }, false)
 
 const floorMapClose = document.getElementById("js-floorMapClose")
-floorMapClose.addEventListener("click", function() {
+floorMapClose.addEventListener("click", function () {
   document.getElementById("js-floorMap").classList.add("u-hidden")
   document.getElementById("js-floorMapBack").classList.add("u-hidden")
 }, false)
 
 const exitClose = document.getElementById("js-exitClose")
-exitClose.addEventListener("click", function() {
+exitClose.addEventListener("click", function () {
   document.getElementById("js-exit").classList.add("u-hidden")
   document.getElementById("js-exitBack").classList.add("u-hidden")
 }, false)
 
 const teacherClose = document.getElementById("js-teacherClose")
-teacherClose.addEventListener("click", function() {
+teacherClose.addEventListener("click", function () {
   document.getElementById("js-teacher").classList.add("u-hidden")
   document.getElementById("js-teacherBack").classList.add("u-hidden")
 }, false)
 
-
+function setTargetC(id) {
+  target = document.getElementById(id)
+  console.log(id);
+}

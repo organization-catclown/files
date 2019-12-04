@@ -293,7 +293,7 @@ ol {
   position: relative;
   width: 10rem;
   height: 5rem;
-  background: transparent url(../../../assets/form-combo-arrow-don.png) no-repeat center right 10px/40px 40px;
+  background: transparent url(../assets/form-combo-arrow-don.png) no-repeat center right 10px/40px 40px;
   border: 1px solid rgba(0, 0, 0, 0.16);
   border-radius: 0;
   color: inherit;
@@ -532,34 +532,34 @@ ol {
 
 .p-modal__btn--back {
   left: 0;
-  background: #707070 url(../../../assets/left.png) no-repeat center left 10px/60px 60px;
+  background: #707070 url(../assets/left.png) no-repeat center left 10px/60px 60px;
   border-radius: 0 1rem 0 0;
 }
 
 .p-modal__btn--back:hover {
-  background: #3d3d3d url(../../../assets/left.png) no-repeat center left 10px/60px 60px;
+  background: #3d3d3d url(../assets/left.png) no-repeat center left 10px/60px 60px;
   border-radius: 0 1rem 0 0;
 }
 
 .p-modal__btn--next {
   right: 0;
   border-radius: 1rem 0 0 0;
-  background: #0081ff url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: #0081ff url(../assets/right.png) no-repeat center right 10px/60px 60px;
 }
 
 .p-modal__btn--next:hover {
-  background: #004d99 url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: #004d99 url(../assets/right.png) no-repeat center right 10px/60px 60px;
   border-radius: 1rem 0 0 0;
 }
 
 .p-modal__btn--decision {
   right: 0;
   border-radius: 1rem 0 0 0;
-  background: #0081ff url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: #0081ff url(../assets/right.png) no-repeat center right 10px/60px 60px;
 }
 
 .p-modal__btn--decision:hover {
-  background: #004d99 url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: #004d99 url(../assets/right.png) no-repeat center right 10px/60px 60px;
   border-radius: 1rem 0 0 0;
 }
 
