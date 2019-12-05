@@ -122,8 +122,10 @@ function setTargetC(id) {
   target.classList.add("is-active")
   keybord.classList.remove("u-hidden")
   keybordBack.classList.remove("u-hidden")
-  if(target.classList.contains("c-textBox--lastName")) {
-    document.body.style.top = "-5rem"
+  if(id == "last_name") {
+    document.getElementById("js-enter").classList.remove("u-absolute__center")
+    document.getElementById("js-enter").classList.add("u-absolute__cLittleUp")
+
   }
 }
 
@@ -139,181 +141,148 @@ function setChar(char) {
 
 function backSpace() {
   let len = target.value.length
-  let lastc = target.value.substring(len-1, len)
   target.value = target.value.substring(0, len-1)
 }
 
 function toggleSize() {
+  let lastc = cSize()
+  backSpace()
+  target.value += lastc
+}
+
+function cSize() {
   let len = target.value.length
   let lastc = target.value.substring(len-1, len)
   switch(lastc) {
     case "ヤ":
-      lastc = "ャ"
-      break
+      return "ャ"
     case "ャ":
-      lastc = "ヤ"
-      break
+      return "ヤ"
     case "ユ":
-      lastc = "ュ"
-      break
+      return "ュ"
     case "ュ":
-      lastc = "ユ"
-      break
+      return "ユ"
     case "ヨ":
-      lastc = "ョ"
-      break
+      return "ョ"
     case "ョ":
-      lastc = "ヨ"
-      break
+      return "ヨ"
+    default:
+      return lastc
   }
+}
+
+function toggleDakuon() {
+  let lastc = dakuten()
   backSpace()
   target.value += lastc
 }
 
-function toggleDakuon() {
+function dakuten() {
   let len = target.value.length
   let lastc = target.value.substring(len-1, len)
   switch(lastc) {
     case "カ":
-      lastc = "ガ"
-      break
+      return "ガ"
     case "ガ":
-      lastc = "カ"
-      break
+      return "カ"
     case "キ":
-      lastc = "ギ"
-      break
+      return "ギ"
     case "ギ":
-      lastc = "キ"
-      break
+      return "キ"
     case "ク":
-      lastc = "グ"
-      break
+      return "グ"
     case "グ":
-      lastc = "ク"
-      break
+      return "ク"
     case "ケ":
-      lastc = "ゲ"
-      break
+      return "ゲ"
     case "ゲ":
-      lastc = "ケ"
-      break
+      return "ケ"
     case "コ":
-      lastc = "ゴ"
-      break
+      return "ゴ"
     case "ゴ":
-      lastc = "コ"
-      break
+      return "コ"
     case "サ":
-      lastc = "ザ"
-      break
+      return "ザ"
     case "ザ":
-      lastc = "サ"
-      break
+      return "サ"
     case "シ":
-      lastc = "ジ"
-      break
+      return "ジ"
     case "ジ":
-      lastc = "シ"
-      break
+      return "シ"
     case "ス":
-      lastc = "ズ"
-      break
+      return "ズ"
     case "ズ":
-      lastc = "ス"
-      break
+      return "ス"
     case "セ":
-      lastc = "ゼ"
-      break
+      return "ゼ"
     case "ゼ":
-      lastc = "セ"
-      break
+      return "セ"
     case "ソ":
-      lastc = "ゾ"
-      break
+      return "ゾ"
     case "ゾ":
-      lastc = "ソ"
-      break
+      return "ソ"
     case "タ":
-      lastc = "ダ"
-      break
+      return "ダ"
     case "ダ":
-      lastc = "タ"
-      break
+      return "タ"
     case "チ":
-      lastc = "ヂ"
-      break
+      return "ヂ"
     case "ヂ":
-      lastc = "チ"
-      break
+      return "チ"
     case "ツ":
-      lastc = "ヅ"
-      break
+      return "ヅ"
     case "ヅ":
-      lastc = "ツ"
-      break
+      return "ツ"
     case "テ":
-      lastc = "デ"
-      break
+      return "デ"
     case "デ":
-      lastc = "テ"
-      break
+      return "テ"
     case "ト":
-      lastc = "ド"
-      break
+      return "ド"
     case "ド":
-      lastc = "ト"
-      break
+      return "ト"
     case "ハ":
-      lastc = "バ"
-      break
+      return "バ"
     case "バ":
-      lastc = "パ"
-      break
+      return "パ"
     case "パ":
-      lastc = "ハ"
-      break
+      return "ハ"
     case "ヒ":
-      lastc = "ビ"
-      break
+      return "ビ"
     case "ビ":
-      lastc ="ピ"
-      break
+      return "ピ"
     case "ピ":
-      lastc = "ヒ"
-      break
+      return "ヒ"
     case "フ":
-      lastc = "ブ"
-      break
+      return "ブ"
     case "ブ":
-      lastc = "プ"
-      break
+      return "プ"
     case "プ":
-      lastc = "フ"
-      break
+      return "フ"
     case "ヘ":
-      lastc = "ベ"
-      break
+      return "ベ"
     case "ベ":
-      lastc = "ペ"
-      break
+      return "ペ"
     case "ペ":
-      lastc = "ヘ"
-      break
+      return "ヘ"
     case "ホ":
-      lastc = "ボ"
-      break
+      return "ボ"
     case "ボ":
-      lastc = "ポ"
-      break
+      return "ポ"
     case "ポ":
-      lastc = "ホ"
-      break
+      return  "ホ"
+    default:
+      return lastc
   }
-  backSpace()
-  target.value += lastc
 }
 
 function enter() {
   hideKeybord()
+}
+
+function setTargetN(id) {
+  target = document.getElementById(id)
+  target.classList.add("is-active")
+  keybord.classList.remove("u-hidden")
+  keybordBack.classList.remove("u-hidden")
 }
