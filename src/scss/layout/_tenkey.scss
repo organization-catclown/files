@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.l-tenkeybord {
+  width: 20rem;
+  height: 10rem;
+}
+
+.l-tenkeybord__btn {
+  width: 100%;
+  height: 100%;
+  background: #0ff;
+  box-sizing: border-box;
+
+  & ~ .l-tenkeybord__btn {
+    margin-left: 3px;
+  }
+}
