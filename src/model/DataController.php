@@ -5,6 +5,7 @@ require 'LeaveDataClass.php';
 require 'RoomReservationDataClass.php';
 require 'LogDataClass.php';
 
+
 /**
  * 教室利用管理システムに関するデータをまとめる用のクラス
  */
@@ -72,7 +73,7 @@ class DataController
         return true;
     }
 
-    public function cheackLeavingDataClass()
+    public function cheackLeaveDataClass()
     {
         if (empty($this->leaveDataClass->getName())) return false;
         if (empty($this->leaveDataClass->getSchoolYear())) return false;
@@ -85,5 +86,27 @@ class DataController
     {
         $this->permissionRoomArray = $this->dbc->fetchClassCode($className);
         return $this->permissionRoomArray;
+    }
+
+    // 学科名を入れるコンボボックスの初期化
+    public function setCmbClassName()
+    {
+        foreach ((array) $this->classNameArray as $key => $value) {
+            echo '<option value="">' . $key . '</option>';
+        }
+    }
+    // 教室名を入れるコンボボックスの初期化
+    public function setCmbRoomName()
+    {
+        foreach ((array) $this->roomNameArray as $key => $value) {
+            echo '<option value="">' . $key . '</option>';
+        }
+    }
+    // 理由を入れるコンボボックスの初期化
+    public function setCmbReasonName()
+    {
+        foreach ((array) $this->reasonNameArray as $key => $value) {
+            echo '<option value="">' . $key . '</option>';
+        }
     }
 }

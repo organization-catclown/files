@@ -177,7 +177,7 @@ class DataBaseController
      * 退室用のアップデート文
      * @param LeaveDataClass $leaveDataClass
      */
-    public static function leavingRoom($leaveDataClass)
+    public static function leaveRoom($leaveDataClass)
     {
         $pdo = null;
         $stmt = null;

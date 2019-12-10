@@ -3,7 +3,7 @@
 
 <head>
   <?php
-  require "./DataController.php"
+  require "./DataController.php";
   ?>
   <meta charset="utf-8">
   <title></title>
@@ -13,7 +13,7 @@
   <?php
   $dc = new DataController();
   $dc->fetchSelectDatas();
-  $dc->refreshData();
+  //$dc->refreshData();
   // 部屋名の連想配列
   echo 'fetchRoomNameArray<br>';
   foreach ((array) $dc->roomNameArray as $key => $value) {
@@ -32,13 +32,34 @@
 
   // 教室利用予約クラス
   $dc->createroomReservationDataClass();
-  $dc->roomReservationDataClass->setName("ナカヤマ", "ヤマト");
-  $dc->roomReservationDataClass->setClassCode($dc->classNameArray['IT学科']);
-  $dc->roomReservationDataClass->setSchoolYear(3);
-  $dc->roomReservationDataClass->setRoomCode($dc->roomNameArray['412']);
-  $dc->roomReservationDataClass->setLeavingTime(15, 15);
-  $dc->roomReservationDataClass->setReasonCode($dc->reasonNameArray['就活']);
-  $dc->roomReservationDataClass->setEntryTeacherCode(10001);
+  // $dc->roomReservationDataClass->setName("ナカヤマ", "ヤマト");
+  // $dc->roomReservationDataClass->setClassCode($dc->classNameArray['IT学科']);
+  // $dc->roomReservationDataClass->setSchoolYear(3);
+  // $dc->roomReservationDataClass->setRoomCode($dc->roomNameArray['412']);
+  // $dc->roomReservationDataClass->setLeavingTime(15, 15);
+  // $dc->roomReservationDataClass->setReasonCode($dc->reasonNameArray['就活']);
+  // $dc->roomReservationDataClass->setEntryTeacherCode(10001);
+
+  ?>
+
+  <div>
+    <form action="" method="post">
+      <input type="text" name="r_lastName" id="1" value="ヤマト">
+      <input type="text" name="r_firstName" id="2" value="ナカヤマ">
+      <input type="text" name="r_schoolYear" id="3" value="3">
+      <input type="text" name="r_className" id="4" value="IT学科">
+      <input type="text" name="r_roomName" id="5" value="412">
+      <input type="text" name="r_leavingHour" id="6" value="15">
+      <input type="text" name="r_leavingMinute" id="7" value="15">
+      <input type="text" name="r_reasonName" id="8" value="就活">
+      <input type="text" name="r_entryTeacherCode" id="9" value="10001">
+      <input type="submit" name="insert" value="予約">
+    </form>
+  </div>
+
+  <?php
+
+  require 'RESERVATION_POST.php';
 
   echo '<br>roomReservationDataClass<br>';
   echo 'Name:' . $dc->roomReservationDataClass->getName() . '<br>';
@@ -53,32 +74,43 @@
     $dc->roomReservationDataClass->getClassCode(),
     $dc->roomReservationDataClass->getSchoolYear()
   ) . '<br>';
-  if ($dc->checkRoomReservationDataClass()) {
-    echo 'OK<br>';
-  } else {
-    echo 'NO<br>';
-  }
 
   // 教室退室クラス
   $dc->createLeaveDataClass();
-  $dc->leaveDataClass->setName("ナカヤマ", "ヤマト");
-  $dc->leaveDataClass->setSchoolYear(3);
-  $dc->leaveDataClass->setClassCode(1);
-  $dc->leaveDataClass->setLeavingTeacherCode(10001);
+  // $dc->leaveDataClass->setName("ナカヤマ", "ヤマト");
+  // $dc->leaveDataClass->setSchoolYear(3);
+  // $dc->leaveDataClass->setClassCode(1);
+  // $dc->leaveDataClass->setLeavingTeacherCode(10001);
+  ?>
+  <div>
+    <form action="" method="post">
+      <input type="text" name="l_firstName" id="1" value="ナカヤマ">
+      <input type="text" name="l_lastName" id="2" value="ヤマト">
+      <input type="text" name="l_schoolYear" id="3" value="3">
+      <input type="text" name="l_className" id="4" value="IT学科">
+      <input type="text" name="l_leavingTeacherCode" id="5" value="10001">
+      <input type="submit" name="leave" value="退室">
+    </form>
+  </div>
+  <?php
+
+  require 'LEAVE_POST.php';
+
   echo '<br>LeaveDataClass<br>';
-  echo $dc->leaveDataClass->getName() . '<br>';
-  echo $dc->leaveDataClass->getSchoolYear() . '<br>';
-  echo $dc->leaveDataClass->getClassCode() . '<br>';
-  if (DataBaseController::searchLeaveData($dc->leaveDataClass)) {
-    echo  'データが存在します。<br>';
-  } else {
-    echo  'データが存在しません。<br>';
-  }
-  if ($dc->cheackLeavingDataClass()) {
-    echo 'OK<br>';
-  } else {
-    echo 'NO<br>';
-  }
+  echo 'Name:' . $dc->leaveDataClass->getName() . '<br>';
+  echo 'SchoolYear:' . $dc->leaveDataClass->getSchoolYear() . '<br>';
+  echo 'ClassCode:' . $dc->leaveDataClass->getClassCode() . '<br>';
+  echo 'LeavingTeacherCode:' . $dc->leaveDataClass->getLeavingTeacherCode() . '<br>';
+  // if (DataBaseController::searchLeaveData($dc->leaveDataClass)) {
+  //   echo  'データが存在します。<br>';
+  // } else {
+  //   echo  'データが存在しません。<br>';
+  // }
+  // if ($dc->cheackLeaveDataClass()) {
+  //   echo 'OK<br>';
+  // } else {
+  //   echo 'NO<br>';
+  // }
 
 
   echo '<br><div>ログデータ</div>';
@@ -111,26 +143,30 @@
   echo '</table><br><br><br>';
   ?>
   <div>
-    <form action="" method="get">
-      <div><input type="submit" name="Insert" value="Insert"></div>
-      <div><input type="submit" name="Leave" value="Leave"></div>
-      <div><input type="submit" name="Refresh" value="Refresh"></div>
-    </form>
   </div>
+  <div>学科</div>
+  <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
+    <?php $dc->setCmbClassName() ?>
+  </select>
+  <div>教室名</div>
+  <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
+    <?php $dc->setCmbRoomName() ?>
+  </select>
+  <div>理由名</div>
+  <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
+    <?php $dc->setCmbReasonName() ?>
+  </select>
 
+
+  <form action="" method="post">
+    <div><input type="submit" name="Refresh" value="Refresh"></div>
+  </form>
 </body>
 
 </html>
 <?php
-if (isset($_GET['Insert'])) {
-  if (!DataBaseController::doubleCheck($dc->roomReservationDataClass)) {
-    DataBaseController::insertReservationData($dc->roomReservationDataClass);
-  }
-}
-if (isset($_GET['Leave'])) {
-  DataBaseController::leavingRoom($dc->leaveDataClass);
-}
-if (isset($_GET['Refresh'])) {
+
+if (isset($_POST['Refresh'])) {
   $dc->refreshData();
 }
 ?>

@@ -13,20 +13,31 @@ class RoomReservationDataClass
     private $reasonCode;        //理由コード
     private $entryTeacherCode;  //入室教師印
 
+    private $firstName;
+    private $lastName;
+    private $leavingHour;
+    private $leavingMinute;
+
     public function __construct()
     {
         $this->name = null;
         $this->schoolYear = null;
         $this->classCode = null;
         $this->roomCode = null;
-        $this->leavingTime = null;
+        $this->leavingTime = new DateTime('2001-01-01');
         $this->reasonCode = null;
         $this->entryTeacherCode = null;
+
+        $firstName = null;
+        $lastName = null;
+        $leavingHour = 1;
+        $leavingMinute = 1;
     }
 
     //==================================
     //        以下アクセサメソッド
     //==================================
+
 
     public function setName($nameSei, $nameMei)
     {
@@ -62,6 +73,31 @@ class RoomReservationDataClass
     public function setEntryTeacherCode($entryTeacherCode)
     {
         $this->entryTeacherCode = $entryTeacherCode;
+    }
+
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+        $this->setName($this->firstName, $this->lastName);
+    }
+
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+        $this->setName($this->firstName, $this->lastName);
+    }
+
+    public function setLeavingHour($leavingHour)
+    {
+        $this->leavingHour = $leavingHour;
+        $this->setLeavingTime($this->leavingHour, $this->leavingMinute);
+    }
+
+    public function setLeavingMinute($leavingMinute)
+    {
+
+        $this->leavingMinute = $leavingMinute;
+        $this->setLeavingTime($this->leavingHour, $this->leavingMinute);
     }
 
     public function getName()
