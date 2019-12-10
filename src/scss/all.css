@@ -362,22 +362,22 @@ ol {
           box-sizing: border-box;
 }
 
-.c-textBox input[type=text] {
+.c-textBox input[type="text"] {
   width: 100%;
   height: 100%;
   font-size: 4rem;
-  padding-left: .2em;
+  padding-left: 0.2em;
   color: #707070;
   border: 2px solid #707070;
   position: absolute;
   background: transparent;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-.c-textBox input[type=text]:focus {
+.c-textBox input[type="text"]:focus {
   outline: none;
 }
 
@@ -389,11 +389,11 @@ ol {
   right: 0;
   width: 0;
   height: 3px;
-  background-color: #0081FF;
-  -webkit-transition: .2s;
-  transition: .2s;
-  -webkit-transition-delay: .2s;
-          transition-delay: .2s;
+  background-color: #0081ff;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
 
 .c-textBox ~ .border-v::after {
@@ -401,8 +401,8 @@ ol {
   bottom: 0;
   right: auto;
   left: 0;
-  -webkit-transition-delay: .6s;
-          transition-delay: .6s;
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
 }
 
 .c-textBox ~ .border-v .border-h:before,
@@ -413,9 +413,9 @@ ol {
   left: 0;
   width: 3px;
   height: 0;
-  background-color: #0081FF;
-  -webkit-transition: .2s;
-  transition: .2s;
+  background-color: #0081ff;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .c-textBox ~ .border-v .border-h:after {
@@ -423,34 +423,34 @@ ol {
   bottom: 0;
   right: 0;
   left: auto;
-  -webkit-transition-delay: .4s;
-          transition-delay: .4s;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
 }
 
 .c-textBox.is-active ~ .border-v:before,
 .c-textBox.is-active ~ .border-v:after {
   width: 100%;
-  -webkit-transition: .2s;
-  transition: .2s;
-  -webkit-transition-delay: .6s;
-          transition-delay: .6s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
 }
 
 .c-textBox.is-active ~ .border-v:after {
-  -webkit-transition-delay: .2s;
-          transition-delay: .2s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
 
 .c-textBox.is-active ~ .border-v .border-h:before,
 .c-textBox.is-active ~ .border-v .border-h:after {
   height: 100%;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .c-textBox.is-active ~ .border-v .border-h:after {
-  -webkit-transition-delay: .4s;
-          transition-delay: .4s;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
 }
 
 .c-textBox label {
@@ -460,10 +460,10 @@ ol {
   font-size: 3.5rem;
   line-height: 5rem;
   color: #707070;
-  padding-left: .2em;
+  padding-left: 0.2em;
   z-index: -1;
-  -webkit-transition: .3s;
-  transition: .3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .c-textBox label.fist-name, .c-textBox label.last-name {
@@ -474,13 +474,9 @@ ol {
   top: -2em;
   left: 0;
   font-size: 2em;
-  color: #0081FF;
-  -webkit-transition: .3s;
-  transition: .3s;
-}
-
-.mgt3rem {
-  margin-top: 3rem;
+  color: #0081ff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 /*
@@ -1242,14 +1238,6 @@ ol {
 /*
  * "object/utility/_others.scss"
  */
-.u-hFill {
-  width: 100%;
-}
-
-.u-vFill {
-  height: 100%;
-}
-
 .u-overflow {
   overflow: hidden;
 }
