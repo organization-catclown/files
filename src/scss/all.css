@@ -95,7 +95,7 @@ body {
   width: 100vw;
   height: 100vh;
   color: #040404;
-  background-image: url("../../assets/classroom.jpg");
+  background-image: url(../assets/classroom.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
@@ -192,21 +192,32 @@ ol {
 .l-keybord__btn {
   padding: 0;
   margin: 0;
-  width: 8.18182vw;
-  height: 4rem;
+  width: 100%;
+  height: 100%;
   background: #ff0;
-  border: 1px solid #000;
+}
+
+.l-keybord__btn ~ .l-keybord__btn {
+  margin-top: 2px;
 }
 
 .l-keybord__btn--twice {
-  width: 8.18182vw;
-  height: 8rem;
-  background: #ff0;
-  border: 1px solid #000;
+  height: 200%;
 }
 
 .l-keybord__btn--hidden {
   background: transparent;
+}
+
+.l-keybordBack {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  z-index: 10;
 }
 
 .l-miniModal {
@@ -277,6 +288,23 @@ ol {
   padding-top: 3rem;
 }
 
+.l-tenkeybord {
+  width: 20rem;
+  height: 10rem;
+}
+
+.l-tenkeybord__btn {
+  width: 100%;
+  height: 100%;
+  background: #0ff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.l-tenkeybord__btn ~ .l-tenkeybord__btn {
+  margin-left: 3px;
+}
+
 .c-button {
   width: 10rem;
   height: 5rem;
@@ -293,7 +321,7 @@ ol {
   position: relative;
   width: 10rem;
   height: 5rem;
-  background: transparent url(../../../assets/form-combo-arrow-don.png) no-repeat center right 10px/40px 40px;
+  background: transparent url(../assets/form-combo-arrow-don.png) no-repeat center right 10px/40px 40px;
   border: 1px solid rgba(0, 0, 0, 0.16);
   border-radius: 0;
   color: inherit;
@@ -334,23 +362,22 @@ ol {
           box-sizing: border-box;
 }
 
-.c-textBox input[type=text] {
+.c-textBox input[type="text"] {
   width: 100%;
   height: 100%;
-  font-size: 4.5rem;
-  line-height: 5rem;
-  padding-left: .2em;
+  font-size: 4rem;
+  padding-left: 0.2em;
   color: #707070;
   border: 2px solid #707070;
   position: absolute;
   background: transparent;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-.c-textBox input[type=text]:focus {
+.c-textBox input[type="text"]:focus {
   outline: none;
 }
 
@@ -362,11 +389,11 @@ ol {
   right: 0;
   width: 0;
   height: 3px;
-  background-color: #0081FF;
-  -webkit-transition: .2s;
-  transition: .2s;
-  -webkit-transition-delay: .2s;
-          transition-delay: .2s;
+  background-color: #0081ff;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
 
 .c-textBox ~ .border-v::after {
@@ -374,8 +401,8 @@ ol {
   bottom: 0;
   right: auto;
   left: 0;
-  -webkit-transition-delay: .6s;
-          transition-delay: .6s;
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
 }
 
 .c-textBox ~ .border-v .border-h:before,
@@ -386,9 +413,9 @@ ol {
   left: 0;
   width: 3px;
   height: 0;
-  background-color: #0081FF;
-  -webkit-transition: .2s;
-  transition: .2s;
+  background-color: #0081ff;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .c-textBox ~ .border-v .border-h:after {
@@ -396,34 +423,34 @@ ol {
   bottom: 0;
   right: 0;
   left: auto;
-  -webkit-transition-delay: .4s;
-          transition-delay: .4s;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
 }
 
-.c-textBox:focus ~ .border-v:before,
-.c-textBox:focus ~ .border-v:after {
+.c-textBox.is-active ~ .border-v:before,
+.c-textBox.is-active ~ .border-v:after {
   width: 100%;
-  -webkit-transition: .2s;
-  transition: .2s;
-  -webkit-transition-delay: .6s;
-          transition-delay: .6s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
 }
 
-.c-textBox:focus ~ .border-v:after {
-  -webkit-transition-delay: .2s;
-          transition-delay: .2s;
+.c-textBox.is-active ~ .border-v:after {
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
 
-.c-textBox:focus ~ .border-v .border-h:before,
-.c-textBox:focus ~ .border-v .border-h:after {
+.c-textBox.is-active ~ .border-v .border-h:before,
+.c-textBox.is-active ~ .border-v .border-h:after {
   height: 100%;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
-.c-textBox:focus ~ .border-v .border-h:after {
-  -webkit-transition-delay: .4s;
-          transition-delay: .4s;
+.c-textBox.is-active ~ .border-v .border-h:after {
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
 }
 
 .c-textBox label {
@@ -433,27 +460,23 @@ ol {
   font-size: 3.5rem;
   line-height: 5rem;
   color: #707070;
-  padding-left: .2em;
+  padding-left: 0.2em;
   z-index: -1;
-  -webkit-transition: .3s;
-  transition: .3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .c-textBox label.fist-name, .c-textBox label.last-name {
   opacity: 1;
 }
 
-.c-textBox:focus ~ label {
+.c-textBox.is-active ~ label {
   top: -2em;
   left: 0;
   font-size: 2em;
-  color: #0081FF;
-  -webkit-transition: .3s;
-  transition: .3s;
-}
-
-.mgt3rem {
-  margin-top: 3rem;
+  color: #0081ff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 /*
@@ -532,34 +555,34 @@ ol {
 
 .p-modal__btn--back {
   left: 0;
-  background: #707070 url(../../../assets/left.png) no-repeat center left 10px/60px 60px;
+  background: #707070 url(../assets/left.png) no-repeat center left 10px/60px 60px;
   border-radius: 0 1rem 0 0;
 }
 
 .p-modal__btn--back:hover {
-  background: #3d3d3d url(../../../assets/left.png) no-repeat center left 10px/60px 60px;
+  background: #3d3d3d url(../assets/left.png) no-repeat center left 10px/60px 60px;
   border-radius: 0 1rem 0 0;
 }
 
 .p-modal__btn--next {
   right: 0;
   border-radius: 1rem 0 0 0;
-  background: #0081ff url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: #0081ff url(../assets/right.png) no-repeat center right 10px/60px 60px;
 }
 
 .p-modal__btn--next:hover {
-  background: #004d99 url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: #004d99 url(../assets/right.png) no-repeat center right 10px/60px 60px;
   border-radius: 1rem 0 0 0;
 }
 
 .p-modal__btn--decision {
   right: 0;
   border-radius: 1rem 0 0 0;
-  background: #0081ff url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: #0081ff url(../assets/right.png) no-repeat center right 10px/60px 60px;
 }
 
 .p-modal__btn--decision:hover {
-  background: #004d99 url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: #004d99 url(../assets/right.png) no-repeat center right 10px/60px 60px;
   border-radius: 1rem 0 0 0;
 }
 
@@ -619,6 +642,14 @@ ol {
   height: 50%;
 }
 
+.u-vQuatuor {
+  height: 25%;
+}
+
+.u-vFifth {
+  height: 20%;
+}
+
 .u-lh5 {
   line-height: 5rem;
 }
@@ -645,6 +676,14 @@ ol {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+.u-absolute__cLittleUp {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -40%);
+          transform: translate(-50%, -40%);
 }
 
 .u-fixed {
@@ -1160,6 +1199,11 @@ ol {
   margin: 0 auto;
 }
 
+.u-mtb2 {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
 /*
  * object/utility/_state.scss
  */
@@ -1183,17 +1227,17 @@ ol {
   width: 50%;
 }
 
+.u-hQuatuor {
+  width: 25%;
+}
+
+.u-h11th {
+  width: 100% / 11;
+}
+
 /*
  * "object/utility/_others.scss"
  */
-.u-hFill {
-  width: 100%;
-}
-
-.u-vFill {
-  height: 100%;
-}
-
 .u-overflow {
   overflow: hidden;
 }

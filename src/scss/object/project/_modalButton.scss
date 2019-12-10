@@ -19,11 +19,11 @@ $backBtnColor: #707070;
 
 .p-modal__btn--back {
   left: 0;
-  background: $backBtnColor url(../../../assets/left.png) no-repeat center left 10px/60px 60px;
+  background: $backBtnColor url(../assets/left.png) no-repeat center left 10px/60px 60px;
   border-radius: 0 $modal-radius 0 0;
 
   &:hover {
-    background: darken($backBtnColor, 20%) url(../../../assets/left.png) no-repeat center left 10px/60px 60px;
+    background: darken($backBtnColor, 20%) url(../assets/left.png) no-repeat center left 10px/60px 60px;
     border-radius: 0 $modal-radius 0 0;
   }
 }
@@ -31,9 +31,9 @@ $backBtnColor: #707070;
 .p-modal__btn--next {
   right: 0;
   border-radius: $modal-radius 0 0 0;
-  background: $nextBtnColor url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: $nextBtnColor url(../assets/right.png) no-repeat center right 10px/60px 60px;
   &:hover {
-    background: darken($nextBtnColor, 20%) url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+    background: darken($nextBtnColor, 20%) url(../assets/right.png) no-repeat center right 10px/60px 60px;
     border-radius: $modal-radius 0 0 0;
   }
 }
@@ -41,9 +41,9 @@ $backBtnColor: #707070;
 .p-modal__btn--decision {
   right: 0;
   border-radius: $modal-radius 0 0 0;
-  background: $nextBtnColor url(../../../assets/right.png) no-repeat center right 10px/60px 60px;
+  background: $nextBtnColor url(../assets/right.png) no-repeat center right 10px/60px 60px;
   &:hover {
-    background: darken($nextBtnColor, 20%) url(../../../assets/right.png) no-repeat center right 10px/60px
+    background: darken($nextBtnColor, 20%) url(../assets/right.png) no-repeat center right 10px/60px
       60px;
     border-radius: $modal-radius 0 0 0;
   }
