@@ -64,6 +64,10 @@
             <div class="l-flex u-mt50">
               <div class="c-label u-lh5">学年：</div>
               <select tabindex="-1" name="year" id="" class="c-comboBox c-comboBox--year u-fz3 u-lh5">
+                <option value="1年">1年</option>
+                <option value="2年">2年</option>
+                <option value="3年">3年</option>
+                <option value="4年">4年</option>
               </select>
             </div>
             <div class="l-flex u-mt50">
@@ -82,9 +86,9 @@
                 </select>
               </div>
               <div class="l-flex">
-                  <div class="c-label u-lh5">使用理由：</div>
-                  <select tabindex="-1" name="reason" id="" class="c-comboBox u-fz3 u-lh5">
-                  </select>
+                <div class="c-label u-lh5">使用理由：</div>
+                <select tabindex="-1" name="reason" id="" class="c-comboBox u-fz3 u-lh5">
+                </select>
               </div>
             </div>
             <div class="c-button c-button--floorMap u-mt50 u-fz3 u-lh5 u-textCenter" id="js-floorMapOpen">フロアマップ</div>
@@ -154,19 +158,45 @@
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-exitClose">×</div>
         <div class="l-modal__top  u-hFill u-textCenter u-relative">
-          <div class="c-label">先生を呼んできてください</div>
         </div>
         <div class="l-modal__body l-flex u-fill" id="js-enterBody">
-          <div class="l-modal__page">
-            <div class="c-label">教員番号を入力してください</div>
-            <div class="c-textBox c-textBox--teacherCode u-mt50">
-              <input tabindex="-1" type="text" class="c-textBox" readonly="readonly"
-                onclick="setTargetN('teacher_code')">
+          <section class="l-modal__page">
+            <div class="c-label">氏名を入力してください</div>
+            <div class="c-textBox c-textBox--firstName u-mt50" id="js-lfirstName">
+              <input tabindex="-1" name="r_firstName" type="text" class="c-textBox" id="lfirst_name" readonly="readonly"
+                onclick="setTargetC('first_name')">
+              <label class="first-name">ｾｲ</label>
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
             </div>
-          </div>
+            <div class="c-textBox c-textBox--lastName u-mt50" id="js-llastName">
+              <input tabindex="-1" name="r_lastName" type="text" class="c-textBox" id="llast_name" readonly="readonly"
+                onclick="setTargetC('last_name')">
+              <label class="first-name">ﾒｲ</label>
+              <div class="border-v">
+                <div class="border-h"></div>
+              </div>
+            </div>
+          </section>
+          <!-- 学年・学科選択 -->
+          <section class="l-modal__page">
+            <div class="c-label">学年と学科を選択してください</div>
+            <div class="l-flex u-mt50">
+              <div class="c-label u-lh5">学年：</div>
+              <select tabindex="-1" name="year" id="" class="c-comboBox c-comboBox--year u-fz3 u-lh5">
+                <option value="1年">1年</option>
+                <option value="2年">2年</option>
+                <option value="3年">3年</option>
+                <option value="4年">4年</option>
+              </select>
+            </div>
+            <div class="l-flex u-mt50">
+              <div class="c-label u-lh5">学科：</div>
+              <select tabindex="-1" name="class" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
+              </select>
+            </div>
+          </section>
         </div>
         <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-exitBackBtn">戻る</span>
         <span class="p-modal__btn p-modal__btn--next" id="js-exitNextBtn">次へ</span>
@@ -183,7 +213,7 @@
           <div class="c-label">先生を呼んできてください</div>
         </div>
         <div class="l-modal__body l-flex u-fill" id="js-teacherBody">
-          <div class="l-modal__page">
+          <section class="l-modal__page">
             <div class="c-label">教員番号を入力してください</div>
             <div class="c-textBox c-textBox--teacherCode u-mt50">
               <input tabindex="-1" type="text" class="c-textBox" readonly="readonly"
@@ -192,7 +222,12 @@
                 <div class="border-h"></div>
               </div>
             </div>
-          </div>
+          </section>
+          <section class="l-modal__page">
+            <table>
+              
+            </table>
+          </section>
         </div>
         <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-teacherBackBtn">戻る</span>
         <span class="p-modal__btn p-modal__btn--next" id="js-teacherNextBtn">次へ</span>
