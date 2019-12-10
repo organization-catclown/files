@@ -10,11 +10,16 @@
 </head>
 
 <body>
+  <?php require './model/DataController.php'; ?>
   <header id="header">
     <h1 class="c-lbel u-fr">Room Management System</h1>
     <p>学校法人 〇〇〇学園</p>
   </header>
   <main>
+    <?php
+    $dc = new DataController();
+    $dc->fetchSelectDatas();
+    ?>
     <!-- トップ画面 -->
     <nav>
       <button onclick="showEnter()">enter</button>
@@ -23,6 +28,7 @@
     </nav>
     <div class="l-background--top u-hidden" id="js-enterBack"></div>
     <!-- 入室画面 -->
+    <?php $dc->createroomReservationDataClass(); ?>
     <form method="POST" action="./GET.php" class="l-modal u-absolute__center u-hidden" id="js-enter">
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-enterClose">×</div>
@@ -42,16 +48,14 @@
           <section class="l-modal__page">
             <div class="c-label">氏名を入力してください</div>
             <div class="c-textBox c-textBox--firstName u-mt50" id="js-firstName">
-              <input tabindex="-1" name="r_firstName" type="text" class="c-textBox" id="first_name" readonly="readonly"
-                onclick="setTargetC('first_name')">
+              <input tabindex="-1" name="r_firstName" type="text" class="c-textBox" id="first_name" readonly="readonly" onclick="setTargetC('first_name')">
               <label class="first-name">ｾｲ</label>
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
             </div>
             <div class="c-textBox c-textBox--lastName u-mt50" id="js-lastName">
-              <input tabindex="-1" name="r_lastName" type="text" class="c-textBox" id="last_name" readonly="readonly"
-                onclick="setTargetC('last_name')">
+              <input tabindex="-1" name="r_lastName" type="text" class="c-textBox" id="last_name" readonly="readonly" onclick="setTargetC('last_name')">
               <label class="first-name">ﾒｲ</label>
               <div class="border-v">
                 <div class="border-h"></div>
@@ -64,11 +68,16 @@
             <div class="l-flex u-mt50">
               <div class="c-label u-lh5">学年：</div>
               <select tabindex="-1" name="year" id="" class="c-comboBox c-comboBox--year u-fz3 u-lh5">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
               </select>
             </div>
             <div class="l-flex u-mt50">
               <div class="c-label u-lh5">学科：</div>
               <select tabindex="-1" name="class" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
+                <?php $dc->setCmbClassName(); ?>
               </select>
             </div>
           </section>
@@ -79,12 +88,14 @@
               <div class="l-flex">
                 <div class="c-label u-lh5">教室：</div>
                 <select tabindex="-1" name="roomName" id="" class="c-comboBox c-comboBox--floorMap u-fz3 u-lh5">
+                  <?php $dc->setCmbRoomName(); ?>
                 </select>
               </div>
               <div class="l-flex">
-                  <div class="c-label u-lh5">使用理由：</div>
-                  <select tabindex="-1" name="reason" id="" class="c-comboBox u-fz3 u-lh5">
-                  </select>
+                <div class="c-label u-lh5">使用理由：</div>
+                <select tabindex="-1" name="reason" id="" class="c-comboBox u-fz3 u-lh5">
+                  <?php $dc->setCmbReasonName(); ?>
+                </select>
               </div>
             </div>
             <div class="c-button c-button--floorMap u-mt50 u-fz3 u-lh5 u-textCenter" id="js-floorMapOpen">フロアマップ</div>
@@ -103,8 +114,7 @@
           <div class="l-modal__page">
             <div class="c-label">教員番号を入力してください</div>
             <div class="c-textBox c-textBox--teacherCode u-mt50">
-              <input tabindex="-1" name="teacherCode" type="text" class="c-textBox" readonly="readonly"
-                onclick="setTargetN('teacher_code')">
+              <input tabindex="-1" name="teacherCode" type="text" class="c-textBox" readonly="readonly" onclick="setTargetN('teacher_code')">
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
@@ -117,6 +127,7 @@
       <span class="p-modal__btn p-modal__btn--next" id="js-nextBtn">次へ</span>
       <div class="p-modal__btn p-modal__btn--decision u-hidden" id="js-decisionBtn">決定</div>
     </form>
+    <?php require './model/RESERVATION_POST.php' ?>
     <!-- フロアマップ -->
     <div class="l-background--floorMap u-hidden" id="js-floorMapBack"></div>
     <div class="l-floorMap u-hidden" id="js-floorMap">
@@ -150,6 +161,7 @@
 
     <div class="l-background--top u-hidden" id="js-exitBack"></div>
     <!-- 退出画面 -->
+    <?php $dc->createLeaveDataClass(); ?>
     <form class="l-modal u-absolute__center u-hidden" id="js-exit">
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-exitClose">×</div>
@@ -160,8 +172,7 @@
           <div class="l-modal__page">
             <div class="c-label">教員番号を入力してください</div>
             <div class="c-textBox c-textBox--teacherCode u-mt50">
-              <input tabindex="-1" type="text" class="c-textBox" readonly="readonly"
-                onclick="setTargetN('teacher_code')">
+              <input tabindex="-1" type="text" class="c-textBox" readonly="readonly" onclick="setTargetN('teacher_code')">
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
@@ -173,7 +184,7 @@
         <div class="p-modal__btn p-modal__btn--submit u-hidden">決定</div>
       </div>
     </form>
-
+    <?php require './model/LEAVE_POST.php' ?>
     <div class="l-background--top u-hidden" id="js-teacherBack"></div>
     <!-- 教員用画面 -->
     <form class="l-modal u-absolute__center u-hidden" id="js-teacher">
@@ -186,8 +197,7 @@
           <div class="l-modal__page">
             <div class="c-label">教員番号を入力してください</div>
             <div class="c-textBox c-textBox--teacherCode u-mt50">
-              <input tabindex="-1" type="text" class="c-textBox" readonly="readonly"
-                onclick="setTargetN('teacher_code')">
+              <input tabindex="-1" type="text" class="c-textBox" readonly="readonly" onclick="setTargetN('teacher_code')">
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
