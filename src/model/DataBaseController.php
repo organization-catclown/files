@@ -9,48 +9,6 @@ define('DSN', 'mysql:host=localhost;dbname=RoomManagementSystem;charset=utf8');
  */
 class DataBaseController
 {
-
-    /**
-     * 教室利用予約時、生徒の名前がStudents表に存在するかチェック
-     * @param RoomReservationDataClass $roomReservationDataClass
-     * @return boolean 存在すればTRUE、存在しなければFALSE
-     */
-    public static function searchStudentData($roomReservationDataClass)
-    {
-        $pdo = null;
-        $stmt = null;
-        try {
-            $pdo = new PDO(DSN, USER, PASS);
-            $sql = "SELECT COUNT(StudentNumber) as HIT FROM Students
-              WHERE ClassCode = :classCode AND SchoolYear = :schoolYear
-              AND Name2 = :name2";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':classCode', $roomReservationDataClass->getClassCode(), PDO::PARAM_INT);
-            $stmt->bindParam(':schoolYear', $roomReservationDataClass->getSchoolYear(), PDO::PARAM_INT);
-            $stmt->bindParam(':name2', $roomReservationDataClass->getName(), PDO::PARAM_STR);
-
-            $stmt->execute();
-
-            $result = $stmt->fetch();
-
-            if ($result['HIT'] == 1) {
-                return true;
-            }
-            $stmt = null;
-            $pdo = null;
-        } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
-        } finally {
-            if ($stmt != null) {
-                $stmt = null;
-            }
-            if ($pdo != null) {
-                $pdo = null;
-            }
-        }
-        return false;
-    }
-
     /**
      * 退室時、生徒の名前がRoomManagements表に存在するかチェック
      * @param LeaveDataClass $leaveDataClass
@@ -79,7 +37,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -119,7 +78,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -162,7 +122,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -197,7 +158,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -226,7 +188,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -256,7 +219,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -287,7 +251,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -329,7 +294,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -364,7 +330,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -401,7 +368,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;
@@ -415,10 +383,11 @@ class DataBaseController
 
     /**
      * 受け取った名前（カタカナ）、クラスコード、学年から学生番号を取得する
+     * 見つからなかった場合はnullを返す
      * @param string $studentName
      * @param int $classcode
      * @param int $schoolYear
-     * @return $studentNumber 学生番号
+     * @return $studentNumber 学生番号 見つからなければnull
      */
     public static function getStudentNumber($studentName, $classcode, $schoolyear)
     {
@@ -444,7 +413,8 @@ class DataBaseController
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
-            print "エラー：" . $e->getMessage() . "<br>";
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
         } finally {
             if ($stmt != null) {
                 $stmt = null;

@@ -9,7 +9,7 @@ require 'LogDataClass.php';
 /**
  * 教室利用管理システムに関するデータをまとめる用のクラス
  */
-class DataController
+class RMSController
 {
     public $leaveDataClass;
     public $roomReservationDataClass;

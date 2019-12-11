@@ -1,45 +1,58 @@
 <?php
 
 if (isset($_POST['r_lastName'])) {
-    $dc->roomReservationDataClass->setLastName($_POST['r_lastName']);
+    $rmsc->roomReservationDataClass->setLastName($_POST['r_lastName']);
 }
 
 if (isset($_POST['r_firstName'])) {
-    $dc->roomReservationDataClass->setFirstName($_POST['r_firstName']);
+    $rmsc->roomReservationDataClass->setFirstName($_POST['r_firstName']);
 }
 
 if (isset($_POST['r_schoolYear'])) {
-    $dc->roomReservationDataClass->setSchoolYear($_POST['r_schoolYear']);
+    $rmsc->roomReservationDataClass->setSchoolYear($_POST['r_schoolYear']);
 }
 
 if (isset($_POST['r_className'])) {
-    $dc->roomReservationDataClass->setClassCode($dc->classNameArray[$_POST['r_className']]);
+    $rmsc->roomReservationDataClass->setClassCode($rmsc->classNameArray[$_POST['r_className']]);
 }
 
 if (isset($_POST['r_roomName'])) {
-    $dc->roomReservationDataClass->setRoomCode($dc->roomNameArray[$_POST['r_roomName']]);
+    $rmsc->roomReservationDataClass->setRoomCode($rmsc->roomNameArray[$_POST['r_roomName']]);
 }
 
 if (isset($_POST['r_leavingTimeHour'])) {
-    $dc->roomReservationDataClass->setLeavingHour($_POST['r_leavingHour']);
+    $rmsc->roomReservationDataClass->setLeavingHour($_POST['r_leavingHour']);
 }
 
 if (isset($_POST['r_leavingTimeMinute'])) {
-    $dc->roomReservationDataClass->setLeavingMinute($_POST['r_leavingMinute']);
+    $rmsc->roomReservationDataClass->setLeavingMinute($_POST['r_leavingMinute']);
 }
 
 if (isset($_POST['r_reasonName'])) {
-    $dc->roomReservationDataClass->setReasonCode($dc->reasonNameArray[$_POST['r_reasonName']]);
+    $rmsc->roomReservationDataClass->setReasonCode($rmsc->reasonNameArray[$_POST['r_reasonName']]);
 }
 
 if (isset($_POST['r_entryTeacherCode'])) {
-    $dc->roomReservationDataClass->setEntryTeacherCode($_POST['r_entryTeacherCode']);
+    $rmsc->roomReservationDataClass->setEntryTeacherCode($_POST['r_entryTeacherCode']);
 }
 
 if (isset($_POST['insert'])) {
-    if ($dc->checkRoomReservationDataClass()) {
-        if (!DataBaseController::doubleCheck($dc->roomReservationDataClass)) {
-            DataBaseController::insertReservationData($dc->roomReservationDataClass);
+    if ($rmsc->checkRoomReservationDataClass()) {
+        if (DataBaseController::getStudentNumber($rmsc->roomReservationDataClass->getName(), $rmsc->roomReservationDataClass->getClassCode(), $rmsc->roomReservationDataClass->getSchoolYear()) != null) {
+            if (!DataBaseController::doubleCheck($rmsc->roomReservationDataClass)) {
+                DataBaseController::insertReservationData($rmsc->roomReservationDataClass);
+                $alert = "<script type='text/javascript'>alert('予約処理が完了しました。');</script>";
+                echo $alert;
+            } else {
+                $alert = "<script type='text/javascript'>alert('既に教室を予約しています。');</script>";
+                echo $alert;
+            }
+        } else {
+            $alert = "<script type='text/javascript'>alert('学籍番号が見つかりませんでした。');</script>";
+            echo $alert;
         }
+    } else {
+        $alert = "<script type='text/javascript'>alert('入力漏れがあります。');</script>";
+        echo $alert;
     }
 }

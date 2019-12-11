@@ -3,7 +3,7 @@
 
 <head>
   <?php
-  require "./DataController.php";
+  require "./RMSController.php";
   ?>
   <meta charset="utf-8">
   <title></title>
@@ -11,34 +11,34 @@
 
 <body>
   <?php
-  $dc = new DataController();
-  $dc->fetchSelectDatas();
-  //$dc->refreshData();
+  $rmsc = new RMSController();
+  $rmsc->fetchSelectDatas();
+  //$rmsc->refreshData();
   // 部屋名の連想配列
   echo 'fetchRoomNameArray<br>';
-  foreach ((array) $dc->roomNameArray as $key => $value) {
+  foreach ((array) $rmsc->roomNameArray as $key => $value) {
     echo $key . '   ' . $value . '<br>';
   }
   // 学科名の連想配列
   echo '<br>fetchClassNameArray<br>';
-  foreach ((array) $dc->classNameArray as $key => $value) {
+  foreach ((array) $rmsc->classNameArray as $key => $value) {
     echo $key . '   ' . $value . '<br>';
   }
   // 理由の連想破裂
   echo '<br>fetchReasonNameArray<br>';
-  foreach ((array) $dc->reasonNameArray as $key => $value) {
+  foreach ((array) $rmsc->reasonNameArray as $key => $value) {
     echo $key . '   ' . $value . '<br>';
   }
 
   // 教室利用予約クラス
-  $dc->createroomReservationDataClass();
-  // $dc->roomReservationDataClass->setName("ナカヤマ", "ヤマト");
-  // $dc->roomReservationDataClass->setClassCode($dc->classNameArray['IT学科']);
-  // $dc->roomReservationDataClass->setSchoolYear(3);
-  // $dc->roomReservationDataClass->setRoomCode($dc->roomNameArray['412']);
-  // $dc->roomReservationDataClass->setLeavingTime(15, 15);
-  // $dc->roomReservationDataClass->setReasonCode($dc->reasonNameArray['就活']);
-  // $dc->roomReservationDataClass->setEntryTeacherCode(10001);
+  $rmsc->createroomReservationDataClass();
+  // $rmsc->roomReservationDataClass->setName("ナカヤマ", "ヤマト");
+  // $rmsc->roomReservationDataClass->setClassCode($rmsc->classNameArray['IT学科']);
+  // $rmsc->roomReservationDataClass->setSchoolYear(3);
+  // $rmsc->roomReservationDataClass->setRoomCode($rmsc->roomNameArray['412']);
+  // $rmsc->roomReservationDataClass->setLeavingTime(15, 15);
+  // $rmsc->roomReservationDataClass->setReasonCode($rmsc->reasonNameArray['就活']);
+  // $rmsc->roomReservationDataClass->setEntryTeacherCode(10001);
 
   ?>
 
@@ -62,25 +62,25 @@
   require 'RESERVATION_POST.php';
 
   echo '<br>roomReservationDataClass<br>';
-  echo 'Name:' . $dc->roomReservationDataClass->getName() . '<br>';
-  echo 'ClassCode:' . $dc->roomReservationDataClass->getClassCode() . '<br>';
-  echo 'ShoolYear:' . $dc->roomReservationDataClass->getSchoolYear() . '<br>';
-  echo 'UseRoom:' . $dc->roomReservationDataClass->getRoomCode() . '<br>';
-  echo 'LeavingTime' . date_format($dc->roomReservationDataClass->getLeavingTime(), ('H:i:s')) . '<br>';
-  echo 'Reason:' . $dc->roomReservationDataClass->getReasonCode() . '<br>';
-  echo 'EntryTeacherCode:' . $dc->roomReservationDataClass->getEntryTeacherCode() . '<br>';
+  echo 'Name:' . $rmsc->roomReservationDataClass->getName() . '<br>';
+  echo 'ClassCode:' . $rmsc->roomReservationDataClass->getClassCode() . '<br>';
+  echo 'ShoolYear:' . $rmsc->roomReservationDataClass->getSchoolYear() . '<br>';
+  echo 'UseRoom:' . $rmsc->roomReservationDataClass->getRoomCode() . '<br>';
+  echo 'LeavingTime' . date_format($rmsc->roomReservationDataClass->getLeavingTime(), ('H:i:s')) . '<br>';
+  echo 'Reason:' . $rmsc->roomReservationDataClass->getReasonCode() . '<br>';
+  echo 'EntryTeacherCode:' . $rmsc->roomReservationDataClass->getEntryTeacherCode() . '<br>';
   echo 'StudentNumber:' . DataBaseController::getStudentNumber(
-    $dc->roomReservationDataClass->getName(),
-    $dc->roomReservationDataClass->getClassCode(),
-    $dc->roomReservationDataClass->getSchoolYear()
+    $rmsc->roomReservationDataClass->getName(),
+    $rmsc->roomReservationDataClass->getClassCode(),
+    $rmsc->roomReservationDataClass->getSchoolYear()
   ) . '<br>';
 
   // 教室退室クラス
-  $dc->createLeaveDataClass();
-  // $dc->leaveDataClass->setName("ナカヤマ", "ヤマト");
-  // $dc->leaveDataClass->setSchoolYear(3);
-  // $dc->leaveDataClass->setClassCode(1);
-  // $dc->leaveDataClass->setLeavingTeacherCode(10001);
+  $rmsc->createLeaveDataClass();
+  // $rmsc->leaveDataClass->setName("ナカヤマ", "ヤマト");
+  // $rmsc->leaveDataClass->setSchoolYear(3);
+  // $rmsc->leaveDataClass->setClassCode(1);
+  // $rmsc->leaveDataClass->setLeavingTeacherCode(10001);
   ?>
   <div>
     <form action="" method="post">
@@ -97,16 +97,16 @@
   require 'LEAVE_POST.php';
 
   echo '<br>LeaveDataClass<br>';
-  echo 'Name:' . $dc->leaveDataClass->getName() . '<br>';
-  echo 'SchoolYear:' . $dc->leaveDataClass->getSchoolYear() . '<br>';
-  echo 'ClassCode:' . $dc->leaveDataClass->getClassCode() . '<br>';
-  echo 'LeavingTeacherCode:' . $dc->leaveDataClass->getLeavingTeacherCode() . '<br>';
-  // if (DataBaseController::searchLeaveData($dc->leaveDataClass)) {
+  echo 'Name:' . $rmsc->leaveDataClass->getName() . '<br>';
+  echo 'SchoolYear:' . $rmsc->leaveDataClass->getSchoolYear() . '<br>';
+  echo 'ClassCode:' . $rmsc->leaveDataClass->getClassCode() . '<br>';
+  echo 'LeavingTeacherCode:' . $rmsc->leaveDataClass->getLeavingTeacherCode() . '<br>';
+  // if (DataBaseController::searchLeaveData($rmsc->leaveDataClass)) {
   //   echo  'データが存在します。<br>';
   // } else {
   //   echo  'データが存在しません。<br>';
   // }
-  // if ($dc->cheackLeaveDataClass()) {
+  // if ($rmsc->cheackLeaveDataClass()) {
   //   echo 'OK<br>';
   // } else {
   //   echo 'NO<br>';
@@ -146,15 +146,15 @@
   </div>
   <div>学科</div>
   <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
-    <?php $dc->setCmbClassName() ?>
+    <?php $rmsc->setCmbClassName() ?>
   </select>
   <div>教室名</div>
   <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
-    <?php $dc->setCmbRoomName() ?>
+    <?php $rmsc->setCmbRoomName() ?>
   </select>
   <div>理由名</div>
   <select tabindex="-1" name="" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
-    <?php $dc->setCmbReasonName() ?>
+    <?php $rmsc->setCmbReasonName() ?>
   </select>
 
 
@@ -167,6 +167,6 @@
 <?php
 
 if (isset($_POST['Refresh'])) {
-  $dc->refreshData();
+  $rmsc->refreshData();
 }
 ?>

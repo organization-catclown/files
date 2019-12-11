@@ -10,15 +10,15 @@
 </head>
 
 <body>
-  <?php require './model/DataController.php'; ?>
+  <?php require './model/RMSController.php'; ?>
   <header id="header">
     <h1 class="c-lbel u-fr">Room Management System</h1>
     <p>学校法人 〇〇〇学園</p>
   </header>
   <main>
     <?php
-    $dc = new DataController();
-    $dc->fetchSelectDatas();
+    $rmsc = new RMSController();
+    $rmsc->fetchSelectDatas();
     ?>
     <!-- トップ画面 -->
     <nav>
@@ -28,7 +28,7 @@
     </nav>
     <div class="l-background--top u-hidden" id="js-enterBack"></div>
     <!-- 入室画面 -->
-    <?php $dc->createroomReservationDataClass(); ?>
+    <?php $rmsc->createroomReservationDataClass(); ?>
     <form method="POST" action="./GET.php" class="l-modal u-absolute__center u-hidden" id="js-enter">
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-enterClose">×</div>
@@ -77,7 +77,7 @@
             <div class="l-flex u-mt50">
               <div class="c-label u-lh5">学科：</div>
               <select tabindex="-1" name="class" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
-                <?php $dc->setCmbClassName(); ?>
+                <?php $rmsc->setCmbClassName(); ?>
               </select>
             </div>
           </section>
@@ -88,13 +88,13 @@
               <div class="l-flex">
                 <div class="c-label u-lh5">教室：</div>
                 <select tabindex="-1" name="roomName" id="" class="c-comboBox c-comboBox--floorMap u-fz3 u-lh5">
-                  <?php $dc->setCmbRoomName(); ?>
+                  <?php $rmsc->setCmbRoomName(); ?>
                 </select>
               </div>
               <div class="l-flex">
                 <div class="c-label u-lh5">使用理由：</div>
                 <select tabindex="-1" name="reason" id="" class="c-comboBox u-fz3 u-lh5">
-                  <?php $dc->setCmbReasonName(); ?>
+                  <?php $rmsc->setCmbReasonName(); ?>
                 </select>
               </div>
             </div>
@@ -161,7 +161,7 @@
 
     <div class="l-background--top u-hidden" id="js-exitBack"></div>
     <!-- 退出画面 -->
-    <?php $dc->createLeaveDataClass(); ?>
+    <?php $rmsc->createLeaveDataClass(); ?>
     <form class="l-modal u-absolute__center u-hidden" id="js-exit">
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-exitClose">×</div>
@@ -181,7 +181,7 @@
         </div>
         <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-exitBackBtn">戻る</span>
         <span class="p-modal__btn p-modal__btn--next" id="js-exitNextBtn">次へ</span>
-        <div class="p-modal__btn p-modal__btn--submit u-hidden" id="js-decide">決定</div>
+        <div class="p-modal__btn p-modal__btn--submit u-hidden">決定</div>
       </div>
     </form>
     <?php require './model/LEAVE_POST.php' ?>
