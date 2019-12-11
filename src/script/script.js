@@ -5,6 +5,7 @@ let currentPage = 0
 const backBtn = document.getElementById("js-backBtn")
 const nextBtn = document.getElementById("js-nextBtn")
 const decisionBtn = document.getElementById("js-decisionBtn")
+const modal = document.getElementById("js-enter")
 const modalBody = document.getElementById("js-modalBody")
 const progress = document.getElementsByClassName("p-progress")
 
@@ -12,6 +13,19 @@ let target
 const keybord = document.getElementById("js-keybord")
 const keybordBack = document.getElementById("js-keybordBack")
 
+
+function checkKey(string) {
+  let str = string.value
+  console.log(str);
+  while (str.match(/[^A-Z^a-z\d\-]/)) {
+    str = str.replace(/[^A-Z^a-z\d\-]/, "");
+  }
+  string.value = str;
+}
+
+// window.document.onkeydown = function (e) {
+//   return false;
+// }
 
 document.oncontextmenu = function () { return false; }
 
@@ -118,14 +132,13 @@ teacherClose.addEventListener("click", function () {
 }, false)
 
 function setTargetC(id) {
+  event.returnValue = false
   target = document.getElementById(id)
   target.classList.add("is-active")
   keybord.classList.remove("u-hidden")
   keybordBack.classList.remove("u-hidden")
-  if(id == "last_name") {
-    document.getElementById("js-enter").classList.remove("u-absolute__center")
-    document.getElementById("js-enter").classList.add("u-absolute__cLittleUp")
-
+  if (id == "last_name") {
+    modal.style.top = "40%"
   }
 }
 
@@ -133,15 +146,16 @@ function hideKeybord() {
   target.classList.remove("is-active")
   keybord.classList.add("u-hidden")
   keybordBack.classList.add("u-hidden")
+  modal.style.top = "50%"
 }
 
-function setChar(char) { 
+function setChar(char) {
   target.value += char
 }
 
 function backSpace() {
   let len = target.value.length
-  target.value = target.value.substring(0, len-1)
+  target.value = target.value.substring(0, len - 1)
 }
 
 function toggleSize() {
@@ -152,8 +166,8 @@ function toggleSize() {
 
 function cSize() {
   let len = target.value.length
-  let lastc = target.value.substring(len-1, len)
-  switch(lastc) {
+  let lastc = target.value.substring(len - 1, len)
+  switch (lastc) {
     case "ヤ":
       return "ャ"
     case "ャ":
@@ -179,8 +193,8 @@ function toggleDakuon() {
 
 function dakuten() {
   let len = target.value.length
-  let lastc = target.value.substring(len-1, len)
-  switch(lastc) {
+  let lastc = target.value.substring(len - 1, len)
+  switch (lastc) {
     case "カ":
       return "ガ"
     case "ガ":
@@ -270,7 +284,7 @@ function dakuten() {
     case "ボ":
       return "ポ"
     case "ポ":
-      return  "ホ"
+      return "ホ"
     default:
       return lastc
   }
@@ -286,3 +300,16 @@ function setTargetN(id) {
   keybord.classList.remove("u-hidden")
   keybordBack.classList.remove("u-hidden")
 }
+
+const decideBtn = document.getElementById("js-decisionBtn")
+decideBtn.addEventListener("click", function () {
+  const firstName = document.getElementById("first_name").value
+  const lastName = document.getElementById("last_name").value
+  const fullName = firstName + " " + lastName
+  const classYear = document.getElementById("class_year").value
+
+  console.log(firstName, lastName);
+  document.getElementById("decide_label").innerText = "名前： " + fullName + "\n学年： " + classYear +
+    "\n学科： "
+
+}, false)

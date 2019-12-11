@@ -181,7 +181,7 @@
         </div>
         <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-exitBackBtn">戻る</span>
         <span class="p-modal__btn p-modal__btn--next" id="js-exitNextBtn">次へ</span>
-        <div class="p-modal__btn p-modal__btn--submit u-hidden">決定</div>
+        <div class="p-modal__btn p-modal__btn--submit u-hidden" id="js-decide">決定</div>
       </div>
     </form>
     <?php require './model/LEAVE_POST.php' ?>

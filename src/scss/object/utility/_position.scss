@@ -9,17 +9,18 @@
 }
 
 .u-absolute__center {
-  position : absolute;
-  top      : 50%;
-  left     : 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.u-absolute__cLittleUp {
-  position : absolute;
-  top      : 40%;
-  left     : 50%;
-  transform: translate(-50%, -40%);
+.u-absolute--center {
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
 }
 
 .u-fixed {
@@ -37,4 +38,12 @@
   top: 50%;
   right: 0;
   transform: translateY(-50%);
+}
+
+.u-top--20 {
+  top: 20%;
+}
+
+.u-top--50 {
+  top: 50%;
 }
