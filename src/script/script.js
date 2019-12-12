@@ -6,6 +6,7 @@ const backBtn = document.getElementById("js-backBtn")
 const nextBtn = document.getElementById("js-nextBtn")
 const decisionBtn = document.getElementById("js-decisionBtn")
 const modal = document.getElementById("js-enter")
+const lmodal = document.getElementById("js-exit")
 const modalBody = document.getElementById("js-modalBody")
 const progress = document.getElementsByClassName("p-progress")
 
@@ -13,7 +14,7 @@ let target
 const keybord = document.getElementById("js-keybord")
 const keybordBack = document.getElementById("js-keybordBack")
 
-
+// --------------------全角入力制限--------------------
 function checkKey(string) {
   let str = string.value
   console.log(str);
@@ -23,12 +24,16 @@ function checkKey(string) {
   string.value = str;
 }
 
+// --------------------キー入力制限--------------------
 // window.document.onkeydown = function (e) {
 //   return false;
 // }
 
+// --------------------右クリック禁止--------------------
 document.oncontextmenu = function () { return false; }
 
+
+// --------------------戻るボタン押下時--------------------
 backBtn.addEventListener("click", function () {
   if (currentPage > 0) {
     currentPage--
@@ -48,6 +53,7 @@ backBtn.addEventListener("click", function () {
   if (currentPage == 0) backBtn.classList.add("u-hidden")
 }, false)
 
+// --------------------次へボタン押下時--------------------
 nextBtn.addEventListener("click", function () {
   if (currentPage < MAX_PAGE - 1) {
     currentPage++
@@ -65,6 +71,8 @@ nextBtn.addEventListener("click", function () {
 
 }, false)
 
+
+// --------------------決定ボタン押下時--------------------
 decisionBtn.addEventListener("click", function () {
   if (currentPage < MAX_PAGE) {
     currentPage++
@@ -79,85 +87,98 @@ decisionBtn.addEventListener("click", function () {
   }
 }, false)
 
+// --------------------ミニモーダルクローズボタン押下時--------------------
 const closeMini = document.getElementById("js-enterMiniClose")
 closeMini.addEventListener("click", function () {
   document.getElementById("js-enterMiniBack").classList.add("u-hidden")
   document.getElementById("js-enterMini").classList.add("u-hidden")
 }, false)
 
-
+// --------------------入室画面のクローズボタン押下時--------------------
 const enterClose = document.getElementById("js-enterClose")
 enterClose.addEventListener("click", function () {
   document.getElementById("js-enter").classList.add("u-hidden")
   document.getElementById("js-enterBack").classList.add("u-hidden")
 }, false)
 
+// --------------------入室画面表示--------------------
 function showEnter() {
   document.getElementById("js-enter").classList.remove("u-hidden")
   document.getElementById("js-enterBack").classList.remove("u-hidden")
 }
 
+// --------------------退室画面表示--------------------
 function showExit() {
   document.getElementById("js-exit").classList.remove("u-hidden")
   document.getElementById("js-exitBack").classList.remove("u-hidden")
 }
 
+// --------------------教員用画面表示--------------------
 function showTeacher() {
   document.getElementById("js-teacher").classList.remove("u-hidden")
   document.getElementById("js-teacherBack").classList.remove("u-hidden")
 }
 
+// --------------------フロアマップ表示--------------------
 const floorMapOpen = document.getElementById("js-floorMapOpen")
 floorMapOpen.addEventListener("click", function () {
   document.getElementById("js-floorMapBack").classList.remove("u-hidden")
   document.getElementById("js-floorMap").classList.remove("u-hidden")
 }, false)
 
+// --------------------フロアマップクローズボタン押下時--------------------
 const floorMapClose = document.getElementById("js-floorMapClose")
 floorMapClose.addEventListener("click", function () {
   document.getElementById("js-floorMap").classList.add("u-hidden")
   document.getElementById("js-floorMapBack").classList.add("u-hidden")
 }, false)
 
+// --------------------退室画面クローズボタン押下時--------------------
 const exitClose = document.getElementById("js-exitClose")
 exitClose.addEventListener("click", function () {
   document.getElementById("js-exit").classList.add("u-hidden")
   document.getElementById("js-exitBack").classList.add("u-hidden")
 }, false)
 
+// --------------------教員用画面クローズボタン押下時--------------------
 const teacherClose = document.getElementById("js-teacherClose")
 teacherClose.addEventListener("click", function () {
   document.getElementById("js-teacher").classList.add("u-hidden")
   document.getElementById("js-teacherBack").classList.add("u-hidden")
 }, false)
 
+// --------------------テキストインプットクリック時--------------------
 function setTargetC(id) {
   event.returnValue = false
   target = document.getElementById(id)
   target.classList.add("is-active")
   keybord.classList.remove("u-hidden")
   keybordBack.classList.remove("u-hidden")
-  if (id == "last_name") {
-    modal.style.top = "40%"
-  }
+  if (id == "rlast_name") {modal.style.top = "40%"}
+  if (id == "llast_name") {lmodal.style.top = "40%"}
 }
 
+// --------------------キーボード非表示--------------------
 function hideKeybord() {
   target.classList.remove("is-active")
   keybord.classList.add("u-hidden")
   keybordBack.classList.add("u-hidden")
   modal.style.top = "50%"
+  lmodal.style.top = "50%"
 }
 
+// --------------------入力--------------------
 function setChar(char) {
   target.value += char
 }
 
+// --------------------バックスペース--------------------
 function backSpace() {
   let len = target.value.length
   target.value = target.value.substring(0, len - 1)
 }
 
+// --------------------大/小切り替え--------------------
 function toggleSize() {
   let lastc = cSize()
   backSpace()
@@ -185,6 +206,7 @@ function cSize() {
   }
 }
 
+// --------------------ﾞ / ﾟ切り替え--------------------
 function toggleDakuon() {
   let lastc = dakuten()
   backSpace()
@@ -290,6 +312,7 @@ function dakuten() {
   }
 }
 
+
 function enter() {
   hideKeybord()
 }
@@ -301,6 +324,7 @@ function setTargetN(id) {
   keybordBack.classList.remove("u-hidden")
 }
 
+// --------------------ミニモーダル表示時--------------------
 const decideBtn = document.getElementById("js-decisionBtn")
 decideBtn.addEventListener("click", function () {
   const firstName = document.getElementById("first_name").value
