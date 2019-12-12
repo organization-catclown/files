@@ -285,7 +285,9 @@ ol {
   background: #fff;
 }
 
-#js-modalBody {
+#js-r_modalbody,
+#js-l_modalbody,
+#js-t_modalbody {
   -webkit-transition: -webkit-transform .3s;
   transition: -webkit-transform .3s;
   transition: transform .3s;

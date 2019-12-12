@@ -2,12 +2,12 @@ const MAX_PAGE = 4
 const MODAL_WIDTH = 1100
 let currentPage = 0
 
-const backBtn = document.getElementById("js-rBackBtn")
-const nextBtn = document.getElementById("js-rNextBtn")
+const rBackBtn = document.getElementById("js-r_backbtn")
+const nextBtn = document.getElementById("js-r_nextbtn")
 const decisionBtn = document.getElementById("js-decisionBtn")
 const modal = document.getElementById("js-enter")
-const lmodal = document.getElementById("js-exit")
-const modalBody = document.getElementById("js-modalBody")
+const rmodal = document.getElementById("js-exit")
+const modalBody = document.getElementById("js-r_modalbody")
 const progress = document.getElementsByClassName("p-progress")
 
 let target
@@ -34,7 +34,7 @@ document.oncontextmenu = function () { return false; }
 
 
 // --------------------戻るボタン押下時--------------------
-backBtn.addEventListener("click", function () {
+rBackBtn.addEventListener("click", function () {
   if (currentPage > 0) {
     currentPage--
     if (nextBtn.classList.contains("u-hidden")) {
@@ -50,14 +50,14 @@ backBtn.addEventListener("click", function () {
     progress[currentPage + 1].classList.remove("p-progress--current")
     progress[currentPage].classList.remove("p-progress--done")
   }
-  if (currentPage == 0) backBtn.classList.add("u-hidden")
+  if (currentPage == 0) rBackBtn.classList.add("u-hidden")
 }, false)
 
 // --------------------次へボタン押下時--------------------
 nextBtn.addEventListener("click", function () {
   if (currentPage < MAX_PAGE - 1) {
     currentPage++
-    if (backBtn.classList.contains("u-hidden")) backBtn.classList.remove("u-hidden")
+    if (rBackBtn.classList.contains("u-hidden")) rBackBtn.classList.remove("u-hidden")
 
     modalBody.style.transform = "translateX(" + -MODAL_WIDTH * currentPage + "px)"
     progress[currentPage].classList.add("p-progress--current")
@@ -155,7 +155,7 @@ function setTargetC(id) {
   keybord.classList.remove("u-hidden")
   keybordBack.classList.remove("u-hidden")
   if (id == "rlast_name") {modal.style.top = "40%"}
-  if (id == "llast_name") {lmodal.style.top = "40%"}
+  if (id == "llast_name") {rmodal.style.top = "40%"}
 }
 
 // --------------------キーボード非表示--------------------
@@ -164,7 +164,7 @@ function hideKeybord() {
   keybord.classList.add("u-hidden")
   keybordBack.classList.add("u-hidden")
   modal.style.top = "50%"
-  lmodal.style.top = "50%"
+  rmodal.style.top = "50%"
 }
 
 // --------------------入力--------------------
