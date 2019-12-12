@@ -21,11 +21,11 @@
       <button onclick="showExit()">exit</button>
       <button onclick="showTeacher()">teacher</button>
     </nav>
-    <div class="l-background--top u-hidden" id="js-enterBack"></div>
+    <div class="l-background--top u-hidden" id="js-modal_back"></div>
     <!-- 入室画面 -->
     <form method="POST" class="l-modal u-absolute--center u-top--50 u-hidden" id="js-enter" autocomplete="off">
       <div class="l-directionColumn u-hFill ">
-        <div class="l-modal__closeBtn" id="js-enterClose">×</div>
+        <div class="l-modal__closeBtn" id="js-enter_close">×</div>
         <div class="l-modal__top u-hFill u-textCenter u-relative">
           <ol class="l-justifyCenter l-aiCenter u-vFill">
             <li class="p-progress p-progress--current">氏名入力</li>
@@ -37,11 +37,11 @@
         <div class="l-modal__top  u-hFill u-textCenter u-relative u-none">
           <div class="c-label">先生を呼んできてください</div>
         </div>
-        <div class="l-modal__body l-flex u-fill" id="js-r_modalbody">
+        <div class="l-modal__body l-flex u-fill" id="js-r_enter_body">
           <!-- 氏名入力（半角カナ） -->
           <section class="l-modal__page">
             <div class="c-label">氏名を入力してください</div>
-            <div class="c-textBox c-textBox--firstName u-mt50" id="js-firstName">
+            <div class="c-textBox c-textBox--firstName u-mt50" id="js-first_name">
               <input tabindex="-1" name="r_firstName" type="text" class="c-textBox" id="rfirst_name"
                 onclick="setTargetC('rfirst_name')" required="required" oncopy="return false" onpaste="return false"
                 oninput="checkKey(this)" onfocus="blur()">
@@ -50,7 +50,7 @@
                 <div class="border-h"></div>
               </div>
             </div>
-            <div class="c-textBox c-textBox--lastName u-mt50" id="js-lastName">
+            <div class="c-textBox c-textBox--lastName u-mt50" id="js-last_name">
               <input tabindex="-1" name="r_lastName" type="text" class="c-textBox" id="rlast_name"
                 onclick="setTargetC('rlast_name')" required="required" oncopy="return false" onpaste="return false"
                 oninput="checkKey(this)" onfocus="blur()" />
@@ -65,7 +65,7 @@
             <div class="c-label">学年と学科を選択してください</div>
             <div class="l-flex u-mt50">
               <div class="c-label u-lh5">学年：</div>
-              <select tabindex="-1" name="year" id="class_year" class="c-comboBox c-comboBox--year u-fz3 u-lh5">
+              <select tabindex="-1" name="r_classYear" id="class_year" class="c-comboBox c-comboBox--year u-fz3 u-lh5">
                 <option value="1年">1年</option>
                 <option value="2年">2年</option>
                 <option value="3年">3年</option>
@@ -74,7 +74,7 @@
             </div>
             <div class="l-flex u-mt50">
               <div class="c-label u-lh5">学科：</div>
-              <select tabindex="-1" name="class" id="class_name" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
+              <select tabindex="-1" name="r_className" id="class_name" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
               </select>
             </div>
           </section>
@@ -85,16 +85,16 @@
               <div class="l-flex--clumn">
                 <div class="l-flex">
                   <div class="c-label u-lh5">教室：</div>
-                  <select tabindex="-1" name="roomName" id="room_name" class="c-comboBox c-comboBox--floorMap u-fz3 u-lh5">
+                  <select tabindex="-1" name="r_roomName" id="room_name" class="c-comboBox c-comboBox--floorMap u-fz3 u-lh5">
                   </select>
                 </div>
-                <div class="c-button c-button--floorMap u-mt50 u-fz3 u-lh5 u-textCenter" id="js-floorMapOpen">
+                <div class="c-button c-button--floorMap u-mt50 u-fz3 u-lh5 u-textCenter" id="js-floormap_open">
                   フロアマップ
                 </div>
               </div>
               <div class="l-flex">
                 <div class="c-label u-lh5">使用理由：</div>
-                <select tabindex="-1" name="reason" id="use_reason" class="c-comboBox u-fz3 u-lh5">
+                <select tabindex="-1" name="r_useReason" id="use_reason" class="c-comboBox u-fz3 u-lh5">
                 </select>
               </div>
             </div>
@@ -103,17 +103,17 @@
           <section class="l-modal__page">
             <div class="c-label">退室予定時間を選択してください</div>
             <div class="l-flex  u-mt50">
-              <select tabindex="-1" name="leaveTimeHour" id="leavetime_hour" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
+              <select tabindex="-1" name="r_leaveTimeHour" id="leavetime_hour" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
               </select>
               <div class="c-label u-lh5">：</div>
-              <select tabindex="-1" name="leaveTimeSec" id="leavetime_sec" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
+              <select tabindex="-1" name="r_leaveTimeSec" id="leavetime_sec" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
               </select>
             </div>
           </section>
           <div class="l-modal__page">
             <div class="c-label">教員番号を入力してください</div>
             <div class="c-textBox c-textBox--teacherCode u-mt50">
-              <input tabindex="-1" name="teacherCode" type="text" class="c-textBox" onclick="setTargetN('teacher_code')"
+              <input tabindex="-1" name="r_teacherCode" type="text" class="c-textBox" onclick="setTargetN('teacher_code')"
                 required="required" oncopy="return false" onpaste="return false" oninput="checkKey(this)"
                 onfocus="blur()" />
               <div class="border-v">
@@ -124,16 +124,16 @@
           </div>
         </div>
       </div>
-      <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-r_backbtn">戻る</span>
-      <span class="p-modal__btn p-modal__btn--next" id="js-r_nextbtn">次へ</span>
-      <div class="p-modal__btn p-modal__btn--decision u-hidden" id="js-decisionBtn">
+      <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-enter_backbtn">戻る</span>
+      <span class="p-modal__btn p-modal__btn--next" id="js-enter_nextbtn">次へ</span>
+      <div class="p-modal__btn p-modal__btn--decision u-hidden" id="js-enter_decisionbtn">
         決定
       </div>
     </form>
     <!-- フロアマップ -->
-    <div class="l-background--floorMap u-hidden" id="js-floorMapBack"></div>
-    <div class="l-floorMap u-hidden" id="js-floorMap">
-      <div class="l-floorMap__closeBtn" id="js-floorMapClose">×</div>
+    <div class="l-background--floorMap u-hidden" id="js-floormap_back"></div>
+    <div class="l-floorMap u-hidden" id="js-floormap">
+      <div class="l-floorMap__closeBtn" id="js-floormap_close">×</div>
       <div class="l-floorMap__main u-absolute__center">
         <img src="./assets/f1.jpg" alt="" class="p-floorMapImg" />
         <img src="./assets/f2.jpg" alt="" class="p-floorMapImg u-none" />
@@ -150,35 +150,34 @@
       </div>
     </div>
     <!-- 入室確認モーダル -->
-    <div class="l-background--top u-hidden" id="js-enterMiniBack"></div>
-    <div class="l-miniModal  u-absolute__center u-hidden" id="js-enterMini">
+    <div class="l-background--top u-hidden" id="js-entermini_back"></div>
+    <div class="l-miniModal  u-absolute__center u-hidden" id="js-entermini">
       <div class="l-directionClumn u-vFill">
-        <div class="l-modal__closeBtn" id="js-enterMiniClose">×</div>
+        <div class="l-modal__closeBtn" id="js-entermini_close">×</div>
         <div class="l-miniModal__top"></div>
         <div class="l-miniModal__body">
-          <div class="c-label" id="decide_label"></div>
+          <div class="c-label" id="js-decide_label"></div>
           <label for="submit" name="insert">決定</label>
         </div>
       </div>
     </div>
 
-    <div class="l-background--top u-hidden" id="js-exitBack"></div>
     <!-- 退出画面 -->
     <form class="l-modal u-absolute__center u-hidden" id="js-exit">
       <div class="l-directionColumn u-hFill ">
-        <div class="l-modal__closeBtn" id="js-exitClose">×</div>
+        <div class="l-modal__closeBtn" id="js-exit_close">×</div>
         <div class="l-modal__top  u-hFill u-textCenter u-relative">
           <ol class="l-justifyCenter l-aiCenter u-vFill">
             <li class="p-progress p-progress--current">氏名入力</li>
             <li class="p-progress u-twoLines">学年・学科<br />選択</li>
           </ol>
         </div>
-        <div class="l-modal__body l-flex u-fill" id="js-l_enterbody">
+        <div class="l-modal__body l-flex u-fill" id="js-exit_body">
           <!-- 氏名入力 -->
           <section class="l-modal__page">
             <div class="c-label">氏名を入力してください</div>
-            <div class="c-textBox c-textBox--firstName u-mt50" id="js-lfirstName">
-              <input tabindex="-1" name="r_firstName" type="text" class="c-textBox" id="lfirst_name"
+            <div class="c-textBox c-textBox--firstName u-mt50" id="js-exit_firstName">
+              <input tabindex="-1" name="l_firstName" type="text" class="c-textBox" id="lfirst_name"
                 onclick="setTargetC('lfirst_name')" required="required" oncopy="return false" onpaste="return false"
                 oninput="checkKey(this)" onfocus="blur()" />
               <label class="first-name">セイ</label>
@@ -187,7 +186,7 @@
               </div>
             </div>
             <div class="c-textBox c-textBox--lastName u-mt50" id="js-llastName">
-              <input tabindex="-1" name="r_lastName" type="text" class="c-textBox" id="llast_name"
+              <input tabindex="-1" name="l_lastName" type="text" class="c-textBox" id="llast_name"
                 onclick="setTargetC('llast_name')" required="required" oncopy="return false" onpaste="return false"
                 oninput="checkKey(this)" onfocus="blur()" />
               <label class="first-name">メイ</label>
@@ -201,7 +200,7 @@
             <div class="c-label">学年と学科を選択してください</div>
             <div class="l-flex u-mt50">
               <div class="c-label u-lh5">学年：</div>
-              <select tabindex="-1" name="year" id="" class="c-comboBox c-comboBox--year u-fz3 u-lh5">
+              <select tabindex="-1" name="l_classYear" id="" class="c-comboBox c-comboBox--year u-fz3 u-lh5">
                 <option value="1年">1年</option>
                 <option value="2年">2年</option>
                 <option value="3年">3年</option>
@@ -210,26 +209,25 @@
             </div>
             <div class="l-flex u-mt50">
               <div class="c-label u-lh5">学科：</div>
-              <select tabindex="-1" name="class" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
+              <select tabindex="-1" name="r_className" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
               </select>
             </div>
           </section>
         </div>
-        <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-exitBackBtn">戻る</span>
-        <span class="p-modal__btn p-modal__btn--next" id="js-exitNextBtn">次へ</span>
+        <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-exit_backbtn">戻る</span>
+        <span class="p-modal__btn p-modal__btn--next" id="js-exit_nextbtn">次へ</span>
         <div class="p-modal__btn p-modal__btn--submit u-hidden">決定</div>
       </div>
     </form>
 
-    <div class="l-background--top u-hidden" id="js-teacherBack"></div>
     <!-- 教員用画面 -->
     <form class="l-modal u-absolute__center u-hidden" id="js-teacher">
       <div class="l-directionColumn u-hFill ">
-        <div class="l-modal__closeBtn" id="js-teacherClose">×</div>
+        <div class="l-modal__closeBtn" id="js-teacher_close">×</div>
         <div class="l-modal__top  u-hFill u-textCenter u-relative">
           <div class="c-label">先生を呼んできてください</div>
         </div>
-        <div class="l-modal__body l-flex u-fill" id="js-teacherBody">
+        <div class="l-modal__body l-flex u-fill" id="js-teacherbody">
           <section class="l-modal__page">
             <div class="c-label">教員番号を入力してください</div>
             <div class="c-textBox c-textBox--teacherCode u-mt50">
@@ -245,13 +243,13 @@
             <table></table>
           </section>
         </div>
-        <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-teacherBackBtn">戻る</span>
-        <span class="p-modal__btn p-modal__btn--next" id="js-teacherNextBtn">次へ</span>
+        <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-teacher_backbtn">戻る</span>
+        <span class="p-modal__btn p-modal__btn--next" id="js-teacher_nextbtn">次へ</span>
         <div class="p-modal__btn p-modal__btn--submit u-hidden">決定</div>
       </div>
     </form>
   </main>
-  <div class="l-keybordBack u-hidden" id="js-keybordBack" onclick="hideKeybord()"></div>
+  <div class="l-keybordBack u-hidden" id="js-keybordback" onclick="hideKeybord()"></div>
   <!-- キーボード -->
   <div class="l-keybord u-absolute__bottomCenter u-hidden" id="js-keybord">
     <div class="l-directionRowR u-vhFill">
