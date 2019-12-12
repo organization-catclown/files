@@ -33,7 +33,9 @@
   background: #fff;
 }
 
-#js-modalBody {
+#js-r_modalbody,
+#js-l_modalbody,
+#js-t_modalbody {
   transition: transform .3s;
 }
 
