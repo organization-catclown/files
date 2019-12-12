@@ -13,7 +13,7 @@ class RMSController
 {
     public $leaveDataClass;
     public $roomReservationDataClass;
-    public $LogDataClass;
+    public $logDataClass;
     public $classNameArray;
     public $roomNameArray;
     public $reasonNameArray;
@@ -107,6 +107,26 @@ class RMSController
     {
         foreach ((array) $this->reasonNameArray as $key => $value) {
             echo '<option value="">' . $key . '</option>';
+        }
+    }
+
+    public function showLogData()
+    {
+        $array = null;
+        if (($array = DataBaseController::fetchLogData()) != null) {
+            foreach ((array) $array as $buff) {
+                echo '<tr>';
+                echo '<td>' . $buff->getStudentNumber() . '</td>';
+                echo '<td>' . $buff->getRoomCode() . '</td>';
+                echo '<td>' . $buff->getEntryTeacherCode() . '</td>';
+                echo '<td>' . $buff->getEntryTime() . '</td>';
+                echo '<td>' . $buff->getLeavingTeacherCode() . '</td>';
+                echo '<td>' . $buff->getLeavingTime() . '</td>';
+                echo '<td>' . $buff->getReasonCode() . '</td>';
+                echo '<td>' . $buff->getEndDate() . '</td>';
+                echo '<td>' . $buff->getEndFlag() . '</td>';
+                echo '</tr>';
+            }
         }
     }
 }

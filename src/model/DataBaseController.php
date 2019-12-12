@@ -50,6 +50,41 @@ class DataBaseController
         return false;
     }
 
+    public function searchTeacherCode($teacherCode)
+    {
+        $pdo = null;
+        $stmt = null;
+        try {
+            $pdo = new PDO(DSN, USER, PASS);
+            $sql = "SELECT COUNT(*) as HIT FROM Teachers WHERE TeacherCode = :teacherCode";
+            $stmt = $pdo->prepare($sql);
+
+            $stmt->bindParam(':teacherCode', $teacherCode, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $result = $stmt->fetch();
+
+            if ($result['HIT'] == 1) {
+                return true;
+            }
+
+            $stmt = null;
+            $pdo = null;
+        } catch (Exception $e) {
+            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
+            echo $alert;
+        } finally {
+            if ($stmt != null) {
+                $stmt = null;
+            }
+            if ($pdo != null) {
+                $pdo = null;
+            }
+        }
+        return false;
+    }
+
     /**
      * 同じ人が複数回利用しないようにする為の重複チェック
      * @param RoomReservationDataClass $roomReservationDataClass
@@ -95,7 +130,7 @@ class DataBaseController
      * 教室利用予約のためのインサート文
      * @param RoomReservationDataClass $roomReservationDataClass 
      */
-    public static function insertReservationData($roomReservationDataClass)
+    public static function reservation($roomReservationDataClass)
     {
         $pdo = null;
         $stmt = null;
@@ -138,7 +173,7 @@ class DataBaseController
      * 退室用のアップデート文
      * @param LeaveDataClass $leaveDataClass
      */
-    public static function leaveRoom($leaveDataClass)
+    public static function leave($leaveDataClass)
     {
         $pdo = null;
         $stmt = null;
@@ -275,7 +310,7 @@ class DataBaseController
         $ldcArray = null;   //LogDataClassの配列
         try {
             $pdo = new PDO(DSN, USER, PASS);
-            $stmt = $pdo->query("SELECT * FROM RoomManagements");
+            $stmt = $pdo->query("SELECT * FROM RoomManagements ORDER BY EndFlag, EntryTime DESC;");
             $ldcArray = array();
             foreach ($stmt as $row) {
                 $ldc = new LogDataClass();
@@ -290,7 +325,6 @@ class DataBaseController
                 $ldc->setEndFlag($row['EndFlag']);
                 array_push($ldcArray, $ldc);
             }
-
             $stmt = null;
             $pdo = null;
         } catch (Exception $e) {
@@ -344,44 +378,6 @@ class DataBaseController
     }
 
     /**
-     * 受け取った教師番号から教師名を取得します
-     * @param int $teacherCode
-     * @return $teacherName 教師名
-     */
-    public static function getTeacherName($teacherCode)
-    {
-        $pdo = null;
-        $stmt = null;
-        $teacherName = null;
-        try {
-            $pdo = new PDO(DSN, USER, PASS);
-            $sql = "SELECT TeacherName FROM Teachers WHERE TeacherCode = :teachercode";
-            $stmt = $pdo->prepare($sql);
-
-            $stmt->bindParam(':teachercode', $teacherCode, PDO::PARAM_STR);
-            $stmt->execute();
-
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            $teacherName = $result['TeacherName'];
-
-            $stmt = null;
-            $pdo = null;
-        } catch (Exception $e) {
-            $alert = "<script type='text/javascript'>alert('エラー：' . $e->getMessage() . '<br>');</script>";
-            echo $alert;
-        } finally {
-            if ($stmt != null) {
-                $stmt = null;
-            }
-            if ($pdo != null) {
-                $pdo = null;
-            }
-            return $teacherName;
-        }
-    }
-
-    /**
      * 受け取った名前（カタカナ）、クラスコード、学年から学生番号を取得する
      * 見つからなかった場合はnullを返す
      * @param string $studentName
@@ -389,7 +385,7 @@ class DataBaseController
      * @param int $schoolYear
      * @return $studentNumber 学生番号 見つからなければnull
      */
-    public static function getStudentNumber($studentName, $classcode, $schoolyear)
+    public static function getStudentNumber($name, $classcode, $schoolyear)
     {
         $pdo = null;
         $stmt = null;
@@ -403,7 +399,7 @@ class DataBaseController
 
             $stmt->bindParam(':classCode', $classcode, PDO::PARAM_INT);
             $stmt->bindParam(':schoolYear', $schoolyear, PDO::PARAM_INT);
-            $stmt->bindParam(':name2', $studentName, PDO::PARAM_STR);
+            $stmt->bindParam(':name2', $name, PDO::PARAM_STR);
             $stmt->execute();
 
             $result = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -1,5 +1,7 @@
 <?php
 
+// 予約処理用POST
+
 if (isset($_POST['r_lastName'])) {
     $rmsc->roomReservationDataClass->setLastName($_POST['r_lastName']);
 }
@@ -39,12 +41,17 @@ if (isset($_POST['r_entryTeacherCode'])) {
 if (isset($_POST['insert'])) {
     if ($rmsc->checkRoomReservationDataClass()) {
         if (DataBaseController::getStudentNumber($rmsc->roomReservationDataClass->getName(), $rmsc->roomReservationDataClass->getClassCode(), $rmsc->roomReservationDataClass->getSchoolYear()) != null) {
-            if (!DataBaseController::doubleCheck($rmsc->roomReservationDataClass)) {
-                DataBaseController::insertReservationData($rmsc->roomReservationDataClass);
-                $alert = "<script type='text/javascript'>alert('予約処理が完了しました。');</script>";
-                echo $alert;
+            if (DataBaseController::searchTeacherCode($rmsc->roomReservationDataClass->getEntryTeacherCode())) {
+                if (!DataBaseController::doubleCheck($rmsc->roomReservationDataClass)) {
+                    DataBaseController::reservation($rmsc->roomReservationDataClass);
+                    $alert = "<script type='text/javascript'>alert('予約処理が完了しました。');</script>";
+                    echo $alert;
+                } else {
+                    $alert = "<script type='text/javascript'>alert('既に教室を予約しています。');</script>";
+                    echo $alert;
+                }
             } else {
-                $alert = "<script type='text/javascript'>alert('既に教室を予約しています。');</script>";
+                $alert = "<script type='text/javascript'>alert('教員番号がつかりません。');</script>";
                 echo $alert;
             }
         } else {
