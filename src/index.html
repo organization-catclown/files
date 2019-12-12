@@ -42,18 +42,18 @@
           <section class="l-modal__page">
             <div class="c-label">氏名を入力してください</div>
             <div class="c-textBox c-textBox--firstName u-mt50" id="js-firstName">
-              <input tabindex="-1" name="r_firstName" type="text" class="c-textBox" id="first_name"
-                onclick="setTargetC('first_name')" required="required" oncopy="return false" onpaste="return false"
-                oninput="checkKey(this)" />
+              <input tabindex="-1" name="r_firstName" type="text" class="c-textBox" id="rfirst_name"
+                onclick="setTargetC('rfirst_name')" required="required" oncopy="return false" onpaste="return false"
+                oninput="checkKey(this)" onfocus="blur()">
               <label class="first-name">セイ</label>
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
             </div>
             <div class="c-textBox c-textBox--lastName u-mt50" id="js-lastName">
-              <input tabindex="-1" name="r_lastName" type="text" class="c-textBox" id="last_name"
-                onclick="setTargetC('last_name')" required="required" oncopy="return false" onpaste="return false"
-                oninput="checkKey(this)" />
+              <input tabindex="-1" name="r_lastName" type="text" class="c-textBox" id="rlast_name"
+                onclick="setTargetC('rlast_name')" required="required" oncopy="return false" onpaste="return false"
+                oninput="checkKey(this)" onfocus="blur()" />
               <label class="first-name">メイ</label>
               <div class="border-v">
                 <div class="border-h"></div>
@@ -74,7 +74,7 @@
             </div>
             <div class="l-flex u-mt50">
               <div class="c-label u-lh5">学科：</div>
-              <select tabindex="-1" name="class" id="" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
+              <select tabindex="-1" name="class" id="class_name" class="c-comboBox c-comboBox--course u-fz3 u-lh5">
               </select>
             </div>
           </section>
@@ -85,7 +85,7 @@
               <div class="l-flex--clumn">
                 <div class="l-flex">
                   <div class="c-label u-lh5">教室：</div>
-                  <select tabindex="-1" name="roomName" id="" class="c-comboBox c-comboBox--floorMap u-fz3 u-lh5">
+                  <select tabindex="-1" name="roomName" id="room_name" class="c-comboBox c-comboBox--floorMap u-fz3 u-lh5">
                   </select>
                 </div>
                 <div class="c-button c-button--floorMap u-mt50 u-fz3 u-lh5 u-textCenter" id="js-floorMapOpen">
@@ -94,7 +94,7 @@
               </div>
               <div class="l-flex">
                 <div class="c-label u-lh5">使用理由：</div>
-                <select tabindex="-1" name="reason" id="" class="c-comboBox u-fz3 u-lh5">
+                <select tabindex="-1" name="reason" id="use_reason" class="c-comboBox u-fz3 u-lh5">
                 </select>
               </div>
             </div>
@@ -103,10 +103,10 @@
           <section class="l-modal__page">
             <div class="c-label">退室予定時間を選択してください</div>
             <div class="l-flex  u-mt50">
-              <select tabindex="-1" name="leaveTimeHour" id="" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
+              <select tabindex="-1" name="leaveTimeHour" id="leavetime_hour" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
               </select>
               <div class="c-label u-lh5">：</div>
-              <select tabindex="-1" name="" id="leaveTimeSec" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
+              <select tabindex="-1" name="leaveTimeSec" id="leavetime_sec" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
               </select>
             </div>
           </section>
@@ -114,7 +114,8 @@
             <div class="c-label">教員番号を入力してください</div>
             <div class="c-textBox c-textBox--teacherCode u-mt50">
               <input tabindex="-1" name="teacherCode" type="text" class="c-textBox" onclick="setTargetN('teacher_code')"
-                required="required" oncopy="return false" onpaste="return false" oninput="checkKey(this)" />
+                required="required" oncopy="return false" onpaste="return false" oninput="checkKey(this)"
+                onfocus="blur()" />
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
@@ -123,8 +124,8 @@
           </div>
         </div>
       </div>
-      <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-backBtn">戻る</span>
-      <span class="p-modal__btn p-modal__btn--next" id="js-nextBtn">次へ</span>
+      <span class="p-modal__btn p-modal__btn--back u-hidden" id="js-rBackBtn">戻る</span>
+      <span class="p-modal__btn p-modal__btn--next" id="js-rNextBtn">次へ</span>
       <div class="p-modal__btn p-modal__btn--decision u-hidden" id="js-decisionBtn">
         決定
       </div>
@@ -166,23 +167,30 @@
     <form class="l-modal u-absolute__center u-hidden" id="js-exit">
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-exitClose">×</div>
-        <div class="l-modal__top  u-hFill u-textCenter u-relative"></div>
+        <div class="l-modal__top  u-hFill u-textCenter u-relative">
+          <ol class="l-justifyCenter l-aiCenter u-vFill">
+            <li class="p-progress p-progress--current">氏名入力</li>
+            <li class="p-progress u-twoLines">学年・学科<br />選択</li>
+          </ol>
+        </div>
         <div class="l-modal__body l-flex u-fill" id="js-enterBody">
           <!-- 氏名入力 -->
           <section class="l-modal__page">
             <div class="c-label">氏名を入力してください</div>
             <div class="c-textBox c-textBox--firstName u-mt50" id="js-lfirstName">
               <input tabindex="-1" name="r_firstName" type="text" class="c-textBox" id="lfirst_name"
-                onclick="setTargetC('first_name')" required="required" />
-              <label class="first-name">ｾｲ</label>
+                onclick="setTargetC('lfirst_name')" required="required" oncopy="return false" onpaste="return false"
+                oninput="checkKey(this)" onfocus="blur()" />
+              <label class="first-name">セイ</label>
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
             </div>
             <div class="c-textBox c-textBox--lastName u-mt50" id="js-llastName">
               <input tabindex="-1" name="r_lastName" type="text" class="c-textBox" id="llast_name"
-                onclick="setTargetC('last_name')" required="required" />
-              <label class="first-name">ﾒｲ</label>
+                onclick="setTargetC('llast_name')" required="required" oncopy="return false" onpaste="return false"
+                oninput="checkKey(this)" onfocus="blur()" />
+              <label class="first-name">メイ</label>
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
@@ -225,8 +233,9 @@
           <section class="l-modal__page">
             <div class="c-label">教員番号を入力してください</div>
             <div class="c-textBox c-textBox--teacherCode u-mt50">
-              <input tabindex="-1" type="text" class="c-textBox"
-                onclick="setTargetN('teacher_code')" required="required" />
+              <input tabindex="-1" type="text" class="c-textBox" onclick="setTargetN('teacher_code')"
+                required="required" oncopy="return false" onpaste="return false" oninput="checkKey(this)"
+                onfocus="blur()" />
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
