@@ -2,8 +2,8 @@ const MAX_PAGE = 4
 const MODAL_WIDTH = 1100
 let currentPage = 0
 
-const backBtn = document.getElementById("js-backBtn")
-const nextBtn = document.getElementById("js-nextBtn")
+const backBtn = document.getElementById("js-rBackBtn")
+const nextBtn = document.getElementById("js-rNextBtn")
 const decisionBtn = document.getElementById("js-decisionBtn")
 const modal = document.getElementById("js-enter")
 const lmodal = document.getElementById("js-exit")
@@ -327,13 +327,18 @@ function setTargetN(id) {
 // --------------------ミニモーダル表示時--------------------
 const decideBtn = document.getElementById("js-decisionBtn")
 decideBtn.addEventListener("click", function () {
-  const firstName = document.getElementById("first_name").value
-  const lastName = document.getElementById("last_name").value
+  const firstName = document.getElementById("rfirst_name").value
+  const lastName = document.getElementById("rlast_name").value
   const fullName = firstName + " " + lastName
   const classYear = document.getElementById("class_year").value
+  const className = document.getElementById("class_name").value
+  const roomName = document.getElementById("room_name").value
+  const reason = document.getElementById("use_reason").value
+  const leaveTimeHour = document.getElementById("leavetime_hour").value
+  const leaveTimeSec = document.getElementById("leavetime_sec").value
+  const leaveTime = leaveTimeHour + " ： " + leaveTimeSec
 
-  console.log(firstName, lastName);
   document.getElementById("decide_label").innerText = "名前： " + fullName + "\n学年： " + classYear +
-    "\n学科： "
+    "\n学科： " + className + "\n使用教室： " + roomName + "\n使用理由： " + reason + "\n退室予定時間： " + leaveTime  
 
 }, false)
