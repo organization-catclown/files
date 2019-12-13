@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", AssignDOM(), false)
 // --------------------全角入力制限--------------------
 function checkKey(string) {
   let str = string.value
-  console.log(str);
   while (str.match(/[^A-Z^a-z\d\-]/)) {
     str = str.replace(/[^A-Z^a-z\d\-]/, "");
   }
@@ -129,8 +128,6 @@ document.getElementById("js-enter_nextbtn").addEventListener("click", function()
     this.classList.add("u-hidden")
     enterDecisionBtn.classList.remove("u-hidden")
   }
-  console.log(enterCurrentPage);
-  
 }, false)
 
 // --------------------決定ボタン押下時--------------------
@@ -204,6 +201,8 @@ let target = null
 
 // --------------------テキストインプット選択時--------------------
 const SetTargetC = id => {
+  const enterModal = document.getElementById("js-enter")
+  const exitModal = document.getElementById("js-exit")
   const keybord = document.getElementById("js-keybord")
   const keybordBack = document.getElementById("js-keybordback")
   
@@ -212,20 +211,22 @@ const SetTargetC = id => {
   target.classList.add("is-active")
   keybord.classList.remove("u-hidden")
   keybordBack.classList.remove("u-hidden")
-  if (id == "rlast_name") { modal.style.top = "40%" }
-  if (id == "llast_name") { rmodal.style.top = "40%" }
+  if (id == "rlast_name") { enterModal.style.top = "40%" }
+  if (id == "llast_name") { exitModal.style.top = "40%" }
 }
 
 // --------------------キーボード非表示--------------------
 const HideKeybord = () => {
+  const enterModal = document.getElementById("js-enter")
+  const exitModal = document.getElementById("js-exit")
   const keybord = document.getElementById("js-keybord")
   const keybordBack = document.getElementById("js-keybordback")
   
   target.classList.remove("is-active")
   keybord.classList.add("u-hidden")
   keybordBack.classList.add("u-hidden")
-  modal.style.top = "50%"
-  rmodal.style.top = "50%"
+  enterModal.style.top = "50%"
+  exitModal.style.top = "50%"
 }
 
 // --------------------入力--------------------
@@ -376,3 +377,7 @@ const BackSapce = () => {
 // ============================================================
 //                     テンキー関連
 // ============================================================
+
+const SetTargetN = () => {
+  return true
+}
