@@ -4,9 +4,6 @@ let enterCurrentPage = 0
 const EXIT_MAX_PAGE  = 2
 let exitCurrentPage  = 0
 
-let enterMiniModal
-let enterMiniClose
-
 let floorMapBack
 let floorMapBody
 let floorMapClose
@@ -15,25 +12,6 @@ let exitModal
 let exitBackBtn
 let exitNextBtn
 
-let teacherModal
-
-
-// --------------------DOMがロードされた後変数代入(null代入防止)--------------------
-const AssignDOM = () => {
-  modalBack = document.getElementById("js-modal_back")
-
-  enterModal = document.getElementById("js-enter")
-  enterBackBtn = document.getElementById("js-enter_backbtn")
-  enterNextBtn = document.getElementById("js-enter_nextbtn")
-  enterCloseBtn = document.getElementById("js-enter_close")
-
-  exitModal = document.getElementById("js-exit")
-  exitBackBtn = document.getElementById("js-exit_backbtn")
-  exitNextBtn = document.getElementById("js-exit_nextbtn")
-
-  teacherModal = document.getElementById("js-teacher")
-}
-document.addEventListener("DOMContentLoaded", AssignDOM(), false)
 
 // --------------------全角入力制限--------------------
 function checkKey(string) {
@@ -57,6 +35,7 @@ document.oncontextmenu = function () { return false; }
 const MovementModal = (el, dist) => {
   el.style.transform = "translateX(" + -MODAL_WIDTH * dist + "px)"
 }
+
 
 // ============================================================
 //                     入室画面関連
@@ -142,6 +121,7 @@ document.getElementById("js-enter_decisionbtn").addEventListener("click", functi
   }
 }, false)
 
+
 // ============================================================
 //                     入室確認画面関連
 // ============================================================
@@ -163,8 +143,8 @@ const ShowEnterMini = () => {
   const roomName = document.getElementById("room_name").value
   const reason = document.getElementById("use_reason").value
   const leaveTimeHour = document.getElementById("leavetime_hour").value
-  const leaveTimeSec = document.getElementById("leavetime_sec").value
-  const leaveTime = leaveTimeHour + " ： " + leaveTimeSec
+  const leaveTimeMinutes = document.getElementById("leavetime_min").value
+  const leaveTime = leaveTimeHour + " ： " + leaveTimeMinutes
 
   decisionLabel.innerText = "名前： " + fullName + "\n学年： " + classYear +
     "\n学科： " + className + "\n使用教室： " + roomName + "\n使用理由： " + reason + "\n退室予定時間： " + leaveTime
@@ -179,19 +159,34 @@ document.getElementById("js-entermini_close").addEventListener("click", function
   enterMiniBack.classList.add("u-hidden")
 } ,false)
 
+
 // ============================================================
 //                     フロアマップ関連
 // ============================================================
 
+// --------------------フロアマップ表示--------------------
+document.getElementById("js-floormap").addEventListener("click", function() {
+  return true
+}, false)
 
 // ============================================================
 //                     退室画面関連
 // ============================================================
 
+// --------------------退室画面表示--------------------
+document.getElementById("js-exit").addEventListener("click", function() {
+  return true
+}, false)
+
 
 // ============================================================
 //                     教員用画面関連
 // ============================================================
+
+// --------------------教員用画面表示--------------------
+document.getElementById("js-teacher").addEventListener("click", function() {
+  return true
+}, false)
 
 
 // ============================================================
@@ -369,15 +364,54 @@ const Dakuten = () => {
 }
 
 // --------------------バックスペース--------------------
-const BackSapce = () => {
+const BackSpace = () => {
   const len = target.value.length
   target.value = target.value.substring(0, len - 1)
 }
 
+const Enter = () => {
+  HideKeybord()
+}
+
+
 // ============================================================
 //                     テンキー関連
 // ============================================================
+let targetN = null
 
-const SetTargetN = () => {
-  return true
+// --------------------テンキー表示--------------------
+const SetTargetN = id => {
+  const tenkey = document.getElementById("js-tenkey")
+  const tenkeyBack = document.getElementById("js-tenkeybordback")
+
+  targetN = document.getElementById(id)
+  targetN.classList.add("is-active")
+  tenkey.classList.remove("u-hidden")
+  tenkeyBack.classList.remove("u-hidden")  
+}
+
+// --------------------入力--------------------
+const SetNumber = n => {
+  targetN.value += n
+}
+
+// --------------------バックスペース--------------------
+const BackSpaceN = () => {
+  const len = targetN.value.length
+  targetN.value = targetN.value.substring(0, len - 1)
+}
+
+// --------------------テンキー非表示--------------------
+const HideTenKeybord = () => {
+  const tenkey = document.getElementById("js-tenkey")
+  const tenkeyBack = document.getElementById("js-tenkeybordback")
+
+  targetN.classList.remove("is-active")
+  tenkey.classList.add("u-hidden")
+  tenkeyBack.classList.add("u-hidden")
+}
+
+// --------------------確定--------------------
+const EnterN = () => {
+  HideTenKeybord()
 }
