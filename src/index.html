@@ -23,7 +23,7 @@
     </nav>
     <div class="l-background--top u-hidden" id="js-modal_back"></div>
     <!-- 入室画面 -->
-    <form method="POST" class="l-modal u-absolute--center u-top--50 u-hidden" id="js-enter" autocomplete="off">
+    <form method="POST" action="index.html" class="l-modal u-absolute--center u-top--50 u-hidden" id="js-enter" autocomplete="off">
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-enter_close">×</div>
         <div class="l-modal__top u-hFill u-textCenter u-relative">
@@ -106,21 +106,21 @@
               <select tabindex="-1" name="r_leaveTimeHour" id="leavetime_hour" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
               </select>
               <div class="c-label u-lh5">：</div>
-              <select tabindex="-1" name="r_leaveTimeSec" id="leavetime_sec" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
+              <select tabindex="-1" name="r_leaveTimeMinutes" id="leavetime_min" class="c-comboBox c-comboBox-floorMap u-fz3 u-lh5">
               </select>
             </div>
           </section>
           <div class="l-modal__page">
             <div class="c-label">教員番号を入力してください</div>
             <div class="c-textBox c-textBox--teacherCode u-mt50">
-              <input tabindex="-1" name="r_teacherCode" type="text" class="c-textBox" onclick="SetTargetN('teacher_code')"
+              <input tabindex="-1" name="r_teacherCode" type="text" class="c-textBox" id="rteacher_code" onclick="SetTargetN('rteacher_code')"
                 required="required" oncopy="return false" onpaste="return false" oninput="checkKey(this)"
                 onfocus="blur()" />
               <div class="border-v">
                 <div class="border-h"></div>
               </div>
             </div>
-            <input tabindex="-1" type="submit" value="" id="submit" />
+            <input tabindex="-1" type="submit" name="insert" value="" id="submit" />
           </div>
         </div>
       </div>
@@ -157,7 +157,7 @@
         <div class="l-miniModal__top"></div>
         <div class="l-miniModal__body">
           <div class="c-label" id="js-decide_label"></div>
-          <label for="submit" name="insert">決定</label>
+          <label for="submit">決定</label>
         </div>
       </div>
     </div>
@@ -335,31 +335,32 @@
     </div>
   </div>
 
+  <div class="l-keybordBack u-hidden" id="js-tenkeybordback" onclick="HideTenKeybord()"></div>
   <!-- テンキー -->
-  <div class="l-tenkeybord l-directionColumn">
+  <div class="l-tenkeybord l-directionColumn u-absolute u-absolute__bottomCenter u-hidden" id="js-tenkey">
     <div class="l-flex u-vQuatuor u-hFill">
-      <button class="l-tenkeybord__btn">7</button>
-      <button class="l-tenkeybord__btn">8</button>
-      <button class="l-tenkeybord__btn">9</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('7')">7</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('8')">8</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('9')">9</button>
       <button class="l-tenkeybord__btn">&nbsp;</button>
     </div>
     <div class="l-flex u-vQuatuor u-hFill u-mt3">
-      <button class="l-tenkeybord__btn">4</button>
-      <button class="l-tenkeybord__btn">5</button>
-      <button class="l-tenkeybord__btn">6</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('4')">4</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('5')">5</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('6')">6</button>
       <button class="l-tenkeybord__btn">&nbsp;</button>
     </div>
     <div class="l-flex u-vQuatuor u-hFill u-mt3">
-      <button class="l-tenkeybord__btn">1</button>
-      <button class="l-tenkeybord__btn">2</button>
-      <button class="l-tenkeybord__btn">3</button>
-      <button class="l-tenkeybord__btn">&nbsp;</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('1')">1</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('2')">2</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('3')">3</button>
+      <button class="l-tenkeybord__btn" onclick="BackSpaceN()">×</button>
     </div>
     <div class="l-flex u-vQuatuor u-hFill u-mt3">
-      <button class="l-tenkeybord__btn">0</button>
       <button class="l-tenkeybord__btn">&nbsp;</button>
+      <button class="l-tenkeybord__btn" onclick="SetNumber('0')">0</button>
       <button class="l-tenkeybord__btn">&nbsp;</button>
-      <button class="l-tenkeybord__btn">&nbsp;</button>
+      <button class="l-tenkeybord__btn" onclick="EnterN()">確定</button>
     </div>
   </div>
   <script src="./script/script.js"></script>
