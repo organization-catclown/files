@@ -1,18 +1,39 @@
-const MAX_PAGE = 4
-const MODAL_WIDTH = 1100
-let currentPage = 0
+const MODAL_WIDTH    = 1100
+const ENTER_MAX_PAGE = 4
+let enterCurrentPage = 0
+const EXIT_MAX_PAGE  = 2
+let exitCurrentPage  = 0
 
-const rBackBtn = document.getElementById("js-r_backbtn")
-const nextBtn = document.getElementById("js-r_nextbtn")
-const decisionBtn = document.getElementById("js-decisionBtn")
-const modal = document.getElementById("js-enter")
-const rmodal = document.getElementById("js-exit")
-const modalBody = document.getElementById("js-r_modalbody")
-const progress = document.getElementsByClassName("p-progress")
+let enterMiniModal
+let enterMiniClose
 
-let target
-const keybord = document.getElementById("js-keybord")
-const keybordBack = document.getElementById("js-keybordBack")
+let floorMapBack
+let floorMapBody
+let floorMapClose
+
+let exitModal
+let exitBackBtn
+let exitNextBtn
+
+let teacherModal
+
+
+// --------------------DOMがロードされた後変数代入(null代入防止)--------------------
+const AssignDOM = () => {
+  modalBack = document.getElementById("js-modal_back")
+
+  enterModal = document.getElementById("js-enter")
+  enterBackBtn = document.getElementById("js-enter_backbtn")
+  enterNextBtn = document.getElementById("js-enter_nextbtn")
+  enterCloseBtn = document.getElementById("js-enter_close")
+
+  exitModal = document.getElementById("js-exit")
+  exitBackBtn = document.getElementById("js-exit_backbtn")
+  exitNextBtn = document.getElementById("js-exit_nextbtn")
+
+  teacherModal = document.getElementById("js-teacher")
+}
+document.addEventListener("DOMContentLoaded", AssignDOM(), false)
 
 // --------------------全角入力制限--------------------
 function checkKey(string) {
@@ -33,133 +54,173 @@ function checkKey(string) {
 document.oncontextmenu = function () { return false; }
 
 
-// --------------------戻るボタン押下時--------------------
-rBackBtn.addEventListener("click", function () {
-  if (currentPage > 0) {
-    currentPage--
-    if (nextBtn.classList.contains("u-hidden")) {
-      nextBtn.classList.remove("u-hidden")
-      decisionBtn.classList.add("u-hidden")
+// --------------------モーダル移動--------------------
+const MovementModal = (el, dist) => {
+  el.style.transform = "translateX(" + -MODAL_WIDTH * dist + "px)"
+}
 
-      document.getElementsByClassName("l-modal__top")[0].classList.remove("u-none")
-      document.getElementsByClassName("l-modal__top")[1].classList.add("u-none")
+// ============================================================
+//                     入室画面関連
+// ============================================================
+
+// --------------------入室画面表示--------------------
+const ShowEnter = () => {
+  const enterModal = document.getElementById("js-enter")
+  const modalBack = document.getElementById("js-modal_back")
+
+  enterModal.classList.remove("u-hidden")
+  modalBack.classList.remove("u-hidden")
+}
+
+// --------------------クローズボタン押下時--------------------
+document.getElementById("js-enter_close").addEventListener("click", function () {
+  const enterModal = document.getElementById("js-enter")
+  const modalBack = document.getElementById("js-modal_back")
+
+  enterModal.classList.add("u-hidden")
+  modalBack.classList.add("u-hidden")
+}, false)
+
+// -------------------戻るボタン押下時--------------------
+document.getElementById("js-enter_backbtn").addEventListener("click", function () {
+  const enterBody = document.getElementById("js-enter_body")
+  const enterNextBtn = document.getElementById("js-enter_nextbtn")
+  const enterDecisionBtn = document.getElementById("js-enter_decisionbtn") 
+  const progress = document.getElementsByClassName("js-enterProgress")
+  
+  if (enterCurrentPage > 0) {
+    enterCurrentPage--
+    
+    MovementModal(enterBody, enterCurrentPage)
+    progress[enterCurrentPage].classList.add("p-progress--current")
+    progress[enterCurrentPage + 1].classList.remove("p-progress--current")
+    progress[enterCurrentPage].classList.remove("p-progress--done")
+
+    if(enterNextBtn.classList.contains("u-hidden") && enterCurrentPage<ENTER_MAX_PAGE-1) {
+      enterNextBtn.classList.remove("u-hidden")
+      enterDecisionBtn.classList.add("u-hidden")
     }
-
-    modalBody.style.transform = "translateX(" + -MODAL_WIDTH * currentPage + "px)"
-    progress[currentPage].classList.add("p-progress--current")
-    progress[currentPage + 1].classList.remove("p-progress--current")
-    progress[currentPage].classList.remove("p-progress--done")
   }
-  if (currentPage == 0) rBackBtn.classList.add("u-hidden")
+  if(enterCurrentPage == 0) {
+    this.classList.add("u-hidden")
+  }
 }, false)
 
 // --------------------次へボタン押下時--------------------
-nextBtn.addEventListener("click", function () {
-  if (currentPage < MAX_PAGE - 1) {
-    currentPage++
-    if (rBackBtn.classList.contains("u-hidden")) rBackBtn.classList.remove("u-hidden")
+document.getElementById("js-enter_nextbtn").addEventListener("click", function(){
+  const enterBody = document.getElementById("js-enter_body")
+  const progress = document.getElementsByClassName("js-enterProgress")
+  const enterBackBtn = document.getElementById("js-enter_backbtn")
+  const enterDecisionBtn = document.getElementById("js-enter_decisionbtn") 
 
-    modalBody.style.transform = "translateX(" + -MODAL_WIDTH * currentPage + "px)"
-    progress[currentPage].classList.add("p-progress--current")
-    progress[currentPage - 1].classList.remove("p-progress--current")
-    progress[currentPage - 1].classList.add("p-progress--done")
-  }
-  if (currentPage == MAX_PAGE - 1) {
-    nextBtn.classList.add("u-hidden")
-    decisionBtn.classList.remove("u-hidden")
-  }
+  if(enterCurrentPage<ENTER_MAX_PAGE-1) {
+    enterCurrentPage++
 
+    if(enterBackBtn.classList.contains("u-hidden")) {
+      enterBackBtn.classList.remove("u-hidden")
+    }
+
+    MovementModal(enterBody, enterCurrentPage)
+    progress[enterCurrentPage].classList.add("p-progress--current")
+    progress[enterCurrentPage - 1].classList.remove("p-progress--current")
+    progress[enterCurrentPage - 1].classList.add("p-progress--done")
+  }
+  if(enterCurrentPage == ENTER_MAX_PAGE -1) {
+    this.classList.add("u-hidden")
+    enterDecisionBtn.classList.remove("u-hidden")
+  }
+  console.log(enterCurrentPage);
+  
 }, false)
-
 
 // --------------------決定ボタン押下時--------------------
-decisionBtn.addEventListener("click", function () {
-  if (currentPage < MAX_PAGE) {
-    currentPage++
-    modalBody.style.transform = "translateX(" + -MODAL_WIDTH * currentPage + "px)"
-
-    document.getElementsByClassName("l-modal__top")[0].classList.add("u-none")
-    document.getElementsByClassName("l-modal__top")[1].classList.remove("u-none")
-  } else if (currentPage == MAX_PAGE) {
-    document.getElementById("js-enterMiniBack").classList.remove("u-hidden")
-    document.getElementById("js-enterMini").classList.remove("u-hidden")
-
+document.getElementById("js-enter_decisionbtn").addEventListener("click", function(){
+  const enterBody = document.getElementById("js-enter_body")
+  
+  if(enterCurrentPage == ENTER_MAX_PAGE){
+    ShowEnterMini()
+  }else{
+    enterCurrentPage++
+    MovementModal(enterBody, enterCurrentPage)
   }
 }, false)
 
-// --------------------ミニモーダルクローズボタン押下時--------------------
-const closeMini = document.getElementById("js-enterMiniClose")
-closeMini.addEventListener("click", function () {
-  document.getElementById("js-enterMiniBack").classList.add("u-hidden")
-  document.getElementById("js-enterMini").classList.add("u-hidden")
-}, false)
+// ============================================================
+//                     入室確認画面関連
+// ============================================================
 
-// --------------------入室画面のクローズボタン押下時--------------------
-const enterClose = document.getElementById("js-enterClose")
-enterClose.addEventListener("click", function () {
-  document.getElementById("js-enter").classList.add("u-hidden")
-  document.getElementById("js-enterBack").classList.add("u-hidden")
-}, false)
+// --------------------入室確認画面表示--------------------
+const ShowEnterMini = () => {
+  const enterMini = document.getElementById("js-entermini")
+  const enterMiniBack = document.getElementById("js-entermini_back")
+  const decisionLabel = document.getElementById("js-decide_label")
 
-// --------------------入室画面表示--------------------
-function showEnter() {
-  document.getElementById("js-enter").classList.remove("u-hidden")
-  document.getElementById("js-enterBack").classList.remove("u-hidden")
+  enterMini.classList.remove("u-hidden")
+  enterMiniBack.classList.remove("u-hidden")
+
+  const firstName = document.getElementById("rfirst_name").value
+  const lastName = document.getElementById("rlast_name").value
+  const fullName = firstName + " " + lastName
+  const classYear = document.getElementById("class_year").value
+  const className = document.getElementById("class_name").value
+  const roomName = document.getElementById("room_name").value
+  const reason = document.getElementById("use_reason").value
+  const leaveTimeHour = document.getElementById("leavetime_hour").value
+  const leaveTimeSec = document.getElementById("leavetime_sec").value
+  const leaveTime = leaveTimeHour + " ： " + leaveTimeSec
+
+  decisionLabel.innerText = "名前： " + fullName + "\n学年： " + classYear +
+    "\n学科： " + className + "\n使用教室： " + roomName + "\n使用理由： " + reason + "\n退室予定時間： " + leaveTime
 }
 
-// --------------------退室画面表示--------------------
-function showExit() {
-  document.getElementById("js-exit").classList.remove("u-hidden")
-  document.getElementById("js-exitBack").classList.remove("u-hidden")
-}
+// --------------------クローズボタン押下時--------------------
+document.getElementById("js-entermini_close").addEventListener("click", function(){
+  const enterMini = document.getElementById("js-entermini")
+  const enterMiniBack = document.getElementById("js-entermini_back")
 
-// --------------------教員用画面表示--------------------
-function showTeacher() {
-  document.getElementById("js-teacher").classList.remove("u-hidden")
-  document.getElementById("js-teacherBack").classList.remove("u-hidden")
-}
+  enterMini.classList.add("u-hidden")
+  enterMiniBack.classList.add("u-hidden")
+} ,false)
 
-// --------------------フロアマップ表示--------------------
-const floorMapOpen = document.getElementById("js-floorMapOpen")
-floorMapOpen.addEventListener("click", function () {
-  document.getElementById("js-floorMapBack").classList.remove("u-hidden")
-  document.getElementById("js-floorMap").classList.remove("u-hidden")
-}, false)
+// ============================================================
+//                     フロアマップ関連
+// ============================================================
 
-// --------------------フロアマップクローズボタン押下時--------------------
-const floorMapClose = document.getElementById("js-floorMapClose")
-floorMapClose.addEventListener("click", function () {
-  document.getElementById("js-floorMap").classList.add("u-hidden")
-  document.getElementById("js-floorMapBack").classList.add("u-hidden")
-}, false)
 
-// --------------------退室画面クローズボタン押下時--------------------
-const exitClose = document.getElementById("js-exitClose")
-exitClose.addEventListener("click", function () {
-  document.getElementById("js-exit").classList.add("u-hidden")
-  document.getElementById("js-exitBack").classList.add("u-hidden")
-}, false)
+// ============================================================
+//                     退室画面関連
+// ============================================================
 
-// --------------------教員用画面クローズボタン押下時--------------------
-const teacherClose = document.getElementById("js-teacherClose")
-teacherClose.addEventListener("click", function () {
-  document.getElementById("js-teacher").classList.add("u-hidden")
-  document.getElementById("js-teacherBack").classList.add("u-hidden")
-}, false)
 
-// --------------------テキストインプットクリック時--------------------
-function setTargetC(id) {
+// ============================================================
+//                     教員用画面関連
+// ============================================================
+
+
+// ============================================================
+//                     キーボード関連
+// ============================================================
+let target = null
+
+// --------------------テキストインプット選択時--------------------
+const SetTargetC = id => {
+  const keybord = document.getElementById("js-keybord")
+  const keybordBack = document.getElementById("js-keybordback")
+  
   event.returnValue = false
   target = document.getElementById(id)
   target.classList.add("is-active")
   keybord.classList.remove("u-hidden")
   keybordBack.classList.remove("u-hidden")
-  if (id == "rlast_name") {modal.style.top = "40%"}
-  if (id == "llast_name") {rmodal.style.top = "40%"}
+  if (id == "rlast_name") { modal.style.top = "40%" }
+  if (id == "llast_name") { rmodal.style.top = "40%" }
 }
 
 // --------------------キーボード非表示--------------------
-function hideKeybord() {
+const HideKeybord = () => {
+  const keybord = document.getElementById("js-keybord")
+  const keybordBack = document.getElementById("js-keybordback")
+  
   target.classList.remove("is-active")
   keybord.classList.add("u-hidden")
   keybordBack.classList.add("u-hidden")
@@ -168,18 +229,12 @@ function hideKeybord() {
 }
 
 // --------------------入力--------------------
-function setChar(char) {
+const SetChar = char => {
   target.value += char
 }
 
-// --------------------バックスペース--------------------
-function backSpace() {
-  let len = target.value.length
-  target.value = target.value.substring(0, len - 1)
-}
-
 // --------------------大/小切り替え--------------------
-function toggleSize() {
+function ToggleSize() {
   let lastc = cSize()
   backSpace()
   target.value += lastc
@@ -207,15 +262,15 @@ function cSize() {
 }
 
 // --------------------ﾞ / ﾟ切り替え--------------------
-function toggleDakuon() {
-  let lastc = dakuten()
+const ToggleDakuon = () => {
+  const lastc = dakuten()
   backSpace()
   target.value += lastc
 }
 
-function dakuten() {
-  let len = target.value.length
-  let lastc = target.value.substring(len - 1, len)
+const Dakuten = () => {
+  const len = target.value.length
+  const lastc = target.value.substring(len - 1, len)
   switch (lastc) {
     case "カ":
       return "ガ"
@@ -312,33 +367,12 @@ function dakuten() {
   }
 }
 
-
-function enter() {
-  hideKeybord()
+// --------------------バックスペース--------------------
+const BackSapce = () => {
+  const len = target.value.length
+  target.value = target.value.substring(0, len - 1)
 }
 
-function setTargetN(id) {
-  target = document.getElementById(id)
-  target.classList.add("is-active")
-  keybord.classList.remove("u-hidden")
-  keybordBack.classList.remove("u-hidden")
-}
-
-// --------------------ミニモーダル表示時--------------------
-const decideBtn = document.getElementById("js-decisionBtn")
-decideBtn.addEventListener("click", function () {
-  const firstName = document.getElementById("rfirst_name").value
-  const lastName = document.getElementById("rlast_name").value
-  const fullName = firstName + " " + lastName
-  const classYear = document.getElementById("class_year").value
-  const className = document.getElementById("class_name").value
-  const roomName = document.getElementById("room_name").value
-  const reason = document.getElementById("use_reason").value
-  const leaveTimeHour = document.getElementById("leavetime_hour").value
-  const leaveTimeSec = document.getElementById("leavetime_sec").value
-  const leaveTime = leaveTimeHour + " ： " + leaveTimeSec
-
-  document.getElementById("decide_label").innerText = "名前： " + fullName + "\n学年： " + classYear +
-    "\n学科： " + className + "\n使用教室： " + roomName + "\n使用理由： " + reason + "\n退室予定時間： " + leaveTime  
-
-}, false)
+// ============================================================
+//                     テンキー関連
+// ============================================================
