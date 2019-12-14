@@ -40,10 +40,20 @@
   transform: translateY(-50%);
 }
 
+.u-absolute--centerAuto {
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
 .u-top--20 {
   top: 20%;
 }
 
 .u-top--50 {
   top: 50%;
+}
+
+.u-bottom--m20r {
+  bottom: -20rem;
 }

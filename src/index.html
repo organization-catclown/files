@@ -23,7 +23,7 @@
     </nav>
     <div class="l-background--top u-hidden" id="js-modal_back"></div>
     <!-- 入室画面 -->
-    <form method="POST" action="index.html" class="l-modal u-absolute--center u-top--50 u-hidden" id="js-enter" autocomplete="off">
+    <form method="POST" action="index.html" class="l-modal u-absolute--center u-top--50" id="js-enter" autocomplete="off">
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-enter_close">×</div>
         <div class="l-modal__top u-hFill u-textCenter u-relative">
@@ -163,13 +163,13 @@
     </div>
 
     <!-- 退出画面 -->
-    <form class="l-modal u-absolute__center u-hidden" id="js-exit">
+    <form class="l-modal u-absolute--center u-top--50" id="js-exit">
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-exit_close">×</div>
         <div class="l-modal__top  u-hFill u-textCenter u-relative">
           <ol class="l-justifyCenter l-aiCenter u-vFill">
-            <li class="p-progress p-progress--current">氏名入力</li>
-            <li class="p-progress u-twoLines">学年・学科<br />選択</li>
+            <li class="p-progress p-progress--current js-exitProgress">氏名入力</li>
+            <li class="p-progress js-exitProgress u-twoLines">学年・学科<br />選択</li>
           </ol>
         </div>
         <div class="l-modal__body l-flex u-fill" id="js-exit_body">
@@ -221,7 +221,7 @@
     </form>
 
     <!-- 教員用画面 -->
-    <form class="l-modal u-absolute__center u-hidden" id="js-teacher">
+    <form class="l-modal u-absolute--center u-top--50" id="js-teacher">
       <div class="l-directionColumn u-hFill ">
         <div class="l-modal__closeBtn" id="js-teacher_close">×</div>
         <div class="l-modal__top  u-hFill u-textCenter u-relative">
@@ -251,7 +251,7 @@
   </main>
   <div class="l-keybordBack u-hidden" id="js-keybordback" onclick="HideKeybord()"></div>
   <!-- キーボード -->
-  <div class="l-keybord u-absolute__bottomCenter u-hidden" id="js-keybord">
+  <div class="l-keybord u-absolute u-absolute--centerAuto u-bottom--m20r u-hidden" id="js-keybord">
     <div class="l-directionRowR u-vhFill">
       <div class="l-directionColumn u-vhFill l-keybordClumn">
         <button class="l-keybord__btn" onclick="BackSpace()">削除</button>

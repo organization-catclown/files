@@ -6,13 +6,15 @@
 
 .l-modal {
   width        : $modal-width;
-  height       : $modal-height;
+  // height       : $modal-height;
+  height: 0;
   background: #fff;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px 5px rgba($color: #000000, $alpha: .3);
-  transition: top .3s;
+  transition: top .2s, opacity .2s, height .1s;
+  opacity: 0;
 }
 
 .l-modal__closeBtn {
@@ -31,12 +33,6 @@
   width : $modal__body-width;
   height: $modal__body-height;
   background: #fff;
-}
-
-#js-enter_body,
-#js-exit_body,
-#js-teacher_body {
-  transition: transform .3s;
 }
 
 .l-modal__page {

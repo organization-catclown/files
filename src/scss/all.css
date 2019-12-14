@@ -256,15 +256,16 @@ ol {
  */
 .l-modal {
   width: 1100px;
-  height: 700px;
+  height: 0;
   background: #fff;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
   -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-  -webkit-transition: top .3s;
-  transition: top .3s;
+  -webkit-transition: top .2s, opacity .2s, height .1s;
+  transition: top .2s, opacity .2s, height .1s;
+  opacity: 0;
 }
 
 .l-modal__closeBtn {
@@ -283,15 +284,6 @@ ol {
   width: 5500px;
   height: 525px;
   background: #fff;
-}
-
-#js-enter_body,
-#js-exit_body,
-#js-teacher_body {
-  -webkit-transition: -webkit-transform .3s;
-  transition: -webkit-transform .3s;
-  transition: transform .3s;
-  transition: transform .3s, -webkit-transform .3s;
 }
 
 .l-modal__page {
@@ -401,10 +393,10 @@ div.c-textBox input[type="text"].c-textBox ~ .border-v:after {
   width: 0;
   height: 3px;
   background-color: #0081ff;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  -webkit-transition-delay: 0.2s;
-          transition-delay: 0.2s;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
 }
 
 div.c-textBox input[type="text"].c-textBox ~ .border-v::after {
@@ -412,8 +404,8 @@ div.c-textBox input[type="text"].c-textBox ~ .border-v::after {
   bottom: 0;
   right: auto;
   left: 0;
-  -webkit-transition-delay: 0.6s;
-          transition-delay: 0.6s;
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
 }
 
 div.c-textBox input[type="text"].c-textBox ~ .border-v .border-h:before,
@@ -425,8 +417,8 @@ div.c-textBox input[type="text"].c-textBox ~ .border-v .border-h:after {
   width: 3px;
   height: 0;
   background-color: #0081ff;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
 }
 
 div.c-textBox input[type="text"].c-textBox ~ .border-v .border-h:after {
@@ -434,34 +426,34 @@ div.c-textBox input[type="text"].c-textBox ~ .border-v .border-h:after {
   bottom: 0;
   right: 0;
   left: auto;
-  -webkit-transition-delay: 0.4s;
-          transition-delay: 0.4s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
 
 div.c-textBox input[type="text"].c-textBox.is-active ~ .border-v:before,
 div.c-textBox input[type="text"].c-textBox.is-active ~ .border-v:after {
   width: 100%;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  -webkit-transition-delay: 0.6s;
-          transition-delay: 0.6s;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
 }
 
 div.c-textBox input[type="text"].c-textBox.is-active ~ .border-v:after {
-  -webkit-transition-delay: 0.2s;
-          transition-delay: 0.2s;
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
 }
 
 div.c-textBox input[type="text"].c-textBox.is-active ~ .border-v .border-h:before,
 div.c-textBox input[type="text"].c-textBox.is-active ~ .border-v .border-h:after {
   height: 100%;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
 }
 
 div.c-textBox input[type="text"].c-textBox.is-active ~ .border-v .border-h:after {
-  -webkit-transition-delay: 0.4s;
-          transition-delay: 0.4s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
 
 div.c-textBox input[type="text"].c-textBox.is-active ~ label,
@@ -713,12 +705,22 @@ div.c-textBox label {
           transform: translateY(-50%);
 }
 
+.u-absolute--centerAuto {
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
 .u-top--20 {
   top: 20%;
 }
 
 .u-top--50 {
   top: 50%;
+}
+
+.u-bottom--m20r {
+  bottom: -20rem;
 }
 
 /*
@@ -1270,5 +1272,31 @@ div.c-textBox label {
 
 .u-twoLines {
   line-height: 50px;
+}
+
+.a-fade--in {
+  opacity: 1;
+  height: 700px;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.a-fade--out {
+  opacity: 0;
+  height: 0;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.a-fade--up {
+  bottom: 0;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.a-fade--down {
+  bottom: -20rem;
+  -webkit-transition: .2s;
+  transition: .2s;
 }
 /*# sourceMappingURL=all.css.map */

@@ -1,5 +1,23 @@
 @charset "utf-8";
 
-.a-fade {
-  
+.a-fade--in {
+  opacity: 1;
+  height: $modal-height;
+  transition: .3s;
+}
+
+.a-fade--out {
+  opacity: 0;
+  height: 0;
+  transition: .3s;
+}
+
+.a-fade--up {
+  bottom: 0;
+  transition: .2s;
+}
+
+.a-fade--down {
+  bottom: -20rem;
+  transition: .2s;
 }
