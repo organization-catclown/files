@@ -29,8 +29,8 @@ div.c-textBox {
       width: 0;
       height: 3px;
       background-color: #0081ff;
-      transition: 0.2s;
-      transition-delay: 0.2s;
+      transition: 0.1s;
+      transition-delay: 0.1s;
     }
   
     & ~ .border-v::after {
@@ -38,7 +38,7 @@ div.c-textBox {
       bottom: 0;
       right: auto;
       left: 0;
-      transition-delay: 0.6s;
+      transition-delay: 0.3s;
     }
   
     & ~ .border-v .border-h:before,
@@ -50,7 +50,7 @@ div.c-textBox {
       width: 3px;
       height: 0;
       background-color: #0081ff;
-      transition: 0.2s;
+      transition: 0.1s;
     }
   
     & ~ .border-v .border-h:after {
@@ -58,28 +58,28 @@ div.c-textBox {
       bottom: 0;
       right: 0;
       left: auto;
-      transition-delay: 0.4s;
+      transition-delay: 0.2s;
     }
   
     &.is-active ~ .border-v:before,
     &.is-active ~ .border-v:after {
       width: 100%;
-      transition: 0.2s;
-      transition-delay: 0.6s;
+      transition: 0.1s;
+      transition-delay: 0.3s;
     }
   
     &.is-active ~ .border-v:after {
-      transition-delay: 0.2s;
+      transition-delay: 0.1s;
     }
   
     &.is-active ~ .border-v .border-h:before,
     &.is-active ~ .border-v .border-h:after {
       height: 100%;
-      transition: 0.2s;
+      transition: 0.1s;
     }
   
     &.is-active ~ .border-v .border-h:after {
-      transition-delay: 0.4s;
+      transition-delay: 0.2s;
     }
 
     &.is-active ~ label,

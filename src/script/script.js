@@ -1,8 +1,4 @@
 const MODAL_WIDTH    = 1100
-const ENTER_MAX_PAGE = 4
-let enterCurrentPage = 0
-const EXIT_MAX_PAGE  = 2
-let exitCurrentPage  = 0
 
 let floorMapBack
 let floorMapBody
@@ -34,19 +30,23 @@ document.oncontextmenu = function () { return false; }
 // --------------------モーダル移動--------------------
 const MovementModal = (el, dist) => {
   el.style.transform = "translateX(" + -MODAL_WIDTH * dist + "px)"
+  el.style.transition = ".2s"
 }
 
 
 // ============================================================
 //                     入室画面関連
 // ============================================================
+const ENTER_MAX_PAGE = 4
+let enterCurrentPage = 0
 
 // --------------------入室画面表示--------------------
 const ShowEnter = () => {
   const enterModal = document.getElementById("js-enter")
   const modalBack = document.getElementById("js-modal_back")
 
-  enterModal.classList.remove("u-hidden")
+  enterModal.classList.remove("a-fade--out")
+  enterModal.classList.add("a-fade--in")
   modalBack.classList.remove("u-hidden")
 }
 
@@ -55,7 +55,8 @@ document.getElementById("js-enter_close").addEventListener("click", function () 
   const enterModal = document.getElementById("js-enter")
   const modalBack = document.getElementById("js-modal_back")
 
-  enterModal.classList.add("u-hidden")
+  enterModal.classList.add("a-fade--out")
+  enterModal.classList.remove("a-fade--in")
   modalBack.classList.add("u-hidden")
 }, false)
 
@@ -169,14 +170,82 @@ document.getElementById("js-floormap").addEventListener("click", function() {
   return true
 }, false)
 
+
+
 // ============================================================
 //                     退室画面関連
 // ============================================================
+const EXIT_MAX_PAGE  = 2
+let exitCurrentPage  = 0
 
 // --------------------退室画面表示--------------------
-document.getElementById("js-exit").addEventListener("click", function() {
-  return true
+const ShowExit = () => {
+  const exitModal = document.getElementById("js-exit")
+  const modalBack = document.getElementById("js-modal_back")
+  
+  exitModal.classList.add("a-fade--in")
+  exitModal.classList.remove("a-fade--out")
+  modalBack.classList.remove("u-hidden")
+}
+
+// --------------------クローズボタン押下時--------------------
+document.getElementById("js-exit_close").addEventListener("click", function() {
+  const exitModal = document.getElementById("js-exit")
+  const modalBack = document.getElementById("js-modal_back")
+  
+  exitModal.classList.add("a-fade--out")
+  exitModal.classList.remove("a-fade--in")
+  modalBack.classList.add("u-hidden")
 }, false)
+
+
+// --------------------戻るボタン押下時--------------------
+document.getElementById("js-exit_backbtn").addEventListener("click", function(){
+  const exitBody = document.getElementById("js-exit_body")
+  const exitNextBtn = document.getElementById("js-exit_nextbtn")
+  const progress = document.getElementsByClassName("js-exitProgress")
+
+  if(exitCurrentPage > 0) {
+    exitCurrentPage--
+
+    if(exitNextBtn.classList.contains("u-hidden")) {
+      exitNextBtn.classList.remove("u-hidden")
+    }
+
+    MovementModal(exitBody, exitCurrentPage)
+    progress[exitCurrentPage].classList.add("p-progress--current")
+    progress[exitCurrentPage + 1].classList.remove("p-progress--current")
+    progress[exitCurrentPage].classList.remove("p-progress--done")
+  }
+  if(exitCurrentPage == 0) {
+    this.classList.add("u-hidden")
+  }
+}, false)
+
+// --------------------次へボタン押下時--------------------
+document.getElementById("js-exit_nextbtn").addEventListener("click", function(){
+  const exitBody = document.getElementById("js-exit_body")
+  const exitBackBtn = document.getElementById("js-exit_backbtn")
+  const progress = document.getElementsByClassName("js-exitProgress")
+
+  if(exitCurrentPage<EXIT_MAX_PAGE-1) {
+    exitCurrentPage++
+
+    if(exitBackBtn.classList.contains("u-hidden")) {
+      exitBackBtn.classList.remove("u-hidden")
+    }
+
+    MovementModal(exitBody, exitCurrentPage)
+    progress[exitCurrentPage].classList.add("p-progress--current")
+    progress[exitCurrentPage - 1].classList.remove("p-progress--current")
+    progress[exitCurrentPage - 1].classList.add("p-progress--done")
+  }
+  if(exitCurrentPage == EXIT_MAX_PAGE -1) {
+    this.classList.add("u-hidden")
+  }
+}, false)
+
+// --------------------決定ボタン押下時--------------------
 
 
 // ============================================================
@@ -184,10 +253,32 @@ document.getElementById("js-exit").addEventListener("click", function() {
 // ============================================================
 
 // --------------------教員用画面表示--------------------
-document.getElementById("js-teacher").addEventListener("click", function() {
-  return true
+const ShowTeacher = () => {
+  const teacherModal = document.getElementById("js-teacher") 
+  const modalBack = document.getElementById("js-modal_back")
+  
+  teacherModal.classList.add("a-fade--in")
+  teacherModal.classList.remove("a-fade--out")
+  modalBack.classList.remove("u-hidden")
+}
+
+// --------------------クローズボタン押下時--------------------
+document.getElementById("js-teacher_close").addEventListener("click", function() {
+  const teacherModal = document.getElementById("js-teacher") 
+  const modalBack = document.getElementById("js-modal_back")
+  
+  teacherModal.classList.add("a-fade--out")
+  teacherModal.classList.remove("a-fade--in")
+  modalBack.classList.add("u-hidden")
 }, false)
 
+
+
+// --------------------戻るボタン押下時--------------------
+
+// --------------------次へボタン押下時--------------------
+
+// --------------------決定ボタン押下時--------------------
 
 // ============================================================
 //                     キーボード関連
@@ -205,6 +296,8 @@ const SetTargetC = id => {
   target = document.getElementById(id)
   target.classList.add("is-active")
   keybord.classList.remove("u-hidden")
+  keybord.classList.add("a-fade--up")
+  keybord.classList.remove("a-fade--down")
   keybordBack.classList.remove("u-hidden")
   if (id == "rlast_name") { enterModal.style.top = "40%" }
   if (id == "llast_name") { exitModal.style.top = "40%" }
@@ -218,6 +311,8 @@ const HideKeybord = () => {
   const keybordBack = document.getElementById("js-keybordback")
   
   target.classList.remove("is-active")
+  keybord.classList.add("a-fade--down")
+  keybord.classList.remove("a-fade--up")
   keybord.classList.add("u-hidden")
   keybordBack.classList.add("u-hidden")
   enterModal.style.top = "50%"
