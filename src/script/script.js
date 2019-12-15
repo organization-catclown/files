@@ -10,6 +10,9 @@ let exitNextBtn
 
 
 // --------------------全角入力制限--------------------
+/**
+ * @param  {String} string 入力文字列 引数
+ */
 function checkKey(string) {
   let str = string.value
   while (str.match(/[^A-Z^a-z\d\-]/)) {
@@ -28,6 +31,10 @@ document.oncontextmenu = function () { return false; }
 
 
 // --------------------モーダル移動--------------------
+/**
+ * @param  {Node} el 移動モーダルボディー 引数
+ * @param  {Integer} dist 移動距離 引数
+ */
 const MovementModal = (el, dist) => {
   el.style.transform = "translateX(" + -MODAL_WIDTH * dist + "px)"
   el.style.transition = ".2s"
@@ -286,12 +293,15 @@ document.getElementById("js-teacher_close").addEventListener("click", function()
 let target = null
 
 // --------------------テキストインプット選択時--------------------
+/**
+ * @param  {String} id 入力先のinputのid 引数
+ */
 const SetTargetC = id => {
   const enterModal = document.getElementById("js-enter")
   const exitModal = document.getElementById("js-exit")
   const keybord = document.getElementById("js-keybord")
   const keybordBack = document.getElementById("js-keybordback")
-  
+
   event.returnValue = false
   target = document.getElementById(id)
   target.classList.add("is-active")
@@ -299,6 +309,7 @@ const SetTargetC = id => {
   keybord.classList.add("a-fade--up")
   keybord.classList.remove("a-fade--down")
   keybordBack.classList.remove("u-hidden")
+
   if (id == "rlast_name") { enterModal.style.top = "40%" }
   if (id == "llast_name") { exitModal.style.top = "40%" }
 }
@@ -465,7 +476,51 @@ const BackSpace = () => {
 }
 
 const Enter = () => {
-  HideKeybord()
+  if(target == document.getElementById("rfirst_name")) {
+    const enterModal = document.getElementById("js-enter")
+
+    target.classList.remove("is-active")
+    target = document.getElementById("rlast_name")
+    target.classList.add("is-active")
+    enterModal.style.top = "40%"
+  }else if(target == document.getElementById("rlast_name")){
+    const enterModal = document.getElementById("js-enter")
+    const enterBody = document.getElementById("js-enter_body")
+    const enterBackBtn = document.getElementById("js-enter_backbtn")
+    const progress = document.getElementsByClassName("js-enterProgress")
+
+    target.classList.remove("is-active")
+    enterModal.style.top = "50%"
+    HideKeybord()
+    enterCurrentPage++
+    MovementModal(enterBody, enterCurrentPage)
+    progress[enterCurrentPage].classList.add("p-progress--current")
+    progress[enterCurrentPage - 1].classList.remove("p-progress--current")
+    progress[enterCurrentPage - 1].classList.add("p-progress--done")
+    enterBackBtn.classList.remove("u-hidden")
+  }else if(target == document.getElementById("lfirst_name")) {
+    const exitModal = document.getElementById("js-exit")
+
+    target.classList.remove("is-active")
+    target = document.getElementById("llast_name")
+    target.classList.add("is-active")
+    exitModal.style.top = "40%"
+  }else if(target == document.getElementById("llast_name")) {
+    const exitModal = document.getElementById("js-exit")
+    const exitBody = document.getElementById("js-exit_body")
+    const exitBackBtn = document.getElementById("js-exit_backbtn")
+    const progress = document.getElementsByClassName("js-exitProgress")
+
+    target.classList.remove("is-active")
+    exitModal.style.top = "50%"
+    HideKeybord()
+    exitCurrentPage++
+    MovementModal(exitBody, exitCurrentPage)
+    progress[exitCurrentPage].classList.add("p-progress--current")
+    progress[exitCurrentPage - 1].classList.remove("p-progress--current")
+    progress[exitCurrentPage - 1].classList.add("p-progress--done")
+    exitBackBtn.classList.remove("u-hidden")
+  }
 }
 
 
@@ -475,6 +530,9 @@ const Enter = () => {
 let targetN = null
 
 // --------------------テンキー表示--------------------
+/**
+ * @param  {String} id 入力先のinputのid 引数
+ */
 const SetTargetN = id => {
   const tenkey = document.getElementById("js-tenkey")
   const tenkeyBack = document.getElementById("js-tenkeybordback")
