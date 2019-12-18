@@ -1,8 +1,10 @@
 .gitignore
 css/
 scss/all.css.map
+scss/all.min.css
 Room_Management_System.code-workspace
 ./testCode/*
 .vscode/settings.json
 src/.vscode/settings.json
 testCode/*
+src/scss/all.css.map
