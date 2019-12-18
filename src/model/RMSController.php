@@ -70,6 +70,7 @@ class RMSController
         if (empty($this->roomReservationDataClass->getRoomCode())) return false;
         if (empty($this->roomReservationDataClass->getLeavingTime())) return false;
         if (empty($this->roomReservationDataClass->getReasonCode())) return false;
+        if (empty($this->roomReservationDataClass->getEntryTeacherCode())) return false;
         return true;
     }
 
@@ -92,27 +93,55 @@ class RMSController
     public function setCmbClassName()
     {
         foreach ((array) $this->classNameArray as $key => $value) {
-            echo '<option value="">' . $key . '</option>';
+            echo '<option value="' . $key . '">' . $key . '</option>';
         }
     }
     // 教室名を入れるコンボボックスの初期化
     public function setCmbRoomName()
     {
         foreach ((array) $this->roomNameArray as $key => $value) {
-            echo '<option value="">' . $key . '</option>';
+            echo '<option value="' . $key . '">' . $key . '</option>';
         }
     }
     // 理由を入れるコンボボックスの初期化
     public function setCmbReasonName()
     {
         foreach ((array) $this->reasonNameArray as $key => $value) {
-            echo '<option value="">' . $key . '</option>';
+            echo '<option value="' . $key . '">' . $key . '</option>';
+        }
+    }
+
+    // 時間を入れるコンボボックスの初期化
+    public function setCmbHour()
+    {
+        for ($i = 0; $i < 24; $i++) {
+            echo '<option value="' . $i . '">' . $i . '</option>';
+        }
+    }
+
+    // 分を入れるコンボボックスの初期化
+    public function setCmbMinute()
+    {
+        for ($i = 0; $i < 60; $i++) {
+            echo '<option value="' . $i . '">' . $i . '</option>';
         }
     }
 
     public function showLogData()
     {
         $array = null;
+        echo '<table border=1>';
+        echo '<tr>';
+        echo '<th>学籍番号</th>';
+        echo '<th>部屋コード</th>';
+        echo '<th>入室印教師番号</th>';
+        echo '<th>入室時刻</th>';
+        echo '<th>退室印教師番号</th>';
+        echo '<th>退室予定時刻</th>';
+        echo '<th>理由</th>';
+        echo '<th>実退室時刻</th>';
+        echo '<th>退室フラグ</th>';
+        echo '</tr>';
         if (($array = DataBaseController::fetchLogData()) != null) {
             foreach ((array) $array as $buff) {
                 echo '<tr>';
@@ -128,5 +157,6 @@ class RMSController
                 echo '</tr>';
             }
         }
+        echo '</table>';
     }
 }

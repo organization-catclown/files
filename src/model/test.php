@@ -115,19 +115,6 @@
 
 
     echo '<br><div>ログデータ</div>';
-    $logDataClassAraay = DataBaseController::fetchLogData();
-    echo '<table border=1>';
-    echo '<tr>';
-    echo '<th>学籍番号</th>';
-    echo '<th>部屋コード</th>';
-    echo '<th>入室印教師番号</th>';
-    echo '<th>入室時刻</th>';
-    echo '<th>退室印教師番号</th>';
-    echo '<th>退室予定時刻</th>';
-    echo '<th>理由</th>';
-    echo '<th>実退室時刻</th>';
-    echo '<th>退室フラグ</th>';
-    echo '</tr>';
     $rmsc->showLogData();
 
     echo '</table><br><br><br>';
@@ -151,6 +138,9 @@
     <form action="" method="post">
       <div><input type="submit" name="Refresh" value="Refresh"></div>
     </form>
+
+    <input type="button" value="" onclick="">
+
   </div>
 
 </body>

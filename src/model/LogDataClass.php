@@ -12,22 +12,6 @@ class LogDataClass
     private $endDate;               //実退室時刻
     private $endFlag;               //退室フラグ true:退室済 false:未退室
 
-
-    /*
-    public function __construct($studentNumber, $roomCode, $entryTeacherCode, $entryTime, $leavingTeacherCode, $leavingTime, $reasonCode, $endDate, $endFlag)
-    {
-        $this->studentNumber = $studentNumber;
-        $this->roomCode = $roomCode;
-        $this->entryTeacherCode = $entryTeacherCode;
-        $this->entryTime = $entryTime;
-        $this->leavingTeacherCode = $leavingTeacherCode;
-        $this->leavingTime = $leavingTime;
-        $this->reasonCode = $reasonCode;
-        $this->endDate = $endDate;
-        $this->endFlag = $endFlag;
-    }
-*/
-
     //==================================
     //        以下アクセサメソッド
     //==================================
