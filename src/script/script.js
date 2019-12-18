@@ -509,6 +509,7 @@ const Enter = () => {
     const exitModal = document.getElementById("js-exit")
     const exitBody = document.getElementById("js-exit_body")
     const exitBackBtn = document.getElementById("js-exit_backbtn")
+    const exitNextBtn = document.getElementById("js-exit_nextbtn")
     const progress = document.getElementsByClassName("js-exitProgress")
 
     target.classList.remove("is-active")
@@ -520,6 +521,7 @@ const Enter = () => {
     progress[exitCurrentPage - 1].classList.remove("p-progress--current")
     progress[exitCurrentPage - 1].classList.add("p-progress--done")
     exitBackBtn.classList.remove("u-hidden")
+    exitNextBtn.classList.add("u-hidden")
   }
 }
 
