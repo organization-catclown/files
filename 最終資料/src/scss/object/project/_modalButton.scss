@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+$nextBtnColor: #0081ff;
+$backBtnColor: #707070;
+
+.p-modal__btn {
+  display: block;
+  width: $button-width;
+  // height  : $button-height;
+  font-size: 2em;
+  line-height: 100px;
+  text-align: center;
+  background: $nextBtnColor;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  opacity: 1;
+}
+
+.p-modal__btn--back {
+  left: 0;
+  background: $backBtnColor url(../assets/left.png) no-repeat center left 10px/60px 60px;
+  border-radius: 0 $modal-radius 0 0;
+
+  &:hover {
+    background: darken($backBtnColor, 20%) url(../assets/left.png) no-repeat center left 10px/60px 60px;
+    border-radius: 0 $modal-radius 0 0;
+  }
+}
+
+.p-modal__btn--next {
+  right: 0;
+  border-radius: $modal-radius 0 0 0;
+  background: $nextBtnColor url(../assets/right.png) no-repeat center right 10px/60px 60px;
+  &:hover {
+    background: darken($nextBtnColor, 20%) url(../assets/right.png) no-repeat center right 10px/60px 60px;
+    border-radius: $modal-radius 0 0 0;
+  }
+}
+
+.p-modal__btn--decision {
+  right: 0;
+  border-radius: $modal-radius 0 0 0;
+  background: $nextBtnColor url(../assets/right.png) no-repeat center right 10px/60px 60px;
+  &:hover {
+    background: darken($nextBtnColor, 20%) url(../assets/right.png) no-repeat center right 10px/60px
+      60px;
+    border-radius: $modal-radius 0 0 0;
+  }
+}

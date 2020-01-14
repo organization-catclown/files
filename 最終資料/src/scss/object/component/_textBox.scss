@@ -1,0 +1,107 @@
+@charset "utf-8";
+
+div.c-textBox {
+  width: 45rem;
+  height: 5rem;
+  position: relative;
+  box-sizing: border-box;
+
+  input[type="text"].c-textBox {
+    width: 100%;
+    height: 100%;
+    font-size: 4rem;
+    padding-left: 0.2em;
+    color: #707070;
+    border: 2px solid #707070;
+    position: absolute;
+    box-sizing: border-box;
+    transition: 0.4s;
+
+    &.is-active {
+      outline: none;
+    }
+    & ~ .border-v:before,
+    & ~ .border-v:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 3px;
+      background-color: #0081ff;
+      transition: 0.1s;
+      transition-delay: 0.1s;
+    }
+  
+    & ~ .border-v::after {
+      top: auto;
+      bottom: 0;
+      right: auto;
+      left: 0;
+      transition-delay: 0.3s;
+    }
+  
+    & ~ .border-v .border-h:before,
+    & ~ .border-v .border-h:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background-color: #0081ff;
+      transition: 0.1s;
+    }
+  
+    & ~ .border-v .border-h:after {
+      top: auto;
+      bottom: 0;
+      right: 0;
+      left: auto;
+      transition-delay: 0.2s;
+    }
+  
+    &.is-active ~ .border-v:before,
+    &.is-active ~ .border-v:after {
+      width: 100%;
+      transition: 0.1s;
+      transition-delay: 0.3s;
+    }
+  
+    &.is-active ~ .border-v:after {
+      transition-delay: 0.1s;
+    }
+  
+    &.is-active ~ .border-v .border-h:before,
+    &.is-active ~ .border-v .border-h:after {
+      height: 100%;
+      transition: 0.1s;
+    }
+  
+    &.is-active ~ .border-v .border-h:after {
+      transition-delay: 0.2s;
+    }
+
+    &.is-active ~ label,
+    &:valid ~ label {
+      top: -2em;
+      left: 0;
+      font-size: 2em;
+      color: #0081ff;
+      transition: 0.3s;
+    }
+  }
+
+
+  label {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    font-size: 3.5rem;
+    line-height: 5rem;
+    color: #707070;
+    padding-left: 0.2em;
+    transition: 0.3s;
+    cursor: text;
+  }
+}

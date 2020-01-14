@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+.u-relative {
+  position: relative;
+}
+
+.u-absolute {
+  position: absolute;
+}
+
+.u-absolute__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.u-absolute--center {
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.u-fixed {
+  position: fixed;
+}
+
+.u-absolute__bottomCenter {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.u-absolute__centerRight {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.u-absolute--centerAuto {
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.u-top--20 {
+  top: 20%;
+}
+
+.u-top--50 {
+  top: 50%;
+}
+
+.u-bottom--m20r {
+  bottom: -20rem;
+}

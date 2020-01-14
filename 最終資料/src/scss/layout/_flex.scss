@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+/*
+ * layout/_flex.scss
+ */
+
+.l-flex {
+  display: flex;
+}
+
+.l-justifyCenter {
+  display        : flex;
+  justify-content: center;
+}
+
+.l-directionColumn {
+  display       : flex;
+  flex-direction: column;
+}
+
+.l-directionRowR {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.l-aiCenter {
+  align-items: center;
+}

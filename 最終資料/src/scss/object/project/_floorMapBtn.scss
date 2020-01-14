@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+.p-floorMapBtn {
+  position: relative;
+  width: 10rem;
+  height: 5rem;
+  background: #000;
+  color: #fff;
+  border-radius: 5px 0 0 5px;
+  right: -2rem;
+
+  & ~ .p-floorMapBtn {
+    margin-top: 5px;
+  }
+}
+
+.p-floorMapBtn--current {
+  right: 0rem;
+  width: 12rem;
+  height: 7rem;
+  background: $blue;
+}

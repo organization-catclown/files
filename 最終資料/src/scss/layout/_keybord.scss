@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+.l-keybord {
+  position: absolute;
+  width: $keybord-width;
+  height: $keybord-height;
+  z-index: 10;
+  background: #000;
+}
+
+.l-keybord__btn {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: #ff0;
+  flex: 1;
+  // border: 1px solid #000;
+
+  & ~ .l-keybord__btn {
+    margin-top: 2px;
+  }
+}
+
+.l-keybord__btn--twice {
+  flex: 2;
+}
+
+.l-keybord__btn--hidden {
+  background: transparent;
+}
+
+.l-keybordBack {
+  display: block;
+  position: fixed;
+  // width: 100vw;
+  // height: 100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  z-index: 10;
+}
+
+.l-keybordClumn ~ .l-keybordClumn {
+  margin-right: 2px;
+}
